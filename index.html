@@ -459,10 +459,12 @@
         height: 100%;
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
       }
 
       .gallery-slide.active {
         opacity: 1;
+        pointer-events: auto;
       }
 
       .gallery-slide img {
@@ -775,7 +777,8 @@
       }
 
       /* Modal pour vidéos */
-      .video-modal {
+      .video-modal,
+      .image-modal {
         display: none;
         position: fixed;
         top: 0;
@@ -788,7 +791,8 @@
         justify-content: center;
       }
 
-      .video-modal.active {
+      .video-modal.active,
+      .image-modal.active {
         display: flex;
       }
 
@@ -798,7 +802,16 @@
         position: relative;
       }
 
-      .modal-close {
+      .modal-content-img {
+        max-width: 90%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-close,
+      .modal-close-img {
         position: absolute;
         top: -40px;
         right: 0;
@@ -807,6 +820,19 @@
         cursor: pointer;
         background: none;
         border: none;
+      }
+
+      .modal-close-img {
+        top: 20px;
+        right: 20px;
+        z-index: 10001;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
       }
 
       .video-container {
@@ -1300,36 +1326,23 @@
                 <div class="gallery-slider" id="gallery-luna">
                   <!-- Slide 1 -->
                   <div class="gallery-slide active">
-                    <img
-                      src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Luna 1"
-                    />
+                    <img src="./img/1.jpg" alt="Luna 1" />
                   </div>
                   <!-- Slide 2 -->
                   <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba48?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Luna 2"
-                    />
+                    <img src="./img/2.jpg" alt="Luna 2" />
                   </div>
                   <!-- Slide 3 -->
                   <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Luna 3"
-                    />
+                    <img src="./img/3.jpg" alt="Luna 3" />
                   </div>
                   <!-- Video Slide -->
                   <div
                     class="gallery-slide video-slide"
-                    onclick="
-                      openVideoModal(
-                        'https://www.youtube.com/embed/jHWKtQHXVJg',
-                      )
-                    "
+                    data-video-url="https://www.youtube.com/embed/g69awDfW054"
                   >
                     <img
-                      src="https://img.youtube.com/vi/jHWKtQHXVJg/maxresdefault.jpg"
+                      src="https://img.youtube.com/vi/g69awDfW054/maxresdefault.jpg"
                       alt="Luna Video"
                       class="video-thumbnail"
                     />
@@ -1403,36 +1416,23 @@
                 <div class="gallery-slider" id="gallery-thor">
                   <!-- Slide 1 -->
                   <div class="gallery-slide active">
-                    <img
-                      src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Thor 1"
-                    />
+                    <img src="./img/4.jpg" alt="Thor 1" />
                   </div>
                   <!-- Slide 2 -->
                   <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1571566882372-1598d88abd90?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Thor 2"
-                    />
+                    <img src="./img/5.jpg" alt="Thor 2" />
                   </div>
                   <!-- Slide 3 -->
                   <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Thor 3"
-                    />
+                    <img src="./img/6.jpg" alt="Thor 3" />
                   </div>
                   <!-- Video Slide 1 -->
                   <div
                     class="gallery-slide video-slide"
-                    onclick="
-                      openVideoModal(
-                        'https://www.youtube.com/embed/XyNlqQId-nk',
-                      )
-                    "
+                    data-video-url="https://www.youtube.com/embed/-VwNjeZXsMY"
                   >
                     <img
-                      src="https://img.youtube.com/vi/XyNlqQId-nk/maxresdefault.jpg"
+                      src="https://img.youtube.com/vi/-VwNjeZXsMY/maxresdefault.jpg"
                       alt="Thor Video 1"
                       class="video-thumbnail"
                     />
@@ -1443,14 +1443,10 @@
                   <!-- Video Slide 2 -->
                   <div
                     class="gallery-slide video-slide"
-                    onclick="
-                      openVideoModal(
-                        'https://www.youtube.com/embed/1Ne1hqOXKKI',
-                      )
-                    "
+                    data-video-url="https://www.youtube.com/embed/TT7GcwaY5JU"
                   >
                     <img
-                      src="https://img.youtube.com/vi/1Ne1hqOXKKI/maxresdefault.jpg"
+                      src="https://img.youtube.com/vi/TT7GcwaY5JU/maxresdefault.jpg"
                       alt="Thor Video 2"
                       class="video-thumbnail"
                     />
@@ -1531,51 +1527,45 @@
             <div class="kitten-card">
               <div class="kitten-gallery">
                 <div class="video-badge">
-                  <i class="fas fa-video"></i> 1 video
+                  <i class="fas fa-video"></i> 2 videos
                 </div>
 
                 <!-- Gallery Slider -->
                 <div class="gallery-slider" id="gallery-nala">
                   <!-- Slide 1 -->
                   <div class="gallery-slide active">
-                    <img
-                      src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Nala 1"
-                    />
+                    <img src="./img/7.jpg" alt="Nala 1" />
                   </div>
                   <!-- Slide 2 -->
                   <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Nala 2"
-                    />
+                    <img src="./img/8.jpg" alt="Nala 2" />
                   </div>
                   <!-- Slide 3 -->
                   <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Nala 3"
-                    />
+                    <img src="./img/9.jpg" alt="Nala 3" />
                   </div>
-                  <!-- Slide 4 -->
-                  <div class="gallery-slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Nala 4"
-                    />
-                  </div>
-                  <!-- Video Slide -->
+                  <!-- Video Slide 1 -->
                   <div
                     class="gallery-slide video-slide"
-                    onclick="
-                      openVideoModal(
-                        'https://www.youtube.com/embed/BE0g2asUsQY',
-                      )
-                    "
+                    data-video-url="https://www.youtube.com/embed/g_LNu6Aaxvk"
                   >
                     <img
-                      src="https://img.youtube.com/vi/BE0g2asUsQY/maxresdefault.jpg"
-                      alt="Nala Video"
+                      src="https://img.youtube.com/vi/g_LNu6Aaxvk/maxresdefault.jpg"
+                      alt="Nala Video 1"
+                      class="video-thumbnail"
+                    />
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                  <!-- Video Slide 2 -->
+                  <div
+                    class="gallery-slide video-slide"
+                    data-video-url="https://www.youtube.com/embed/DDIINpPEfLg"
+                  >
+                    <img
+                      src="https://img.youtube.com/vi/DDIINpPEfLg/maxresdefault.jpg"
+                      alt="Nala Video 2"
                       class="video-thumbnail"
                     />
                     <div class="play-btn">
@@ -1707,6 +1697,19 @@
       </div>
     </div>
 
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+      <button class="modal-close-img" onclick="closeImageModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <img
+        class="modal-content-img"
+        id="fullImage"
+        src=""
+        alt="Full Screen Kitten"
+      />
+    </div>
+
     <!-- Footer - MODIFIÉ POUR LOGO PNG -->
     <footer class="cat-footer">
       <div class="container">
@@ -1785,8 +1788,8 @@
         nala: { currentSlide: 0, totalSlides: 5 },
       };
 
-      // Auto-slide chaque 5 secondes
-      const autoSlideInterval = 5000;
+      // Auto-slide chaque 3 secondes
+      const autoSlideInterval = 3000;
       let autoSlideTimers = {};
 
       function startAutoSlide(galleryName) {
@@ -1882,10 +1885,32 @@
         document.body.style.overflow = "auto";
       }
 
+      // Image Modal
+      function openImageModal(imageUrl) {
+        const modal = document.getElementById("imageModal");
+        const fullImage = document.getElementById("fullImage");
+
+        fullImage.src = imageUrl;
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeImageModal() {
+        const modal = document.getElementById("imageModal");
+        const fullImage = document.getElementById("fullImage");
+
+        modal.classList.remove("active");
+        setTimeout(() => {
+          fullImage.src = "";
+        }, 300); // Clear after fade out
+        document.body.style.overflow = "auto";
+      }
+
       // Fermer la modal avec ESC
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
           closeVideoModal();
+          closeImageModal();
         }
       });
 
@@ -1897,6 +1922,45 @@
             closeVideoModal();
           }
         });
+
+      document
+        .getElementById("imageModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeImageModal();
+          }
+        });
+
+      // Global click listener for gallery sliders
+      document.addEventListener("click", function (e) {
+        // Check if click is inside a gallery-slider
+        const slider = e.target.closest(".gallery-slider");
+        if (slider) {
+          // Find the active slide within this slider
+          const activeSlide = slider.querySelector(".gallery-slide.active");
+          if (activeSlide) {
+            // Check if it's a video slide
+            if (activeSlide.classList.contains("video-slide")) {
+              // Try to get URL from data attribute first
+              const videoUrl = activeSlide.getAttribute("data-video-url");
+              if (videoUrl) {
+                openVideoModal(videoUrl);
+              } else {
+                // Fallback: check if there's an onclick attribute that contains the URL
+                // This is for backward compatibility if I miss updating some slides,
+                // but I will update them all.
+                // Actually, if I update them, I don't need fallback.
+              }
+            } else {
+              // It's an image slide
+              const img = activeSlide.querySelector("img");
+              if (img) {
+                openImageModal(img.src);
+              }
+            }
+          }
+        }
+      });
 
       // Initialiser les galeries et démarrer l'auto-slide
       document.addEventListener("DOMContentLoaded", function () {
