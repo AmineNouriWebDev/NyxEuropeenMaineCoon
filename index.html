@@ -86,7 +86,7 @@
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       }
 
-      /* Logo personnalisé avec chat - MODIFIÉ POUR IMAGE PNG */
+      /* Logo personnalisé avec chat - MODIFIÉ POUR TAILLE ET RESPONSIVE */
       .logo-container {
         display: flex;
         align-items: center;
@@ -98,26 +98,57 @@
         display: inline-block;
       }
 
-      .logo-cat img {
-        width: 60px; /* Agrandissement du logo */
-        height: 60px;
+      /* --- HEADER LOGO CONFIGURATION (Hanging Effect) --- */
+      #main-top .logo-cat {
+        width: 75px; /* Largeur réservée dans le flux */
+        height: 60px; /* Hauteur réservée (garde la navbar compacte) */
+      }
+
+      #main-top .logo-cat img {
+        width: 95px; /* Image plus grande que le conteneur */
+        height: 95px;
         object-fit: contain;
-        position: relative;
+        position: absolute; /* Sort du flux pour ne pas pousser la navbar */
+        top: -18px; /* Remonte pour centrer verticalement */
+        left: -10px;
         z-index: 2;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
       }
 
-      .logo-cat:before {
+      #main-top .logo-cat:before {
         content: "";
         position: absolute;
-        width: 65px; /* Ajustement cercle */
-        height: 65px;
+        width: 105px; /* Cercle proportionnel */
+        height: 105px;
         background: var(--accent-color);
         border-radius: 50%;
-        top: -2px;
-        left: -2px;
+        top: -23px;
+        left: -15px;
         z-index: 1;
         opacity: 0.3;
+      }
+
+      /* Responsive Header Logo */
+      @media (max-width: 768px) {
+        #main-top .logo-cat {
+          width: 60px;
+          height: 50px;
+        }
+        #main-top .logo-cat img {
+          width: 75px;
+          height: 75px;
+          top: -12px;
+          left: -8px;
+        }
+        #main-top .logo-cat:before {
+          width: 85px;
+          height: 85px;
+          top: -17px;
+          left: -13px;
+        }
+        .logo-text {
+          font-size: 26px;
+        }
       }
 
       .logo-text {
@@ -125,7 +156,7 @@
         font-size: 32px;
         font-weight: 700;
         color: var(--primary-color);
-        margin-left: 15px;
+        margin-left: 10px;
         letter-spacing: 1px;
       }
 
@@ -699,18 +730,34 @@
         margin-bottom: 30px;
       }
 
+      /* Configuration spécifique Footer (Grand Logo) */
+      .footer-logo .logo-cat {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+      }
+
       .footer-logo .logo-cat img {
-        width: 60px;
-        height: 60px;
+        width: 120px;
+        height: 120px;
         object-fit: contain;
+        position: relative; /* Pas d'absolute ici, on veut la taille réelle */
+        top: auto;
+        left: auto;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
       }
 
       .footer-logo .logo-cat:before {
-        width: 65px;
-        height: 65px;
-        top: -2px;
-        left: -2px;
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        top: -5px;
+        left: -5px;
+        z-index: 1;
+        opacity: 0.3;
       }
 
       .footer-cats {
@@ -777,6 +824,21 @@
       }
 
       /* Modal pour vidéos */
+      /* Dynamic Cursor Styles */
+      .kitten-gallery.is-image .gallery-nav,
+      .kitten-gallery.is-image .gallery-slider {
+        cursor: zoom-in;
+      }
+
+      .kitten-gallery.is-video .gallery-nav,
+      .kitten-gallery.is-video .gallery-slider {
+        cursor: pointer;
+      }
+
+      .gallery-nav-btn {
+        cursor: pointer !important;
+      }
+
       .video-modal,
       .image-modal {
         display: none;
@@ -1409,7 +1471,7 @@
             <div class="kitten-card">
               <div class="kitten-gallery">
                 <div class="video-badge">
-                  <i class="fas fa-video"></i> 2 videos
+                  <i class="fas fa-video"></i> 1 video
                 </div>
 
                 <!-- Gallery Slider -->
@@ -1434,20 +1496,6 @@
                     <img
                       src="https://img.youtube.com/vi/-VwNjeZXsMY/maxresdefault.jpg"
                       alt="Thor Video 1"
-                      class="video-thumbnail"
-                    />
-                    <div class="play-btn">
-                      <i class="fas fa-play"></i>
-                    </div>
-                  </div>
-                  <!-- Video Slide 2 -->
-                  <div
-                    class="gallery-slide video-slide"
-                    data-video-url="https://www.youtube.com/embed/TT7GcwaY5JU"
-                  >
-                    <img
-                      src="https://img.youtube.com/vi/TT7GcwaY5JU/maxresdefault.jpg"
-                      alt="Thor Video 2"
                       class="video-thumbnail"
                     />
                     <div class="play-btn">
@@ -1483,10 +1531,6 @@
                   <div
                     class="gallery-indicator"
                     onclick="goToSlide('thor', 3)"
-                  ></div>
-                  <div
-                    class="gallery-indicator"
-                    onclick="goToSlide('thor', 4)"
                   ></div>
                 </div>
               </div>
@@ -1527,7 +1571,7 @@
             <div class="kitten-card">
               <div class="kitten-gallery">
                 <div class="video-badge">
-                  <i class="fas fa-video"></i> 2 videos
+                  <i class="fas fa-video"></i> 1 video
                 </div>
 
                 <!-- Gallery Slider -->
@@ -1552,20 +1596,6 @@
                     <img
                       src="https://img.youtube.com/vi/g_LNu6Aaxvk/maxresdefault.jpg"
                       alt="Nala Video 1"
-                      class="video-thumbnail"
-                    />
-                    <div class="play-btn">
-                      <i class="fas fa-play"></i>
-                    </div>
-                  </div>
-                  <!-- Video Slide 2 -->
-                  <div
-                    class="gallery-slide video-slide"
-                    data-video-url="https://www.youtube.com/embed/DDIINpPEfLg"
-                  >
-                    <img
-                      src="https://img.youtube.com/vi/DDIINpPEfLg/maxresdefault.jpg"
-                      alt="Nala Video 2"
                       class="video-thumbnail"
                     />
                     <div class="play-btn">
@@ -1601,10 +1631,6 @@
                   <div
                     class="gallery-indicator"
                     onclick="goToSlide('nala', 3)"
-                  ></div>
-                  <div
-                    class="gallery-indicator"
-                    onclick="goToSlide('nala', 4)"
                   ></div>
                 </div>
               </div>
@@ -1784,8 +1810,8 @@
       // Galeries pour chaque chaton
       const galleries = {
         luna: { currentSlide: 0, totalSlides: 4 },
-        thor: { currentSlide: 0, totalSlides: 5 },
-        nala: { currentSlide: 0, totalSlides: 5 },
+        thor: { currentSlide: 0, totalSlides: 4 },
+        nala: { currentSlide: 0, totalSlides: 4 },
       };
 
       // Auto-slide chaque 3 secondes
@@ -1810,9 +1836,9 @@
 
       function updateGallery(galleryName) {
         const gallery = galleries[galleryName];
-        const slides = document.querySelectorAll(
-          `#gallery-${galleryName} .gallery-slide`,
-        );
+        const container = document.getElementById(`gallery-${galleryName}`);
+        const kittenGallery = container.closest(".kitten-gallery");
+        const slides = container.querySelectorAll(".gallery-slide");
         const indicators = document.querySelectorAll(
           `#gallery-${galleryName} ~ .gallery-indicators .gallery-indicator`,
         );
@@ -1824,6 +1850,15 @@
 
         // Afficher la slide active
         slides[gallery.currentSlide].classList.add("active");
+
+        // Set cursor classes
+        if (slides[gallery.currentSlide].classList.contains("video-slide")) {
+          kittenGallery.classList.add("is-video");
+          kittenGallery.classList.remove("is-image");
+        } else {
+          kittenGallery.classList.add("is-image");
+          kittenGallery.classList.remove("is-video");
+        }
 
         // Mettre à jour les indicateurs
         indicators.forEach((indicator, index) => {
@@ -1931,13 +1966,22 @@
           }
         });
 
-      // Global click listener for gallery sliders
+      // Global click listener for gallery sliders and nav
       document.addEventListener("click", function (e) {
-        // Check if click is inside a gallery-slider
-        const slider = e.target.closest(".gallery-slider");
-        if (slider) {
-          // Find the active slide within this slider
+        // Ignore clicks on buttons/controls
+        if (
+          e.target.closest(".gallery-nav-btn") ||
+          e.target.closest(".gallery-indicators") ||
+          e.target.closest(".btn-cat")
+        ) {
+          return;
+        }
+
+        const gallery = e.target.closest(".kitten-gallery");
+        if (gallery) {
+          const slider = gallery.querySelector(".gallery-slider");
           const activeSlide = slider.querySelector(".gallery-slide.active");
+
           if (activeSlide) {
             // Check if it's a video slide
             if (activeSlide.classList.contains("video-slide")) {
@@ -1945,11 +1989,6 @@
               const videoUrl = activeSlide.getAttribute("data-video-url");
               if (videoUrl) {
                 openVideoModal(videoUrl);
-              } else {
-                // Fallback: check if there's an onclick attribute that contains the URL
-                // This is for backward compatibility if I miss updating some slides,
-                // but I will update them all.
-                // Actually, if I update them, I don't need fallback.
               }
             } else {
               // It's an image slide
