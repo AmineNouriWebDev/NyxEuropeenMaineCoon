@@ -95,7 +95,8 @@ function sanitize_html($html)
 
     $dom = new DOMDocument();
     // Hack pour l'encodage UTF-8 et éviter que DOMDocument n'encode les caractères spéciaux des URLs
-    $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+    // En PHP 8.2, mb_convert_encoding avec HTML-ENTITIES est déprécié. On utilise mb_encode_numericentity.
+    $html = mb_encode_numericentity($html, [0x80, 0x10FFFF, 0, 0x1FFFFF], 'UTF-8');
     
     // Configuration libxml
     libxml_use_internal_errors(true);
