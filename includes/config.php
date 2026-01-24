@@ -26,7 +26,7 @@ if (IS_LOCAL) {
     define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . $baseUrl);
 } else {
     // CONFIGURATION PRODUCTION (VPS)
-    define('DB_HOST', 'localhost');
+    define('DB_HOST', 'mysql');
     define('DB_NAME', 'nyxcooncattery_db');
     define('DB_USER', 'deposark_user');
     define('DB_PASS', 'Azerty1234***');
