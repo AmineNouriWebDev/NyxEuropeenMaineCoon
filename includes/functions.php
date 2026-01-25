@@ -18,13 +18,31 @@ function format_price($price)
 }
 
 /**
- * Récupérer les chats depuis la BDD
+ * Récupérer les chats depuis la BDD par statut
  */
-function get_cats_from_db($pdo)
+function get_cats_from_db($pdo, $status = 'available')
 {
     try {
-        $sql = "SELECT * FROM chats WHERE status = 'available' ORDER BY created_at DESC";
-        $stmt = $pdo->query($sql);
+        $sql = "SELECT c.*, 
+                       f.name AS father_name, 
+                       m.name AS mother_name 
+                FROM chats c
+                LEFT JOIN chats f ON c.father_id = f.id
+                LEFT JOIN chats m ON c.mother_id = m.id";
+        
+        if (is_array($status)) {
+            $placeholders = str_repeat('?,', count($status) - 1) . '?';
+            $sql .= " WHERE c.status IN ($placeholders)";
+            $params = $status;
+        } else {
+            $sql .= " WHERE c.status = ?";
+            $params = [$status];
+        }
+        
+        $sql .= " ORDER BY c.created_at DESC";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
         $cats = $stmt->fetchAll();
 
         // Pour chaque chat, récupérer les images
@@ -171,5 +189,29 @@ function get_cat_by_id($pdo, $id)
     } catch (PDOException $e) {
         error_log("Erreur get_cat_by_id: " . $e->getMessage());
         return null;
+    }
+}
+
+/**
+ * Calculer l'âge à partir de la date de naissance
+ */
+function calculate_age($birthDate) {
+    if (empty($birthDate)) return 'N/A';
+    
+    $birth = new DateTime($birthDate);
+    $now = new DateTime();
+    $interval = $birth->diff($now);
+    
+    if ($interval->y >= 1) {
+        return $interval->y . ' an' . ($interval->y > 1 ? 's' : '');
+    } elseif ($interval->m >= 1) {
+        $days = $interval->d;
+        $str = $interval->m . ' mois';
+        if ($days > 0) {
+            $str .= ' et ' . $days . ' jour' . ($days > 1 ? 's' : '');
+        }
+        return $str;
+    } else {
+        return $interval->d . ' jour' . ($interval->d > 1 ? 's' : '');
     }
 }

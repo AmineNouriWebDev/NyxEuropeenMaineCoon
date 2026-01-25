@@ -41,12 +41,14 @@
     </div>
 
     <div class="footer-links">
-      <a href="index.php">Home</a>
-      <a href="index.php#kittens">Available Kittens</a>
-      <a href="adoption.php">Adoption Process</a>
-      <a href="about.php">About Us</a>
-      <a href="blog.php">Blog</a>
-      <a href="contact.php">Contact</a>
+      <a href="index.php">Chatons Disponibles</a>
+      <a href="kings.php">Kings</a>
+      <a href="queens.php">Queens</a>
+      <a href="chatons_reserves.php">Chatons Réservés</a>
+      <a href="portees_a_venir.php">Portées à Venir</a>
+      <a href="adoption.php">Processus d'Adoption</a>
+      <a href="contact.php">Contacts</a>
+      <a href="about.php">À Propos de Nous</a>
     </div>
 
     <div class="text-center mt-4">
@@ -61,12 +63,12 @@
 
     <div class="copyright">
       <p>
-        © <?php echo date('Y'); ?> Nyx European Maine Coon. All rights reserved. | Dedicated to
-        breeding healthy, happy Maine Coon companions.
+        © <?php echo date('Y'); ?> Nyx European Maine Coon. Tous droits réservés. | Dédié à
+        l'élevage de compagnons Maine Coon sains et heureux.
       </p>
       <p class="mt-2">
         <i class="fas fa-heart" style="color: var(--primary-color)"></i>
-        Every kitten is raised with love and care
+        Chaque chaton est élevé avec amour et soin
       </p>
     </div>
   </div>

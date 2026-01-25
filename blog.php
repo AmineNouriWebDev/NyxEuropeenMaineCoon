@@ -27,8 +27,8 @@ try {
 
 <section class="section-title mt-5">
     <div class="container">
-         <h1 class="text-center cursive-font" style="font-size: 3rem; color: var(--primary-color);">Cattery Blog</h1>
-         <p class="text-center text-muted">Tips, news, and stories about our Maine Coons.</p>
+         <h1 class="text-center cursive-font" style="font-size: 3rem; color: var(--primary-color);">Blog de l'Élevage</h1>
+         <p class="text-center text-muted">Conseils, actualités et histoires sur nos Maine Coons.</p>
     </div>
 </section>
 
@@ -50,7 +50,7 @@ try {
                             </a>
                         </h5>
                         <p class="card-text"><?php echo htmlspecialchars(substr($post['excerpt'], 0, 100)) . '...'; ?></p>
-                        <a href="article.php?slug=<?php echo $post['slug']; ?>" class="btn-cat btn-sm">Read more</a>
+                        <a href="article.php?slug=<?php echo $post['slug']; ?>" class="btn-cat btn-sm">Lire la suite</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@ try {
         
         <?php if(empty($posts)): ?>
             <div class="col-12 text-center">
-                <p>No posts yet. Come back soon!</p>
+                <p>Pas encore d'articles. Revenez bientôt !</p>
             </div>
         <?php endif; ?>
     </div>

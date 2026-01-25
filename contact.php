@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
     
     // Validation
     if (empty($name) || empty($email) || empty($message)) {
-        echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
+        echo json_encode(['success' => false, 'message' => 'Veuillez remplir tous les champs requis.']);
         exit;
     }
     
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo json_encode(['success' => false, 'message' => 'Invalid email format.']);
+        echo json_encode(['success' => false, 'message' => 'Format d\'email invalide.']);
         exit;
     }
     
@@ -53,8 +53,8 @@ include 'includes/header.php';
     <div class="overlay" style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));"></div>
     <div class="container h-100 d-flex align-items-center justify-content-center text-center position-relative text-white">
         <div style="margin-top: 80px;"> <!-- Marge pour le header fixe -->
-            <h1 class="cursive-font display-3 mb-3">Get in Touch</h1>
-            <p class="lead font-weight-light">We'd love to hear from you about our gentle giants</p>
+            <h1 class="cursive-font display-3 mb-3">Contactez-Nous</h1>
+            <p class="lead font-weight-light">Nous serions ravis de vous entendre à propos de nos gentils géants</p>
         </div>
     </div>
 </section>
@@ -63,28 +63,28 @@ include 'includes/header.php';
     <!-- Feedback Toast -->
     <div id="contactToast" class="contact-toast">
         <i class="fas fa-check-circle"></i>
-        <span>Message sent successfully! We will get back to you soon.</span>
+        <span>Message envoyé avec succès ! Nous vous répondrons bientôt.</span>
     </div>
 
     <div class="row shadow-lg rounded-lg overflow-hidden bg-white">
         <!-- Contact Info & Map (Left Column) -->
         <div class="col-lg-5 text-white p-5 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, var(--dark-color) 0%, #2d3436 100%); min-height: 500px;">
             <div>
-                <h3 class="text-white mb-4 font-weight-bold">Contact Information</h3>
-                <p class="mb-5 text-white-50">Fill out the form or reach us directly via these channels.</p>
+                <h3 class="text-white mb-4 font-weight-bold">Informations de Contact</h3>
+                <p class="mb-5 text-white-50">Remplissez le formulaire ou contactez-nous directement via ces canaux.</p>
                 
                 <div class="mb-4 d-flex align-items-start">
                     <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary fa-lg"></i>
                     <div>
-                        <h6 class="text-white mb-1">Location</h6>
-                        <span class="text-white-50">Montreal, Quebec, Canada</span>
+                        <h6 class="text-white mb-1">Localisation</h6>
+                        <span class="text-white-50">Montréal, Québec, Canada</span>
                     </div>
                 </div>
                 
                 <div class="mb-4 d-flex align-items-start">
                     <i class="fas fa-envelope mt-1 mr-3 text-primary fa-lg"></i>
                     <div>
-                        <h6 class="text-white mb-1">Email</h6>
+                        <h6 class="text-white mb-1">E-mail</h6>
                         <a href="mailto:nyxcooncattery@gmail.com" class="text-white-50 text-decoration-none">nyxcooncattery@gmail.com</a>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ include 'includes/header.php';
             </div>
 
             <div class="mt-5">
-                <h6 class="text-white mb-3 text-uppercase small letter-spacing-1">Follow Us</h6>
+                <h6 class="text-white mb-3 text-uppercase small letter-spacing-1">Suivez-Nous</h6>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/profile.php?id=61581523927046" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/nyxcoon_cattery_montreal/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
@@ -111,41 +111,41 @@ include 'includes/header.php';
 
         <!-- Contact Form (Right Column) -->
         <div class="col-lg-7 bg-white p-5">
-            <h3 class="text-dark mb-4 font-weight-bold">Send us a Message</h3>
+            <h3 class="text-dark mb-4 font-weight-bold">Envoyez-nous un Message</h3>
             <form id="contactForm">
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-group mb-0">
-                            <label class="small font-weight-bold text-muted">NAME <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control bg-light border-0 py-4 px-3" placeholder="John Doe" required>
+                            <label class="small font-weight-bold text-muted">NOM <span class="text-danger">*</span></label>
+                            <input type="text" name="name" class="form-control bg-light border-0 py-4 px-3" placeholder="Jean Dupont" required>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="form-group mb-0">
-                            <label class="small font-weight-bold text-muted">EMAIL <span class="text-danger">*</span></label>
-                            <input type="email" name="email" class="form-control bg-light border-0 py-4 px-3" placeholder="john@example.com" required>
+                            <label class="small font-weight-bold text-muted">E-MAIL <span class="text-danger">*</span></label>
+                            <input type="email" name="email" class="form-control bg-light border-0 py-4 px-3" placeholder="jean@example.com" required>
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-group mb-4">
-                    <label class="small font-weight-bold text-muted">SUBJECT</label>
+                    <label class="small font-weight-bold text-muted">SUJET</label>
                     <select name="subject" class="form-control bg-light border-0" style="height: 50px;">
-                        <option>General Inquiry</option>
-                        <option>Kitten Waiting List</option>
-                        <option>Adoption Process</option>
-                        <option>Breeding Rights Info</option>
+                        <option>Demande Générale</option>
+                        <option>Liste d'Attente Chaton</option>
+                        <option>Processus d'Adoption</option>
+                        <option>Info Droits de Reproduction</option>
                     </select>
                 </div>
 
                 <div class="form-group mb-4">
                     <label class="small font-weight-bold text-muted">MESSAGE <span class="text-danger">*</span></label>
-                    <textarea name="message" class="form-control bg-light border-0 p-3" rows="5" placeholder="Tell us about yourself and what you are looking for..." required></textarea>
+                    <textarea name="message" class="form-control bg-light border-0 p-3" rows="5" placeholder="Parlez-nous de vous et de ce que vous recherchez..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-cat py-3 px-5 shadow-sm" id="submitBtn">
-                    <span id="btnText">Send Message <i class="fas fa-paper-plane ml-2"></i></span>
-                    <span id="btnLoader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                    <span id="btnText">Envoyer le Message <i class="fas fa-paper-plane ml-2"></i></span>
+                    <span id="btnLoader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Envoi...</span>
                 </button>
             </form>
         </div>
@@ -220,12 +220,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
                 toast.classList.remove('show');
             }, 5000);
         } else {
-            alert('Error: ' + data.message);
+            alert('Erreur : ' + data.message);
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again later.');
+        console.error('Erreur:', error);
+        alert('Une erreur s\'est produite. Veuillez réessayer plus tard.');
     })
     .finally(() => {
         // Reset Button

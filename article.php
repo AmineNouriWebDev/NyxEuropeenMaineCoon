@@ -45,7 +45,7 @@ include 'includes/header.php';
         <div class="col-lg-8">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent px-0">
-                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
                     <li class="breadcrumb-item"><a href="blog.php">Blog</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><?php echo htmlspecialchars($post['title']); ?></li>
                 </ol>
@@ -54,7 +54,7 @@ include 'includes/header.php';
             <h1 class="mb-4 cursive-font" style="font-size: 2.5rem; color: var(--primary-color);"><?php echo htmlspecialchars($post['title']); ?></h1>
             
             <div class="mb-4 text-muted">
-                <i class="far fa-calendar-alt"></i> Published on <?php echo date('F d, Y', strtotime($post['created_at'])); ?>
+                <i class="far fa-calendar-alt"></i> Publié le <?php echo date('F d, Y', strtotime($post['created_at'])); ?>
             </div>
 
             <?php if ($post['image_path']): ?>
@@ -92,7 +92,7 @@ include 'includes/header.php';
             <hr class="my-5">
             
             <div class="text-center">
-                <a href="blog.php" class="btn btn-cat btn-cat-secondary">Back to blog</a>
+                <a href="blog.php" class="btn btn-cat btn-cat-secondary">Retour au blog</a>
             </div>
         </div>
     </div>

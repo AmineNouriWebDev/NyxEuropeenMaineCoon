@@ -90,16 +90,28 @@ if (isset($_GET['msg'])) {
                                 <td>
                                     <?php 
                                     $statusBadge = 'secondary';
-                                    if ($cat['status'] == 'available') $statusBadge = 'success';
-                                    if ($cat['status'] == 'reserved') $statusBadge = 'warning';
-                                    if ($cat['status'] == 'sold') $statusBadge = 'danger';
+                                    $statusLabel = ucfirst($cat['status']);
+                                    
+                                    if ($cat['status'] == 'available') { $statusBadge = 'success'; $statusLabel = 'Disponible'; }
+                                    if ($cat['status'] == 'reserved') { $statusBadge = 'warning'; $statusLabel = 'Réservé'; }
+                                    if ($cat['status'] == 'sold') { $statusBadge = 'danger'; $statusLabel = 'Vendu'; }
+                                    if ($cat['status'] == 'king') { $statusBadge = 'info'; $statusLabel = 'King'; }
+                                    if ($cat['status'] == 'queen') { $statusBadge = 'primary'; $statusLabel = 'Queen'; }
                                     ?>
                                     <span class="badge bg-<?php echo $statusBadge; ?>">
-                                        <?php echo ucfirst($cat['status']); ?>
+                                        <?php echo $statusLabel; ?>
                                     </span>
                                 </td>
                                 <td><?php echo htmlspecialchars($cat['gender']); ?></td>
-                                <td><?php echo number_format($cat['price'], 0, ',', ' '); ?> €</td>
+                                <td>
+                                    <?php 
+                                    if (!empty($cat['price_cad'])) {
+                                        echo number_format($cat['price_cad'], 0, ',', ' ') . ' $CAD';
+                                    } else {
+                                        echo '-';
+                                    }
+                                    ?>
+                                </td>
                                 <td><?php echo date('d/m/Y', strtotime($cat['created_at'])); ?></td>
                                 <td>
                                     <a href="cat_edit.php?id=<?php echo $cat['id']; ?>" class="btn btn-sm btn-info text-white" title="Modifier">
