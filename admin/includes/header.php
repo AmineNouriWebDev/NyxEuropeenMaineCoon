@@ -164,6 +164,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'vip_requests') !== false ? 'active' : ''; ?>" href="vip_requests.php">
+                <i class="fas fa-gem"></i> Demandes VIP
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'users') !== false ? 'active' : ''; ?>" href="users.php">
                 <i class="fas fa-users-cog"></i> Administrateurs
             </a>

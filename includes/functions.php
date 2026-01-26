@@ -215,3 +215,31 @@ function calculate_age($birthDate) {
         return $interval->d . ' jour' . ($interval->d > 1 ? 's' : '');
     }
 }
+
+/**
+ * Formate l'affichage de la couleur avec les effets spéciaux
+ */
+function format_cat_color($cat) {
+    // Si la colonne special_effect n'existe pas ou vide, on retourne la couleur legacy
+    if (empty($cat['special_effect'])) {
+        return htmlspecialchars($cat['color']);
+    }
+
+    $color_display = htmlspecialchars($cat['color']);
+    $effects = explode(',', $cat['special_effect']); // Stocké avec virgules en BDD
+    $effects_html = '';
+    
+    foreach ($effects as $eff) {
+        $eff = trim($eff);
+        if ($eff) {
+            // Badge style
+            $effects_html .= '<span class="badge badge-dark text-uppercase font-weight-bold mr-1" style="font-size: 0.9em; background-color: #000; color: #fff; padding: 4px 8px; border-radius: 4px;">' . htmlspecialchars($eff) . '</span> ';
+            
+            // On retire l'effet du nom complet pour éviter la duplication "SMOKE SMOKE Noir"
+            // On remplace "SMOKE" par vide de façon insensible à la casse
+            $color_display = str_ireplace($eff, '', $color_display);
+        }
+    }
+    
+    return $effects_html . trim($color_display);
+}

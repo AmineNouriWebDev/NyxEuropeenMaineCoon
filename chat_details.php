@@ -102,7 +102,7 @@ include 'includes/header.php';
         <!-- Informations -->
         <div class="col-lg-5">
             <h1 class="display-4 font-weight-bold mb-2" style="font-family: 'Vijaya', serif;"><?php echo htmlspecialchars($cat['name']); ?></h1>
-            <h3 class="text-muted h4 mb-4"><?php echo htmlspecialchars($cat['color']); ?></h3>
+            <h3 class="text-muted h4 mb-4"><?php echo format_cat_color($cat); ?></h3>
             
             <!-- Prix -->
             <div class="kitten-price-container mb-4">

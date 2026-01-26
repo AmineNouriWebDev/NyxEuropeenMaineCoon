@@ -137,7 +137,7 @@ $cats = get_cats_from_db($pdo, 'available');
                     <!-- Couleur avec icône palette -->
                     <div class="info-item">
                       <i class="fas fa-palette"></i>
-                      <span><?php echo htmlspecialchars($cat['color']); ?></span>
+                      <span><?php echo format_cat_color($cat); ?></span>
                     </div>
                     
                     <!-- Qualité avec icône paw -->

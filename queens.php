@@ -89,7 +89,7 @@ $cats = get_cats_from_db($pdo, 'queen');
                     </div>
                     <div class="info-item">
                       <i class="fas fa-palette"></i>
-                      <span><?php echo htmlspecialchars($cat['color']); ?></span>
+                      <span><?php echo format_cat_color($cat); ?></span>
                     </div>
                     <?php if (!empty($cat['paw_type'])): ?>
                     <div class="info-item">

@@ -46,7 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $birth_date = !empty($_POST['birth_date']) ? $_POST['birth_date'] : null;
-    $color = ($_POST['color_select'] === 'Other' || !empty($_POST['color_custom'])) ? $_POST['color_custom'] : $_POST['color_select'];
+    
+    // NOUVELLE LOGIQUE COULEURS
+    $color_code = $_POST['color_code'];
+    $special_effects_arr = $_POST['special_effects'] ?? [];
+    $special_effect = implode(',', $special_effects_arr); // CSV pour la BDD
+
+    // Récupérer le nom FR pour le champ legacy 'color'
+    $stmtColor = $pdo->prepare("SELECT name_fr FROM colors WHERE code = ?");
+    $stmtColor->execute([$color_code]);
+    $color_name = $stmtColor->fetchColumn();
+
+    // Construction string legacy (Ex: "SMOKE Noir")
+    $effects_display = implode(' ', $special_effects_arr);
+    $color = trim($effects_display . ' ' . $color_name);
+
     $quality = $_POST['quality'];
     $paw_type = $_POST['paw_type'];
     
@@ -59,21 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $video_url = $_POST['video_url'];
     $description = sanitize_html($_POST['description'] ?? '');
 
-    // DEBUG TEMPORAIRE - À SUPPRIMER APRÈS
-    error_log("=== DEBUG CAT FORM ===");
-    error_log("cat_type: " . $cat_type);
-    error_log("gender: " . $gender);
-    error_log("status: " . $status);
-    error_log("name: " . $name);
-    error_log("=====================");
+    // DEBUG
+    error_log("Color Code: $color_code, Effects: $special_effect, Legacy: $color");
 
     try {
         $pdo->beginTransaction();
 
         if ($isEditing) {
-            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=? WHERE id=?";
+            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$name, $gender, $birth_date, $color, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $id]);
+            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $id]);
             $msg = "Chat mis à jour avec succès.";
         } else {
             // Check ID
@@ -81,9 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $check->execute([$slug_id]);
             if ($check->fetchColumn() > 0) $slug_id .= '_' . time();
 
-            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description]);
+            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description]);
             $id = $slug_id;
             $isEditing = true;
             $msg = "Chat créé avec succès.";
@@ -316,52 +325,53 @@ require_once 'includes/header.php';
                 </script>
 
                 <?php
-                // Logique Robe (Colors)
-                $colors = [
-                    "Solid Colors" => ["Black", "Blue", "White", "Red", "Cream"],
-                    "Tabby Patterns" => ["Classic Tabby", "Mackerel Tabby", "Spotted Tabby"],
-                    "Smoke & Shaded" => ["Black Smoke", "Blue Smoke", "Red Smoke", "Cream Smoke", "Tortie Smoke", "Shaded Silver", "Shaded Golden"],
-                    "Bi-Color & Parti-Color" => ["Black & White", "Blue & White", "Red & White", "Cream & White", "Tabby & White", "Smoke & White", "Tortie & White", "Torbie & White"],
-                    "Tortoiseshell (Tortie)" => ["Black Tortie", "Blue Tortie", "Black Smoke Tortie", "Blue Smoke Tortie"],
-                    "Torbie" => ["Brown Torbie", "Blue Torbie", "Silver Torbie", "Smoke Torbie"]
-                ];
+                // Logique Robe (Colors) - Nouvelle Version BDD
+                $colors = $pdo->query("SELECT * FROM colors ORDER BY name_fr")->fetchAll();
                 
-                $currentColor = $cat['color'] ?? '';
-                $isCustomColor = $currentColor && !in_array($currentColor, array_merge(...array_values($colors)));
+                $currentColorCode = $cat['color_code'] ?? '';
+                $currentEffect = $cat['special_effect'] ?? '';
+                
+                // Si pas de code mais une couleur texte (ancien système), on essaie de trouver ou on met Autre
+                // Mais pour l'instant on garde vide si pas de code
                 ?>
 
                 <div class="mb-3">
                     <label class="form-label">Couleur (Robe)</label>
-                    <div class="d-flex gap-2">
-                        <select class="form-select" id="colorSelect" name="color_select" onchange="toggleColorInput(this)">
-                            <option value="">-- Sélectionner une robe --</option>
-                            <?php foreach ($colors as $group => $opts): ?>
-                                <optgroup label="<?php echo $group; ?>">
-                                    <?php foreach ($opts as $opt): ?>
-                                        <option value="<?php echo $opt; ?>" <?php echo ($currentColor == $opt) ? 'selected' : ''; ?>>
-                                            <?php echo $opt; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </optgroup>
-                            <?php endforeach; ?>
-                            <option value="Other" <?php echo $isCustomColor ? 'selected' : ''; ?>>Autre...</option>
-                        </select>
-                        <input type="text" class="form-control <?php echo $isCustomColor ? '' : 'd-none'; ?>" id="colorCustom" name="color_custom" value="<?php echo $currentColor; ?>">
-                    </div>
+                    <select class="form-select" name="color_code" required>
+                        <option value="">-- Sélectionner une robe --</option>
+                        <?php foreach ($colors as $c): ?>
+                            <option value="<?php echo $c['code']; ?>" <?php echo ($currentColorCode == $c['code']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($c['name_fr']); ?> (<?php echo $c['code']; ?>)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
-                <script>
-                function toggleColorInput(select) {
-                    const customInput = document.getElementById('colorCustom');
-                    if (select.value === 'Other') {
-                        customInput.classList.remove('d-none');
-                        customInput.value = '';
-                    } else {
-                        customInput.classList.add('d-none');
-                        customInput.value = select.value;
-                    }
-                }
-                </script>
+                <div class="mb-3">
+                    <label class="form-label">Effet Spécial (S'affiche en gras devant la couleur)</label>
+                    <div class="d-flex flex-wrap gap-3">
+                        <?php
+                        $effects = ['SMOKE', 'SILVER', 'SHADED', 'CHINCHILLA'];
+                        // On suppose qu'un seul effet est sélectionné à la fois ? Ou plusieurs ? 
+                        // Le user dit "4 cases à cocher", donc potentiellement plusieurs.
+                        // Mais stockons-les séparés par virgule si plusieurs ou juste le dernier.
+                        // "on affiche l'effet spécial davant la couleur" -> Singulier ?
+                        // Allons pour des radio boutons si c'est exclusif, ou checkbox.
+                        // "4 cases à cocher" -> Checkbox.
+                        // Mais comment stocker dans un VARCHAR(100)? JSON ou CSV?
+                        // Pour faire simple : CSV.
+                        $currentEffects = explode(',', $currentEffect); 
+                        ?>
+                        <?php foreach ($effects as $eff): ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="special_effects[]" value="<?php echo $eff; ?>" id="eff_<?php echo $eff; ?>" <?php echo in_array($eff, $currentEffects) ? 'checked' : ''; ?>>
+                                <label class="form-check-label font-weight-bold" for="eff_<?php echo $eff; ?>">
+                                    <?php echo $eff; ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
                 <!-- Prix CAD et USD -->
                 <div class="row">
