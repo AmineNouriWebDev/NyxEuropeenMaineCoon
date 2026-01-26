@@ -52,7 +52,7 @@ include 'includes/header.php';
     <div class="container">
         <!-- Titre Diamants -->
         <div class="text-center mb-5">
-            <h2 class="display-4" style="color: var(--accent-color); font-family: 'Amatic SC', cursive;">
+            <h2 class="display-4" style="color: var(--primary-color); font-family: 'Amatic SC', cursive;">
                 <i class="fas fa-gem mx-3 fa-xs"></i> LISTE D'ATTENTE VIP <i class="fas fa-gem mx-3 fa-xs"></i>
             </h2>
             <div class="divider-custom"></div>
