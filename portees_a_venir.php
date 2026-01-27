@@ -96,8 +96,8 @@ function get_main_image($pdo, $cat_id) {
                             <!-- King Image -->
                             <div class="col-lg-5">
                                 <div class="cat-showcase king-showcase">
-                                    <div class="cat-image-wrapper" data-img="<?php echo $father_img_url; ?>" onclick="openImageModal(this.dataset.img)">
-                                        <img src="<?php echo $father_img_url; ?>" alt="<?php echo htmlspecialchars($litter['father_name']); ?>" class="cat-main-image">
+                                    <div class="cat-image-wrapper" data-img="<?php echo htmlspecialchars($father_img_url); ?>" onclick="openImageModal(this.getAttribute('data-img'))">
+                                        <img src="<?php echo htmlspecialchars($father_img_url); ?>" alt="<?php echo htmlspecialchars($litter['father_name']); ?>" class="cat-main-image">
                                         <div class="image-overlay">
                                             <div class="overlay-content">
                                                 <i class="fas fa-search-plus"></i>
@@ -146,8 +146,8 @@ function get_main_image($pdo, $cat_id) {
                             <!-- Queen Image -->
                             <div class="col-lg-5">
                                 <div class="cat-showcase queen-showcase">
-                                    <div class="cat-image-wrapper" data-img="<?php echo $mother_img_url; ?>" onclick="openImageModal(this.dataset.img)">
-                                        <img src="<?php echo $mother_img_url; ?>" alt="<?php echo htmlspecialchars($litter['mother_name']); ?>" class="cat-main-image">
+                                    <div class="cat-image-wrapper" data-img="<?php echo htmlspecialchars($mother_img_url); ?>" onclick="openImageModal(this.getAttribute('data-img'))">
+                                        <img src="<?php echo htmlspecialchars($mother_img_url); ?>" alt="<?php echo htmlspecialchars($litter['mother_name']); ?>" class="cat-main-image">
                                         <div class="image-overlay">
                                             <div class="overlay-content">
                                                 <i class="fas fa-search-plus"></i>
@@ -1088,11 +1088,13 @@ function openImageModal(imageSrc) {
         console.error("Image Source is empty");
         return;
     }
+    console.log("Opening Image Modal with source:", imageSrc);
+    
     const modal = document.getElementById('imageModal');
     const img = document.getElementById('modalImage');
     
     img.src = imageSrc;
-    modal.style.display = 'flex'; // Show modal immediately
+    modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 

@@ -30,19 +30,42 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
             <?php
             $cat_id = $cat['id'];
             $images = $cat['images'];
+            $video_url = $cat['video_url'] ?? null;
+            $age_display = calculate_age($cat['birth_date'] ?? null);
             $is_sold = $cat['status'] === 'sold';
             $status_text = $is_sold ? 'Vendu' : 'Réservé';
-            $status_class = $is_sold ? 'sold' : 'reserved'; // Classes CSS à définir si besoin, sinon style inline
+            $status_color = $is_sold ? '#e74c3c' : '#f39c12';
             ?>
             
-            <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper" style="opacity: 0.9;">
+            <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper" style="opacity: 0.95;">
               <div class="kitten-card">
                 <div class="kitten-image-slider">
-                  <?php if(!empty($images)): ?>
-                  <img src="<?php echo cat_image_url($images[0]); ?>" class="d-block w-100" alt="<?php echo $cat['name']; ?>" style="filter: grayscale(30%);">
-                  <?php endif; ?>
+                  <div id="carousel-<?php echo $cat_id; ?>" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <ol class="carousel-indicators">
+                      <?php foreach ($images as $k => $img): ?>
+                        <li data-target="#carousel-<?php echo $cat_id; ?>" data-slide-to="<?php echo $k; ?>" class="<?php echo $k === 0 ? 'active' : ''; ?>"></li>
+                      <?php endforeach; ?>
+                    </ol>
+                    <div class="carousel-inner">
+                      <?php foreach ($images as $k => $img): ?>
+                        <div class="carousel-item <?php echo $k === 0 ? 'active' : ''; ?>">
+                          <img src="<?php echo cat_image_url($img); ?>" class="d-block w-100" alt="<?php echo $cat['name']; ?>" style="filter: grayscale(20%);">
+                        </div>
+                      <?php endforeach; ?>
+                    </div>
+                    <?php if (count($images) > 1): ?>
+                      <a class="carousel-control-prev" href="#carousel-<?php echo $cat_id; ?>" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carousel-<?php echo $cat_id; ?>" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    <?php endif; ?>
+                  </div>
                   
-                  <div class="kitten-status" style="background: <?php echo $is_sold ? '#e74c3c' : '#f39c12'; ?>;">
+                  <div class="kitten-status" style="background: <?php echo $status_color; ?>;">
                       <?php echo $status_text; ?>
                   </div>
                 </div>
@@ -57,19 +80,30 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                   
                   <div class="kitten-info-grid">
                     <div class="info-item">
+                      <i class="fas fa-calendar-alt"></i>
+                      <span><?php echo $age_display; ?></span>
+                    </div>
+
+                    <div class="info-item">
                       <i class="fas fa-palette"></i>
                       <span><?php echo format_cat_color($cat); ?></span>
                     </div>
-                    <?php if (!empty($cat['father_name'])): ?>
+                    
                     <div class="info-item">
-                        <i class="fas fa-crown"></i>
-                        <span>Père: <?php echo htmlspecialchars($cat['father_name']); ?></span>
+                      <i class="fas fa-paw"></i>
+                      <span><?php echo htmlspecialchars($cat['quality']); ?></span>
+                    </div>
+
+                    <?php if (!empty($cat['paw_type']) && $cat['paw_type'] !== 'Régulières'): ?>
+                    <div class="info-item">
+                        <i class="fas fa-hand-paper"></i>
+                        <span><?php echo htmlspecialchars($cat['paw_type']); ?></span>
                     </div>
                     <?php endif; ?>
                   </div>
                   
-                  <div class="kitten-actions mt-3 text-center">
-                    <span class="badge badge-secondary p-2">Non Disponible</span>
+                  <div class="kitten-actions mt-3">
+                    <a href="chat_details.php?id=<?php echo $cat['id']; ?>" class="btn-cat btn-sm w-100">Voir Détails</a>
                   </div>
                 </div>
               </div>

@@ -149,11 +149,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'blog') !== false ? 'active' : ''; ?>" href="blog.php">
-                <i class="fas fa-newspaper"></i> Blog
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'litters') !== false ? 'active' : ''; ?>" href="litters.php">
                 <i class="fas fa-baby-carriage"></i> Portées
             </a>
@@ -190,7 +185,6 @@
             $pageName = basename($_SERVER['PHP_SELF'], '.php');
             if($pageName == 'dashboard') echo 'Tableau de bord';
             elseif($pageName == 'cats') echo 'Gestion des Chats';
-            elseif($pageName == 'blog') echo 'Gestion du Blog';
             elseif($pageName == 'users') echo 'Gestion des Admins';
             else echo ucfirst($pageName);
             ?>

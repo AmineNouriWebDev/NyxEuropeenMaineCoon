@@ -184,18 +184,27 @@ h6 {
 /* Logo Principal */
 .main-logo {
   flex-shrink: 0;
+  position: relative;
+  width: 90px;
+  height: 90px;
+  z-index: 2000;
 }
 
 .main-logo img {
-  height: 90px;
+  height: 270px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
   transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .main-logo img:hover {
-  transform: scale(1.05);
+  transform: translate(-50%, -50%) scale(1.05);
+  /* Maintain translation on hover */
 }
 
 /* Navigation Buttons */
