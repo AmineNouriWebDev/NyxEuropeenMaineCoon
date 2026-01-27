@@ -72,6 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $video_url = $_POST['video_url'];
     $description = sanitize_html($_POST['description'] ?? '');
+    
+    // Sale fields (pour Kings et Queens)
+    $for_sale = isset($_POST['for_sale']) ? 1 : 0;
+    $sale_type = !empty($_POST['sale_type']) ? $_POST['sale_type'] : null;
+    $stud_price_cad = !empty($_POST['stud_price_cad']) ? $_POST['stud_price_cad'] : null;
+    $stud_price_usd = !empty($_POST['stud_price_usd']) ? $_POST['stud_price_usd'] : null;
+    $retirement_price_cad = !empty($_POST['retirement_price_cad']) ? $_POST['retirement_price_cad'] : null;
+    $retirement_price_usd = !empty($_POST['retirement_price_usd']) ? $_POST['retirement_price_usd'] : null;
+    $sale_description = !empty($_POST['sale_description']) ? $_POST['sale_description'] : null;
 
     // DEBUG
     error_log("Color Code: $color_code, Effects: $special_effect, Legacy: $color");
@@ -80,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->beginTransaction();
 
         if ($isEditing) {
-            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=? WHERE id=?";
+            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, sale_description=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $id]);
+            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description, $id]);
             $msg = "Chat mis à jour avec succès.";
         } else {
             // Check ID
@@ -90,9 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $check->execute([$slug_id]);
             if ($check->fetchColumn() > 0) $slug_id .= '_' . time();
 
-            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, for_sale, sale_type, stud_price_cad, stud_price_usd, retirement_price_cad, retirement_price_usd, sale_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description]);
+            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description]);
             $id = $slug_id;
             $isEditing = true;
             $msg = "Chat créé avec succès.";
@@ -302,31 +311,9 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 
-                <script>
-                function updateFormFields() {
-                    const type = document.getElementById('catTypeSelect').value;
-                    const genderGroup = document.getElementById('genderGroup');
-                    const statusGroup = document.getElementById('statusGroup');
-                    const parentsGroup = document.getElementById('parentsGroup');
-                    // On masque par défaut
-                    genderGroup.style.display = 'none';
-                    statusGroup.style.display = 'none';
-                    parentsGroup.style.display = 'none';
-
-                    if (type === 'kitten') {
-                        // Afficher tout pour chaton
-                        genderGroup.style.display = 'block';
-                        statusGroup.style.display = 'block';
-                        parentsGroup.style.display = 'flex';
-                    }
-                }
-                // Run on load
-                document.addEventListener('DOMContentLoaded', updateFormFields);
-                </script>
-
                 <?php
                 // Logique Robe (Colors) - Nouvelle Version BDD
-                $colors = $pdo->query("SELECT * FROM colors ORDER BY name_fr")->fetchAll();
+                $colors = $pdo->query("SELECT * FROM colors ORDER BY code ASC")->fetchAll();
                 
                 $currentColorCode = $cat['color_code'] ?? '';
                 $currentEffect = $cat['special_effect'] ?? '';
@@ -411,8 +398,167 @@ require_once 'includes/header.php';
                     <label class="form-label">Lien Vidéo YouTube</label>
                     <input type="url" class="form-control" name="video_url" value="<?php echo $cat['video_url'] ?? ''; ?>">
                 </div>
+                
+                <!-- Section Vente (Kings et Queens uniquement) -->
+                <div id="saleSection" style="display: none;">
+                    <hr class="my-4">
+                    <h6 class="text-primary mb-3"><i class="fas fa-tag"></i> Disponibilité à la Vente</h6>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="for_sale" id="forSaleCheck" value="1" <?php echo ($cat['for_sale'] ?? 0) ? 'checked' : ''; ?> onchange="toggleSaleFields()">
+                        <label class="form-check-label font-weight-bold" for="for_sale Check">
+                            Disponible à la vente
+                        </label>
+                    </div>
+                    
+                    <div id="saleFieldsContainer" style="display: none;">
+                        <!-- Type de vente (Kings uniquement) -->
+                        <div id="saleTypeGroup" class="mb-3">
+                            <label class="form-label font-weight-bold">Type de vente</label>
+                            <?php $currentSaleType = $cat['sale_type'] ?? ''; ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sale_type" id="saleTypeStud" value="stud" <?php echo $currentSaleType === 'stud' ? 'checked' : ''; ?> onchange="togglePriceFields()">
+                                <label class="form-check-label" for="saleTypeStud">
+                                    <i class="fas fa-paw text-info"></i> Saillie uniquement
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sale_type" id="saleTypeRetirement" value="retirement" <?php echo $currentSaleType === 'retirement' ? 'checked' : ''; ?> onchange="togglePriceFields()">
+                                <label class="form-check-label" for="saleTypeRetirement">
+                                    <i class="fas fa-home text-success"></i> Retraite uniquement
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sale_type" id="saleTypeBoth" value="both" <?php echo $currentSaleType === 'both' ? 'checked' : ''; ?> onchange="togglePriceFields()">
+                                <label class="form-check-label" for="saleTypeBoth">
+                                    <i class="fas fa-star text-warning"></i> Saillie ET Retraite
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Prix Saillie -->
+                        <div id="studPriceFields" style="display: none;">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body p-3">
+                                    <h6 class="card-title"><i class="fas fa-paw text-info"></i> Prix Saillie</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Prix Saillie (CAD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="stud_price_cad" value="<?php echo $cat['stud_price_cad'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Prix Saillie (USD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="stud_price_usd" value="<?php echo $cat['stud_price_usd'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prix Retraite -->
+                        <div id="retirementPriceFields" style="display: none;">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body p-3">
+                                    <h6 class="card-title"><i class="fas fa-home text-success"></i> Prix Retraite</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Prix Retraite (CAD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="retirement_price_cad" value="<?php echo $cat['retirement_price_cad'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Prix Retraite (USD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="retirement_price_usd" value="<?php echo $cat['retirement_price_usd'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Description Vente -->
+                        <div class="mb-3">
+                            <label class="form-label">Description pour la vente <small class="text-muted">(Optionnel)</small></label>
+                            <textarea class="form-control" name="sale_description" rows="3" placeholder="Informations supplémentaires sur la vente..."><?php echo $cat['sale_description'] ?? ''; ?></textarea>
+                            <small class="form-text text-muted">Cette description s'affichera sur la page de détails du chat.</small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        
+        <script>
+        // Toggle sale fields based on for_sale checkbox
+        function toggleSaleFields() {
+            const forSaleCheck = document.getElementById('forSaleCheck');
+            const saleFieldsContainer = document.getElementById('saleFieldsContainer');
+            saleFieldsContainer.style.display = forSaleCheck.checked ? 'block' : 'none';
+            if (forSaleCheck.checked) {
+                togglePriceFields();
+            }
+        }
+        
+        // Toggle price fields based on sale_type selection
+        function togglePriceFields() {
+            const saleType = document.querySelector('input[name="sale_type"]:checked');
+            const studFields = document.getElementById('studPriceFields');
+            const retirementFields = document.getElementById('retirementPriceFields');
+            
+            if (!saleType) return;
+            
+            studFields.style.display = 'none';
+            retirementFields.style.display = 'none';
+            
+            if (saleType.value === 'stud') {
+                studFields.style.display = 'block';
+            } else if (saleType.value === 'retirement') {
+                retirementFields.style.display = 'block';
+            } else if (saleType.value === 'both') {
+                studFields.style.display = 'block';
+                retirementFields.style.display = 'block';
+            }
+        }
+        
+        // Update form display when cat type changes
+        function updateFormFields() {
+            const type = document.getElementById('catTypeSelect').value;
+            const genderGroup = document.getElementById('genderGroup');
+            const statusGroup = document.getElementById('statusGroup');
+            const parentsGroup = document.getElementById('parentsGroup');
+            const saleSection = document.getElementById('saleSection');
+            const saleTypeGroup = document.getElementById('saleTypeGroup');
+            
+            // Hide by default
+            genderGroup.style.display = 'none';
+            statusGroup.style.display = 'none';
+            parentsGroup.style.display = 'none';
+            saleSection.style.display = 'none';
+
+            if (type === 'kitten') {
+                // Show kitten-specific fields
+                genderGroup.style.display = 'block';
+                statusGroup.style.display = 'block';
+                parentsGroup.style.display = 'flex';
+            } else if (type === 'king') {
+                // Show sale section for kings with all options
+                saleSection.style.display = 'block';
+                saleTypeGroup.style.display = 'block';
+                toggleSaleFields();
+            } else if (type === 'queen') {
+                // Show sale section for queens but hide stud option
+                saleSection.style.display = 'block';
+                saleTypeGroup.style.display = 'none';
+                // Auto-select retirement for queens
+                document.getElementById('saleTypeRetirement').checked = true;
+                toggleSaleFields();
+            }
+        }
+        
+        // Run on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFormFields();
+            toggleSaleFields();
+            togglePriceFields();
+        });
+        </script>
         
         <!-- Zone Description -->
         <div class="card shadow mb-4">

@@ -11,11 +11,14 @@ $season_text = '';
 $description = '';
 $expected_colors = '';
 $is_active = 1;
-$msg = '';
+$msg = $_GET['msg'] ?? '';
 
 // Récupération Kings et Queens pour les Selects
 $kings = $pdo->query("SELECT id, name FROM chats WHERE gender='Male' AND status='king' ORDER BY name")->fetchAll();
 $queens = $pdo->query("SELECT id, name FROM chats WHERE gender='Female' AND status='queen' ORDER BY name")->fetchAll();
+
+// Récupération des couleurs triées par code
+$colors = $pdo->query("SELECT code, name_fr FROM colors ORDER BY code ASC")->fetchAll();
 
 if (isset($_GET['id'])) {
     $isEditing = true;
@@ -38,20 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mother_id = $_POST['mother_id'];
     $season_text = $_POST['season_text'];
     $description = $_POST['description'];
-    $expected_colors = $_POST['expected_colors']; // Format libre ou HTML
+    
+    // Process color codes from checkboxes
+    $color_codes = $_POST['color_codes'] ?? [];
+    $expected_colors = implode(', ', $color_codes); // Store as comma-separated string
+    
     $is_active = isset($_POST['is_active']) ? 1 : 0;
 
     if ($isEditing) {
         $stmt = $pdo->prepare("UPDATE upcoming_litters SET father_id=?, mother_id=?, season_text=?, description=?, expected_colors=?, is_active=? WHERE id=?");
         $stmt->execute([$father_id, $mother_id, $season_text, $description, $expected_colors, $is_active, $id]);
         $msg = "Portée mise à jour avec succès.";
+        // Redirect back to same page
+        header("Location: litter_edit.php?id=$id&msg=" . urlencode($msg));
     } else {
         $stmt = $pdo->prepare("INSERT INTO upcoming_litters (father_id, mother_id, season_text, description, expected_colors, is_active) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$father_id, $mother_id, $season_text, $description, $expected_colors, $is_active]);
         $id = $pdo->lastInsertId();
-        $isEditing = true;
         $msg = "Nouvelle portée créée avec succès.";
+        // Redirect to list page to clear form
+        header("Location: litters.php?msg=" . urlencode($msg));
     }
+    exit;
 }
 
 require_once 'includes/header.php';
@@ -103,14 +114,27 @@ require_once 'includes/header.php';
 
             <div class="mb-3">
                 <label class="form-label">Description du mariage</label>
-                <textarea name="description" class="form-control" rows="5" placeholder="Le prochain mariage dans notre chatterie..."><?php echo htmlspecialchars($description); ?></textarea>
-                <small class="text-muted">Vous pouvez utiliser du texte simple.</small>
+                <textarea name="description" id="descriptionEditor" class="form-control" rows="5" placeholder="Le prochain mariage dans notre chatterie..."><?php echo htmlspecialchars($description); ?></textarea>
+                <small class="text-muted">Vous pouvez utiliser l'éditeur pour formater le texte.</small>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Couleurs Probables (HTML autorisé)</label>
-                <textarea name="expected_colors" class="form-control" rows="6" placeholder="<ul><li>Black Smoke</li><li>Red Solid</li></ul>"><?php echo htmlspecialchars($expected_colors); ?></textarea>
-                <small class="text-muted">Utilisez &lt;ul&gt;&lt;li&gt;Couleur&lt;/li&gt;&lt;/ul&gt; pour une liste à puces.</small>
+                <label class="form-label">Couleurs Probables</label>
+                <div class="card p-3 mb-2" style="max-height: 300px; overflow-y: auto;">
+                    <div class="row">
+                        <?php foreach ($colors as $color): ?>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="color_codes[]" value="<?php echo $color['code']; ?>" id="color_<?php echo $color['code']; ?>" <?php echo (strpos($expected_colors, $color['code']) !== false) ? 'checked' : ''; ?>>
+                                <label class="form-check-label" for="color_<?php echo $color['code']; ?>">
+                                    <strong><?php echo $color['code']; ?></strong> - <?php echo htmlspecialchars($color['name_fr']); ?>
+                                </label>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <small class="text-muted">Cochez les couleurs probables pour cette portée.</small>
             </div>
 
             <div class="mb-3 form-check">
@@ -128,12 +152,16 @@ require_once 'includes/header.php';
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         tinymce.init({
-            selector: 'textarea[name="description"]',
+            selector: '#descriptionEditor',
             height: 300,
             menubar: false,
             plugins: 'advlist autolink lists link charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
             toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-            branding: false
+            branding: false,
+            // Strip all HTML attributes and tags that could cause display issues
+            valid_elements: 'p,br,strong,em,u,h1,h2,h3,h4,ul,ol,li',
+            valid_styles: {},
+            entity_encoding: 'raw'
         });
     });
 </script>

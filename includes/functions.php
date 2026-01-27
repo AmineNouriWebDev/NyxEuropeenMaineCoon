@@ -25,7 +25,14 @@ function get_cats_from_db($pdo, $status = 'available')
     try {
         $sql = "SELECT c.*, 
                        f.name AS father_name, 
-                       m.name AS mother_name 
+                       m.name AS mother_name,
+                       c.for_sale,
+                       c.sale_type,
+                       c.stud_price_cad,
+                       c.stud_price_usd,
+                       c.retirement_price_cad,
+                       c.retirement_price_usd,
+                       c.sale_description
                 FROM chats c
                 LEFT JOIN chats f ON c.father_id = f.id
                 LEFT JOIN chats m ON c.mother_id = m.id";

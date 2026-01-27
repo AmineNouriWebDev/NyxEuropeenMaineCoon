@@ -72,6 +72,11 @@ $cats = get_cats_from_db($pdo, 'queen');
                     <?php endif; ?>
                   </div>
                   <div class="kitten-status available" style="background: var(--primary-color);">Queen</div>
+                  <?php if ($cat['for_sale']): ?>
+                  <div class="kitten-status" style="background: #e74c3c; position: absolute; top: 60px; right: 10px;">
+                    <i class="fas fa-tag"></i> Disponible
+                  </div>
+                  <?php endif; ?>
                 </div>
                 
                 <div class="kitten-details">
@@ -98,6 +103,16 @@ $cats = get_cats_from_db($pdo, 'queen');
                     </div>
                     <?php endif; ?>
                   </div>
+                  
+                  <?php if ($cat['for_sale']): ?>
+                  <div class="mt-3 p-2" style="background: #f8f9fa; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                    <small class="text-muted"><i class="fas fa-home text-success"></i> Disponible à la Retraite</small>
+                    <div>
+                      <strong><?php echo number_format($cat['retirement_price_cad'], 2); ?> $CAD</strong>
+                      <span class="text-muted">/ <?php echo number_format($cat['retirement_price_usd'], 2); ?> $USD</span>
+                    </div>
+                  </div>
+                  <?php endif; ?>
                   
                   <div class="kitten-actions mt-3">
                     <a href="chat_details.php?id=<?php echo $cat['id']; ?>" class="btn-cat btn-sm">Voir Détails</a>

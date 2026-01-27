@@ -73,6 +73,11 @@ $cats = get_cats_from_db($pdo, 'king');
                     <?php endif; ?>
                   </div>
                   <div class="kitten-status available" style="background: var(--secondary-color);">King</div>
+                  <?php if ($cat['for_sale']): ?>
+                  <div class="kitten-status" style="background: #e74c3c; position: absolute; top: 60px; right: 10px;">
+                    <i class="fas fa-tag"></i> Disponible
+                  </div>
+                  <?php endif; ?>
                 </div>
                 
                 <div class="kitten-details">
@@ -99,6 +104,29 @@ $cats = get_cats_from_db($pdo, 'king');
                     </div>
                     <?php endif; ?>
                   </div>
+                  
+                  <?php if ($cat['for_sale']): ?>
+                  <div class="mt-3 p-2" style="background: #f8f9fa; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                    <?php if ($cat['sale_type'] === 'stud' || $cat['sale_type'] === 'both'): ?>
+                    <div class="mb-2">
+                      <small class="text-muted"><i class="fas fa-paw text-info"></i> Saillie</small>
+                      <div>
+                        <strong><?php echo number_format($cat['stud_price_cad'], 2); ?> $CAD</strong>
+                        <span class="text-muted">/ <?php echo number_format($cat['stud_price_usd'], 2); ?> $USD</span>
+                      </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($cat['sale_type'] === 'retirement' || $cat['sale_type'] === 'both'): ?>
+                    <div>
+                      <small class="text-muted"><i class="fas fa-home text-success"></i> Retraite</small>
+                      <div>
+                        <strong><?php echo number_format($cat['retirement_price_cad'], 2); ?> $CAD</strong>
+                        <span class="text-muted">/ <?php echo number_format($cat['retirement_price_usd'], 2); ?> $USD</span>
+                      </div>
+                    </div>
+                    <?php endif; ?>
+                  </div>
+                  <?php endif; ?>
                   
                   <div class="kitten-actions mt-3">
                     <a href="chat_details.php?id=<?php echo $cat['id']; ?>" class="btn-cat btn-sm">Voir Détails</a>

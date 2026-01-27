@@ -12,7 +12,14 @@ if (!$id) {
 $stmt = $pdo->prepare("
     SELECT c.*, 
            f.name AS father_name, f.id AS father_id,
-           m.name AS mother_name, m.id AS mother_id
+           m.name AS mother_name, m.id AS mother_id,
+           c.for_sale,
+           c.sale_type,
+           c.stud_price_cad,
+           c.stud_price_usd,
+           c.retirement_price_cad,
+           c.retirement_price_usd,
+           c.sale_description
     FROM chats c
     LEFT JOIN chats f ON c.father_id = f.id
     LEFT JOIN chats m ON c.mother_id = m.id
@@ -177,6 +184,61 @@ include 'includes/header.php';
                     </div>
                 </div>
             </div>
+            
+            <!-- Services Disponibles (pour les chats à vendre) -->
+            <?php if ($cat['for_sale']): ?>
+            <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                <div class="card-body">
+                    <h5 class="card-title text-primary mb-3">
+                        <i class="fas fa-handshake"></i> Services Disponibles
+                    </h5>
+                    
+                    <?php if ($cat['sale_type'] === 'stud' || $cat['sale_type'] === 'both'): ?>
+                    <div class="mb-3 p-3" style="background: white; border-radius: 10px; border-left: 4px solid #3498db;">
+                        <h6 class="font-weight-bold mb-2">
+                            <i class="fas fa-paw text-info"></i> Service de Saillie
+                        </h6>
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="badge badge-primary mr-2" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
+                                <?php echo number_format($cat['stud_price_cad'], 2); ?> $CAD
+                            </span>
+                            <span class="text-muted">
+                                (<?php echo number_format($cat['stud_price_usd'], 2); ?> $USD)
+                            </span>
+                        </div>
+                        <?php if (!empty($cat['sale_description'])): ?>
+                        <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description'])); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($cat['sale_type'] === 'retirement' || $cat['sale_type'] === 'both'): ?>
+                    <div class="p-3" style="background: white; border-radius: 10px; border-left: 4px solid #27ae60;">
+                        <h6 class="font-weight-bold mb-2">
+                            <i class="fas fa-home text-success"></i> Disponible à la Retraite
+                        </h6>
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="badge badge-success mr-2" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
+                                <?php echo number_format($cat['retirement_price_cad'], 2); ?> $CAD
+                            </span>
+                            <span class="text-muted">
+                                (<?php echo number_format($cat['retirement_price_usd'], 2); ?> $USD)
+                            </span>
+                        </div>
+                        <?php if (!empty($cat['sale_description']) && ($cat['sale_type'] !== 'both')): ?>
+                        <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description'])); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <div class="mt-3 text-center">
+                        <a href="#contact" class="btn btn-cat" onclick="scrollToContact()" style="background: var(--primary-color); color: white;">
+                            <i class="fas fa-envelope"></i> Demande de renseignements
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <!-- Boutons Actions -->
             <div class="d-grid gap-3 mb-4">

@@ -22,6 +22,13 @@ $sql = "SELECT l.*,
         ORDER BY l.created_at DESC";
 $litters = $pdo->query($sql)->fetchAll();
 
+// Récupérer toutes les couleurs pour le mapping code -> nom
+$colors_map = [];
+$colors_query = $pdo->query("SELECT code, name_fr FROM colors");
+while ($color = $colors_query->fetch()) {
+    $colors_map[$color['code']] = $color['name_fr'];
+}
+
 // Helper pour image principale
 function get_main_image($pdo, $cat_id) {
     if (!$cat_id) return 'default.jpg';
@@ -185,7 +192,7 @@ function get_main_image($pdo, $cat_id) {
                                     <i class="fas fa-comment-dots"></i>
                                 </div>
                                 <div class="description-text">
-                                    <?php echo nl2br(htmlspecialchars($litter['description'])); ?>
+                                    <?php echo $litter['description']; ?>
                                 </div>
                             </div>
                             <?php endif; ?>
@@ -196,7 +203,20 @@ function get_main_image($pdo, $cat_id) {
                                     <i class="fas fa-palette"></i> Couleurs Probables
                                 </h5>
                                 <div class="colors-content">
-                                    <?php echo $litter['expected_colors']; ?>
+                                    <?php 
+                                    $color_codes = explode(', ', $litter['expected_colors']);
+                                    foreach ($color_codes as $code):
+                                        $code = trim($code);
+                                        if (!empty($code) && isset($colors_map[$code])):
+                                    ?>
+                                        <span class="color-badge">
+                                            <span class="color-code"><?php echo htmlspecialchars($code); ?></span>
+                                            <span class="color-name"><?php echo htmlspecialchars($colors_map[$code]); ?></span>
+                                        </span>
+                                    <?php 
+                                        endif;
+                                    endforeach; 
+                                    ?>
                                 </div>
                             </div>
                             <?php endif; ?>
@@ -204,7 +224,7 @@ function get_main_image($pdo, $cat_id) {
 
                         <!-- CTA Button -->
                         <div class="litter-cta">
-                            <button onclick="openWaitingListModal(<?php echo $litter['id']; ?>, '<?php echo htmlspecialchars($litter['season_text']); ?>')" class="btn-waiting-list">
+                            <button onclick="openWaitingListModal(<?php echo $litter['id']; ?>, '<?php echo htmlspecialchars($litter['season_text']); ?>', '<?php echo htmlspecialchars($litter['father_name']); ?>', '<?php echo htmlspecialchars($litter['mother_name']); ?>')" class="btn-waiting-list">
                                 <span class="btn-icon"><i class="fas fa-clipboard-list"></i></span>
                                 <span class="btn-text">Rejoindre la Liste d'Attente</span>
                                 <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
@@ -232,6 +252,9 @@ function get_main_image($pdo, $cat_id) {
         <div class="modal-body">
             <p class="modal-subtitle">
                 Inscription pour la portée : <strong id="modalLitterName"></strong>
+            </p>
+            <p class="modal-parents" style="text-align: center; margin-bottom: 20px; color: #4a5568; display: none;">
+                Parents : <strong id="modalParents" style="color: #667eea;"></strong>
             </p>
             
             <form id="waitingForm">
@@ -981,6 +1004,46 @@ function get_main_image($pdo, $cat_id) {
     }
 }
 
+/* Color Badges Styling */
+.colors-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.color-badge {
+    display: inline-flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.color-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: #cbd5e0;
+}
+
+.color-code {
+    font-weight: 800;
+    color: #667eea;
+    margin-right: 8px;
+    padding-right: 8px;
+    border-right: 1px solid #e2e8f0;
+}
+
+.color-name {
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+
 @media (max-width: 576px) {
     .hero-title {
         font-size: 2rem;
@@ -999,9 +1062,17 @@ function get_main_image($pdo, $cat_id) {
 
 <script>
 // Waiting List Modal
-function openWaitingListModal(litterId, seasonText) {
+function openWaitingListModal(litterId, seasonText, fatherName, motherName) {
     document.getElementById('waitingModal').style.display = 'flex';
     document.getElementById('modalLitterName').textContent = seasonText;
+    // Update parents info
+    const parentsText = (fatherName && motherName) ? fatherName + ' & ' + motherName : '';
+    const parentsElement = document.getElementById('modalParents');
+    if(parentsElement) {
+        parentsElement.textContent = parentsText;
+        parentsElement.parentElement.style.display = parentsText ? 'block' : 'none';
+    }
+    
     document.getElementById('litterIdInput').value = litterId;
     document.body.style.overflow = 'hidden';
 }
@@ -1013,11 +1084,16 @@ function closeWaitingModal() {
 
 // Image Modal
 function openImageModal(imageSrc) {
+    if (!imageSrc) return;
     const modal = document.getElementById('imageModal');
     const img = document.getElementById('modalImage');
-    modal.style.display = 'flex';
+    
+    // Ensure image loads
+    img.onload = function() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    };
     img.src = imageSrc;
-    document.body.style.overflow = 'hidden';
 }
 
 function closeImageModal() {
