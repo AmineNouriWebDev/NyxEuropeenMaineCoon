@@ -77,9 +77,9 @@ require_once 'includes/header.php';
                                 </td>
                                 <td><?php echo date('d/m/Y H:i', strtotime($e['created_at'])); ?></td>
                                 <td>
-                                    <strong><?php echo htmlspecialchars($e['season_text']); ?></strong><br>
+                                    <strong><?php echo htmlspecialchars($e['season_text'] ?? 'Non spécifié'); ?></strong><br>
                                     <small class="text-muted">
-                                        <?php echo htmlspecialchars($e['mother_name']); ?> & <?php echo htmlspecialchars($e['father_name']); ?>
+                                        <?php echo htmlspecialchars($e['mother_name'] ?? 'N/A'); ?> & <?php echo htmlspecialchars($e['father_name'] ?? 'N/A'); ?>
                                     </small>
                                 </td>
                                 <td>
