@@ -63,7 +63,7 @@
 
     <div class="copyright">
       <p>
-        © <?php echo date('Y'); ?> Nyx European Maine Coon. Tous droits réservés. | Dédié à
+        © <?php echo date('Y'); ?> Nyx European Maine Coon by <a href="https://maxsolving.com" target="_blank" style="color: var(--primary-color)">MaxSolving</a>. Tous droits réservés. | Dédié à
         l'élevage de compagnons Maine Coon sains et heureux.
       </p>
       <p class="mt-2">

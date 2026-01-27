@@ -11,7 +11,7 @@ include 'includes/header.php';
 <section class="py-5 text-center bg-light">
     <div class="container">
         <h1 class="display-4 font-weight-bold" style="font-family: 'Vijaya', serif;">Processus d'Adoption</h1>
-        <p class="lead text-muted">Rejoignez la famille Aristocoons</p>
+        <p class="lead text-muted">Rejoignez la famille NYX COON</p>
     </div>
 </section>
 
@@ -60,7 +60,7 @@ include 'includes/header.php';
 
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center text-muted mb-5 lead-text">
-                <p>Voici la liste idéale pour ceux et celles qui rêvent d'accueillir un magnifique chaton Aristocoons dans un avenir rapproché.</p>
+                <p>Voici la liste idéale pour ceux et celles qui rêvent d'accueillir un magnifique chaton NYX COON dans un avenir rapproché.</p>
                 <p>Cette inscription implique un engagement de votre part : un dépôt vous sera demandé afin d'y figurer. En contrepartie, vous bénéficierez d'un <strong>accès prioritaire</strong> à nos portées.</p>
                 <p>À chaque naissance, vous recevrez des photos en exclusivité. Lorsque les chatons seront prêts à être réservés, vous serez contacté(e) personnellement. Vous disposerez ensuite d'un délai de <strong>24 heures</strong> pour faire votre choix en toute tranquillité.</p>
                 <p>De plus, votre inscription vous donne accès à notre <span class="text-primary"><i class="fab fa-facebook-square"></i> groupe Facebook privé</span> réservé aux membres.</p>
@@ -143,7 +143,7 @@ include 'includes/header.php';
                     </div>
 
                     <div class="form-group mb-4">
-                        <label>Où avez-vous entendu parler des Aristocoons ? *</label>
+                        <label>Où avez-vous entendu parler des NYX COON ? *</label>
                         <input type="text" name="hear_about_us" class="form-control" required>
                     </div>
 
@@ -166,7 +166,7 @@ include 'includes/header.php';
                     </div>
 
                     <div class="form-group mb-4">
-                        <label>À partir de quelle date souhaitez-vous accueillir un Aristocoons ? *</label>
+                        <label>À partir de quelle date souhaitez-vous accueillir un NYX COON ? *</label>
                         <div class="d-flex gap-2">
                             <input type="number" name="date_year" class="form-control" placeholder="Année" min="2024" required>
                             <input type="number" name="date_month" class="form-control" placeholder="Mois" min="1" max="12" required>
@@ -224,7 +224,7 @@ include 'includes/header.php';
                 </div>
                 <div id="collapseOne" class="collapse show" data-parent="#faqAccordion">
                     <div class="card-body bg-white text-muted">
-                        <p>Chez SybelleCoon (Aristocoons), la santé et la sécurité de nos chatons passent en priorité.</p>
+                        <p>Chez NYX COON, la santé et la sécurité de nos chatons passent en priorité.</p>
                         <p>Bien que nous comprenions votre envie de venir visiter, voici pourquoi cela n'est pas possible :</p>
                         <ul class="list-unstyled pl-3 border-left border-primary ml-2">
                             <li class="mb-2"><strong>1. Risque de contamination :</strong> Même avec les meilleures intentions, vous pouvez sans le savoir transporter des poils, allergènes, bactéries (typhus, coryza) ou parasites via vos vêtements ou chaussures.</li>
