@@ -159,27 +159,34 @@ $cats = get_cats_from_db($pdo, 'available');
                   </div>
                   
                   <!-- Prix réorganisés : CAD puis USD avec anciens prix -->
-                  <div class="kitten-price-container mt-3">
+                  <!-- Prix stylisés -->
+                  <div class="kitten-price-container mt-3 px-3 py-2" style="background: #f8f9fa; border-radius: 12px; border: 1px solid #eee;">
                       <?php if (!empty($cat['price_cad'])): ?>
-                        <div class="price-row">
-                            <span class="flag-icon">🇨🇦</span>
-                            <div class="price-info">
-                              <span class="price-amount"><?php echo number_format($cat['price_cad'], 0, ',', ' '); ?> $CAD</span>
-                              <?php if (!empty($cat['old_price_cad'])): ?>
-                                <span class="old-price"><?php echo number_format($cat['old_price_cad'], 0, ',', ' '); ?> $</span>
-                              <?php endif; ?>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center">
+                                <span style="font-size: 1.2em; margin-right: 8px;">🇨🇦</span>
+                                <span class="font-weight-bold text-dark">CAD</span>
+                            </div>
+                            <div class="text-right">
+                                <?php if (!empty($cat['old_price_cad'])): ?>
+                                    <small class="text-muted mr-1" style="text-decoration: line-through;"><?php echo number_format($cat['old_price_cad'], 0, ',', ' '); ?> $</small>
+                                <?php endif; ?>
+                                <span class="font-weight-bold ml-1" style="color: #2c3e50; font-size: 1.1em;"><?php echo number_format($cat['price_cad'], 0, ',', ' '); ?> $</span>
                             </div>
                         </div>
                       <?php endif; ?>
                       
                       <?php if (!empty($cat['price_usd'])): ?>
-                        <div class="price-row">
-                            <span class="flag-icon">🇺🇸</span>
-                            <div class="price-info">
-                              <span class="price-amount secondary"><?php echo number_format($cat['price_usd'], 0, ',', ' '); ?> $USD</span>
-                              <?php if (!empty($cat['old_price_usd'])): ?>
-                                <span class="old-price"><?php echo number_format($cat['old_price_usd'], 0, ',', ' '); ?> $</span>
-                              <?php endif; ?>
+                        <div class="d-flex justify-content-between align-items-center pt-1" style="border-top: 1px dashed #e0e0e0;">
+                            <div class="d-flex align-items-center">
+                                <span style="font-size: 1.2em; margin-right: 8px;">🇺🇸</span>
+                                <span class="font-weight-bold text-muted" style="font-size: 0.9em;">USD</span>
+                            </div>
+                            <div class="text-right">
+                                <?php if (!empty($cat['old_price_usd'])): ?>
+                                    <small class="text-muted mr-1" style="text-decoration: line-through;"><?php echo number_format($cat['old_price_usd'], 0, ',', ' '); ?> $</small>
+                                <?php endif; ?>
+                                <span class="font-weight-bold ml-1 text-muted" style="font-size: 1em;"><?php echo number_format($cat['price_usd'], 0, ',', ' '); ?> $</span>
                             </div>
                         </div>
                       <?php endif; ?>

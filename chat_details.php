@@ -164,7 +164,7 @@ include 'includes/header.php';
                         <div class="col-6">
                             <?php if (!empty($cat['father_name'])): ?>
                                 <p class="mb-1 text-muted small">Père (King)</p>
-                                <a href="<?php echo 'kings.php?id=' . $cat['father_id']; ?>" class="font-weight-bold text-dark text-decoration-none">
+                                <a href="<?php echo 'chat_details.php?id=' . $cat['father_id']; ?>" class="font-weight-bold text-dark text-decoration-none">
                                     <i class="fas fa-crown text-warning"></i> <?php echo htmlspecialchars($cat['father_name']); ?>
                                 </a>
                             <?php else: ?>
@@ -174,7 +174,7 @@ include 'includes/header.php';
                         <div class="col-6">
                             <?php if (!empty($cat['mother_name'])): ?>
                                 <p class="mb-1 text-muted small">Mère (Queen)</p>
-                                <a href="<?php echo 'queens.php?id=' . $cat['mother_id']; ?>" class="font-weight-bold text-dark text-decoration-none">
+                                <a href="<?php echo 'chat_details.php?id=' . $cat['mother_id']; ?>" class="font-weight-bold text-dark text-decoration-none">
                                     <i class="fas fa-heart text-danger"></i> <?php echo htmlspecialchars($cat['mother_name']); ?>
                                 </a>
                             <?php else: ?>

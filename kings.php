@@ -4,7 +4,23 @@ require_once 'includes/functions.php';
 include 'includes/header.php';
 
 // Récupération des Kings
-$cats = get_cats_from_db($pdo, 'king');
+$selected_id = $_GET['id'] ?? null;
+if ($selected_id) {
+    // Si un ID est spécifié, on récupère uniquement ce King
+    $stmt = $pdo->prepare("SELECT * FROM chats WHERE id = ? AND status = 'king'");
+    $stmt->execute([$selected_id]);
+    $cat = $stmt->fetch();
+    $cats = $cat ? [$cat] : []; // On met dans un tableau pour garder la boucle foreach
+    
+    // Récupérer les images pour ce chat spécifique (se fait déjà dans la boucle mais bon)
+    if ($cat) {
+        $cat['images'] = get_cat_images($pdo, $cat['id']);
+        $cats[0]['images'] = $cat['images'];
+    }
+} else {
+    // Sinon on récupère tous les Kings
+    $cats = get_cats_from_db($pdo, 'king');
+}
 ?>
 
 <!-- Spacer pour le menu fixe -->
@@ -25,16 +41,31 @@ $cats = get_cats_from_db($pdo, 'king');
 <section class="kitten-section" id="kings">
   <div class="container">
     <div class="section-title">
-      <h2>Nos <span style="color: var(--primary-color)">Kings</span></h2>
-      <p class="mt-3" style="max-width: 600px; margin: 0 auto">
-        Nos superbes mâles reproducteurs, sélectionnés pour leur gabarit, leur santé et leur tempérament exceptionnel.
-      </p>
+      <?php if ($selected_id && !empty($cats)): ?>
+          <div class="alert alert-info d-inline-block">
+              <i class="fas fa-crown"></i> Profil du Père
+          </div>
+          <h2 class="mt-2 text-primary"><?php echo htmlspecialchars($cats[0]['name']); ?></h2>
+          <div class="mt-3">
+              <a href="kings.php" class="btn btn-outline-primary btn-sm rounded-pill">
+                  <i class="fas fa-th-large"></i> Voir tous les Kings
+              </a>
+          </div>
+      <?php else: ?>
+          <h2>Nos <span style="color: var(--primary-color)">Kings</span></h2>
+          <p class="mt-3" style="max-width: 600px; margin: 0 auto">
+            Nos superbes mâles reproducteurs, sélectionnés pour leur gabarit, leur santé et leur tempérament exceptionnel.
+          </p>
+      <?php endif; ?>
     </div>
 
     <div class="row" id="cats-grid">
       <?php if(empty($cats)): ?>
           <div class="col-12 text-center p-5">
-              <h3>Aucun King présenté pour le moment.</h3>
+              <h3><?php echo $selected_id ? 'Ce King est introuvable.' : 'Aucun King présenté pour le moment.'; ?></h3>
+              <?php if ($selected_id): ?>
+                  <a href="kings.php" class="btn btn-primary mt-3">Voir tous les Kings</a>
+              <?php endif; ?>
           </div>
       <?php else: ?>
           <?php foreach ($cats as $cat): ?>

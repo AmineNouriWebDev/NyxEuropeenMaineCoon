@@ -1084,16 +1084,16 @@ function closeWaitingModal() {
 
 // Image Modal
 function openImageModal(imageSrc) {
-    if (!imageSrc) return;
+    if (!imageSrc) {
+        console.error("Image Source is empty");
+        return;
+    }
     const modal = document.getElementById('imageModal');
     const img = document.getElementById('modalImage');
     
-    // Ensure image loads
-    img.onload = function() {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    };
     img.src = imageSrc;
+    modal.style.display = 'flex'; // Show modal immediately
+    document.body.style.overflow = 'hidden';
 }
 
 function closeImageModal() {

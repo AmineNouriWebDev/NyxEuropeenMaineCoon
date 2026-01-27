@@ -4,7 +4,23 @@ require_once 'includes/functions.php';
 include 'includes/header.php';
 
 // Récupération des Queens
-$cats = get_cats_from_db($pdo, 'queen');
+$selected_id = $_GET['id'] ?? null;
+if ($selected_id) {
+    // Si un ID est spécifié, on récupère uniquement ce Queen
+    $stmt = $pdo->prepare("SELECT * FROM chats WHERE id = ? AND status = 'queen'");
+    $stmt->execute([$selected_id]);
+    $cat = $stmt->fetch();
+    $cats = $cat ? [$cat] : [];
+    
+    // Récupérer les images
+    if ($cat) {
+        $cat['images'] = get_cat_images($pdo, $cat['id']);
+        $cats[0]['images'] = $cat['images'];
+    }
+} else {
+    // Sinon on récupère toutes les Queens
+    $cats = get_cats_from_db($pdo, 'queen');
+}
 ?>
 
 <!-- Spacer pour le menu fixe -->
@@ -25,16 +41,31 @@ $cats = get_cats_from_db($pdo, 'queen');
 <section class="kitten-section" id="queens">
   <div class="container">
     <div class="section-title">
-      <h2>Nos <span style="color: var(--primary-color)">Queens</span></h2>
-      <p class="mt-3" style="max-width: 600px; margin: 0 auto">
-        Nos magnifiques femelles, la fondation de notre chatterie. Douceur et beauté réunies.
-      </p>
+      <?php if ($selected_id && !empty($cats)): ?>
+          <div class="alert alert-info d-inline-block">
+              <i class="fas fa-crown"></i> Profil de la Mère
+          </div>
+          <h2 class="mt-2 text-primary"><?php echo htmlspecialchars($cats[0]['name']); ?></h2>
+          <div class="mt-3">
+              <a href="queens.php" class="btn btn-outline-primary btn-sm rounded-pill">
+                  <i class="fas fa-th-large"></i> Voir toutes les Queens
+              </a>
+          </div>
+      <?php else: ?>
+          <h2>Nos <span style="color: var(--primary-color)">Queens</span></h2>
+          <p class="mt-3" style="max-width: 600px; margin: 0 auto">
+            Nos magnifiques femelles, la fondation de notre chatterie. Douceur et beauté réunies.
+          </p>
+      <?php endif; ?>
     </div>
 
     <div class="row" id="cats-grid">
       <?php if(empty($cats)): ?>
           <div class="col-12 text-center p-5">
-              <h3>Aucune Queen présentée pour le moment.</h3>
+              <h3><?php echo $selected_id ? 'Cette Queen est introuvable.' : 'Aucune Queen présentée pour le moment.'; ?></h3>
+              <?php if ($selected_id): ?>
+                  <a href="queens.php" class="btn btn-primary mt-3">Voir toutes les Queens</a>
+              <?php endif; ?>
           </div>
       <?php else: ?>
           <?php foreach ($cats as $cat): ?>
