@@ -5,7 +5,7 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section About -->
-<section class="page-hero" style="background: url('img/about-bg.jpg') no-repeat center center/cover; height: 60vh; position: relative;">
+<section class="page-hero" style="background: url('img/about-bg.jpg') no-repeat center center/cover; height: 70vh; position: relative;">
     <div class="overlay" style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4);"></div>
     <div class="container h-100 d-flex align-items-center justify-content-center text-center position-relative text-white">
         <div>

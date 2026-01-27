@@ -24,7 +24,7 @@ $cats = get_cats_from_db($pdo, 'available');
       <!-- Contenu aligné à l'extrémité gauche -->
       <div class="row ml-0 mr-0">
         <div class="col-lg-6 col-md-8 text-left pl-0">
-          <h1 class="hero-title cursive-font" style="text-align: left;">
+          <h1 class="hero-title cursive-font" style="text-align: left;font-size: 3em">
             Trouvez Votre Compagnon <span class="highlight">Parfait</span>
           </h1>
           <p class="hero-subtitle" style="text-align: left;">

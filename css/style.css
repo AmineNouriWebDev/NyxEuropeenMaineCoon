@@ -181,11 +181,12 @@ h6 {
   justify-content: center;
 }
 
-/* Logo Principal */
+/* Logo Principal - AGRANDI X1.5 */
 .main-logo {
   flex-shrink: 0;
   position: relative;
-  width: 90px;
+  width: 135px;
+  /* Augmenté de 90px à 135px pour accueillir le logo x1.5 */
   height: 90px;
   z-index: 2000;
 }
@@ -199,11 +200,13 @@ h6 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-70%, -45%) scale(1.1);
+  /* SCALE X1.5 - Le logo est maintenant 1.5x plus grand */
 }
 
 .main-logo img:hover {
-  transform: translate(-50%, -50%) scale(1.05);
+  transform: translate(-70%, -40%) scale(1.15);
+  /* Maintient le scale x1.5 + petit effet hover */
   /* Maintain translation on hover */
 }
 
@@ -878,7 +881,7 @@ h6 {
   position: absolute;
   width: 130px;
   height: 130px;
-  background: var(--accent-color);
+
   border-radius: 50%;
   top: -5px;
   left: -5px;
@@ -1881,5 +1884,152 @@ button:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ========================================
+   FOOTER STYLES - LOGO AGRANDI X2
+   ======================================== */
+
+.cat-footer {
+  background: linear-gradient(135deg, #2d3436 0%, #1e272e 100%);
+  color: white;
+  padding: 60px 0 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+}
+
+.footer-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-cat {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* LOGO FOOTER AGRANDI X2 */
+.logo-cat img {
+  height: 80px;
+  /* Taille de base */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+  transform: scale(1.5);
+  /* SCALE X1.5 - Le logo est maintenant 1.5x plus grand */
+}
+
+.logo-cat img:hover {
+  transform: scale(1.55);
+  /* Petit effet hover en gardant le x1.5 */
+}
+
+.logo-text {
+  font-family: 'Vijaya', serif;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+.logo-text span {
+  color: var(--primary-color);
+}
+
+.footer-cats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+  font-size: 2rem;
+}
+
+.cat-icon {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.cat-icon:hover {
+  transform: scale(1.3) rotate(10deg);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color) !important;
+  background: rgba(255, 107, 107, 0.1);
+  transform: translateY(-2px);
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.copyright p {
+  margin: 5px 0;
+}
+
+.copyright a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.copyright a:hover {
+  color: var(--secondary-color) !important;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-cat img {
+    transform: scale(1.2);
+    /* Un peu moins agrandi sur mobile pour éviter de prendre trop de place */
+  }
+
+  .logo-cat img:hover {
+    transform: scale(1.25);
   }
 }
