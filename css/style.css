@@ -192,7 +192,7 @@ h6 {
 }
 
 .main-logo img {
-  height: 270px;
+  height: 230px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
