@@ -200,7 +200,7 @@ h6 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-70%, -45%) scale(1.1);
+  transform: translate(-65%, -42%) scale(1.1);
   /* SCALE X1.5 - Le logo est maintenant 1.5x plus grand */
 }
 
