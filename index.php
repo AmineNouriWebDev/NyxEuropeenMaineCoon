@@ -20,7 +20,7 @@ $cats = get_cats_from_db($pdo, 'available');
   <div class="hero-overlay"></div>
   
   <div class="hero-content" style="position: relative; z-index: 3; height: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 0 20px;">
-    <div style="width: 100%; margin-top: 50px;">
+    <div style="width: 100%; margin-top: 65px;">
       <!-- Contenu aligné à l'extrémité gauche -->
       <div class="row ml-0 mr-0">
         <div class="col-lg-6 col-md-8 text-left pl-0">
