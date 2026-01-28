@@ -120,6 +120,16 @@
         <i class="fas fa-times"></i>
       </button>
       <div class="mobile-menu-content">
+        <!-- Logos Associations en HAUT -->
+        <div class="mobile-associations-top">
+          <div class="association-logos justify-content-center mb-4">
+            <a href="https://www.wcf-bestcat.de/" target="_blank"><img src="img/icones/l1.png" alt="WCF" class="assoc-logo"></a>
+            <a href="https://tica.org/" target="_blank"><img src="img/icones/l2.png" alt="TICA" class="assoc-logo"></a>
+            <a href="https://www.cca-afc.com/" target="_blank"><img src="img/icones/l3.png" alt="CCA" class="assoc-logo"></a>
+          </div>
+        </div>
+        
+        <!-- Navigation Links -->
         <a href="index.php" class="mobile-nav-link">CHATONS DISPONIBLES</a>
         <a href="kings.php" class="mobile-nav-link">KINGS</a>
         <a href="queens.php" class="mobile-nav-link">QUEENS</a>
@@ -129,19 +139,14 @@
         <a href="contact.php" class="mobile-nav-link">CONTACTS</a>
         <a href="about.php" class="mobile-nav-link">À PROPOS DE NOUS</a>
         
-        <!-- Mobile Social & Associations -->
-        <div class="mobile-extras mt-4 text-center">
-          <div class="social-links justify-content-center mb-3">
+        <!-- Réseaux Sociaux en BAS -->
+        <div class="mobile-social-bottom mt-4">
+          <div class="social-links justify-content-center">
             <a href="https://www.tiktok.com/@nyx_coon_cattery" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@chatterienyxcooneuropéenmainec" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61581523927046" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/nyxcoon_cattery_montreal/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/15142695930" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
-          </div>
-          <div class="association-logos justify-content-center">
-            <a href="https://www.wcf-bestcat.de/" target="_blank"><img src="img/icones/l1.png" alt="WCF" class="assoc-logo"></a>
-            <a href="https://tica.org/" target="_blank"><img src="img/icones/l2.png" alt="TICA" class="assoc-logo"></a>
-            <a href="https://www.cca-afc.com/" target="_blank"><img src="img/icones/l3.png" alt="CCA" class="assoc-logo"></a>
           </div>
         </div>
       </div>
@@ -156,16 +161,19 @@
 
     mobileMenuToggle.addEventListener('click', () => {
       mobileMenu.classList.add('active');
+      document.body.classList.add('menu-open'); // Ajouter classe pour cacher le bouton burger
     });
 
     mobileMenuClose.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
+      document.body.classList.remove('menu-open'); // Retirer classe pour afficher le bouton burger
     });
 
     // Close on link click
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
+        document.body.classList.remove('menu-open'); // Retirer classe pour afficher le bouton burger
       });
     });
   </script>

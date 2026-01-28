@@ -1058,6 +1058,57 @@ function get_main_image($pdo, $cat_id) {
         font-size: 1rem;
     }
 }
+
+/* CORRECTION MOBILE - Largeur 100% sans débordement */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    .litter-section {
+        padding: 30px 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    .litter-section .container {
+        max-width: 100% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin: 0 !important;
+    }
+    
+    .modern-litter-card {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-radius: 16px !important;
+    }
+    
+    .litter-card-header {
+        padding: 25px 15px !important;
+    }
+    
+    .litter-card-body {
+        padding: 20px 10px !important;
+    }
+    
+    .litter-card-body .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .litter-card-body [class*="col-"] {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    .litter-hero {
+        padding: 60px 10px 40px !important;
+    }
+    
+    .center-divider {
+        display: none !important;
+    }
+}
 </style>
 
 <script>

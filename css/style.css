@@ -292,6 +292,13 @@ h6 {
   transform: scale(1.1);
 }
 
+/* Cacher le bouton burger quand le menu est ouvert */
+.menu-open .mobile-menu-toggle {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+}
+
 /* Mobile Menu Overlay */
 .mobile-menu {
   display: none;
@@ -316,12 +323,26 @@ h6 {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: transparent;
-  border: none;
+  background: var(--primary-color);
+  /* Fond rouge pour visibilité */
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid white;
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   cursor: pointer;
   z-index: 2001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-close:hover {
+  background: var(--secondary-color);
+  transform: rotate(90deg) scale(1.1);
 }
 
 .mobile-menu-content {
@@ -353,10 +374,26 @@ h6 {
   transform: translateX(10px);
 }
 
+/* Styles pour associations et social dans mobile menu */
+.mobile-associations-top {
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.mobile-social-bottom {
+  padding-top: 20px;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
 /* Responsive - Mobile */
 @media (max-width: 992px) {
+
+  /* CACHER la top-section (logos sociaux + associations) en mobile */
   .top-section {
-    padding: 8px 0;
+    display: none !important;
+    /* Complètement cachée en mobile */
   }
 
   .social-links {
@@ -389,6 +426,71 @@ h6 {
 
   .mobile-menu {
     display: block;
+  }
+}
+
+/* Fix pour portees_a_venir.php sur mobile - Éviter débordement */
+@media (max-width: 768px) {
+
+  /* Règle globale anti-débordement pour toutes les pages */
+  * {
+    max-width: 100vw;
+  }
+
+  .container-fluid,
+  .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    overflow-x: hidden;
+  }
+
+  /* Row sans marge négative sur mobile */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Conteneur principal portees_a_venir */
+  .litter-section .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    max-width: 100vw !important;
+  }
+
+  /* Cards */
+  .modern-litter-card {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  /* Éviter débordement horizontal */
+  .litter-card-body {
+    padding: 20px 15px;
+  }
+
+  .litter-card-body .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Colonnes responsive */
+  .litter-card-body [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Hero section mobile */
+  .litter-hero {
+    padding: 80px 15px 60px;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem !important;
   }
 }
 
