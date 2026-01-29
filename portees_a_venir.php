@@ -301,13 +301,7 @@ function get_main_image($pdo, $cat_id) {
     </div>
 </div>
 
-<!-- Image Modal -->
-<div id="imageModal" class="image-modal">
-    <button class="image-modal-close" onclick="closeImageModal()">
-        <i class="fas fa-times"></i>
-    </button>
-    <img class="image-modal-content" id="modalImage" alt="Image agrandie">
-</div>
+
 
 <style>
 /* ========== Hero Section ========== */
