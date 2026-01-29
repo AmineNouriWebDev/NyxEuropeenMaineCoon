@@ -63,4 +63,4 @@ try {
     }
 }
 
-date_default_timezone_set('Europe/Paris');
+date_default_timezone_set('America/Montreal');

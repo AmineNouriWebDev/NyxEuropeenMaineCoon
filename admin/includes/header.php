@@ -154,11 +154,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'waiting_list') !== false ? 'active' : ''; ?>" href="waiting_list.php">
-                <i class="fas fa-clipboard-list"></i> Liste d'Attente
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'vip_requests') !== false ? 'active' : ''; ?>" href="vip_requests.php">
                 <i class="fas fa-gem"></i> Demandes VIP
             </a>

@@ -93,57 +93,7 @@ function get_main_image($pdo, $cat_id) {
                     <!-- Card Body -->
                     <div class="litter-card-body">
                         <div class="row align-items-stretch">
-                            <!-- King Image -->
-                            <div class="col-lg-5">
-                                <div class="cat-showcase king-showcase">
-                                    <div class="cat-image-wrapper" data-img="<?php echo htmlspecialchars($father_img_url); ?>" onclick="openImageModal(this.getAttribute('data-img'))">
-                                        <img src="<?php echo htmlspecialchars($father_img_url); ?>" alt="<?php echo htmlspecialchars($litter['father_name']); ?>" class="cat-main-image">
-                                        <div class="image-overlay">
-                                            <div class="overlay-content">
-                                                <i class="fas fa-search-plus"></i>
-                                                <span>Voir en grand</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cat-info-panel">
-                                        <div class="cat-badge king-badge">
-                                            <i class="fas fa-crown"></i> King
-                                        </div>
-                                        <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['father_name']); ?></h4>
-                                        <div class="cat-actions">
-                                            <a href="chat_details.php?id=<?php echo $litter['father_id']; ?>" class="btn-profile">
-                                                <i class="fas fa-info-circle"></i> Voir le profil
-                                            </a>
-                                            <?php if (!empty($litter['father_father_id']) || !empty($litter['father_mother_id'])): ?>
-                                            <div class="parent-buttons">
-                                                <?php if (!empty($litter['father_father_id'])): ?>
-                                                <a href="chat_details.php?id=<?php echo $litter['father_father_id']; ?>" class="btn-parent" title="Papa de <?php echo htmlspecialchars($litter['father_name']); ?>">
-                                                    <i class="fas fa-male"></i> Papa
-                                                </a>
-                                                <?php endif; ?>
-                                                <?php if (!empty($litter['father_mother_id'])): ?>
-                                                <a href="chat_details.php?id=<?php echo $litter['father_mother_id']; ?>" class="btn-parent" title="Maman de <?php echo htmlspecialchars($litter['father_name']); ?>">
-                                                    <i class="fas fa-female"></i> Maman
-                                                </a>
-                                                <?php endif; ?>
-                                            </div>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Center Info -->
-                            <div class="col-lg-2 d-flex align-items-center justify-content-center">
-                                <div class="center-divider">
-                                    <div class="divider-icon">
-                                        <i class="fas fa-plus"></i>
-                                    </div>
-                                    <div class="divider-line"></div>
-                                </div>
-                            </div>
-
-                            <!-- Queen Image -->
+                            <!-- Queen Image (Left) -->
                             <div class="col-lg-5">
                                 <div class="cat-showcase queen-showcase">
                                     <div class="cat-image-wrapper" data-img="<?php echo htmlspecialchars($mother_img_url); ?>" onclick="openImageModal(this.getAttribute('data-img'))">
@@ -173,6 +123,56 @@ function get_main_image($pdo, $cat_id) {
                                                 <?php endif; ?>
                                                 <?php if (!empty($litter['mother_mother_id'])): ?>
                                                 <a href="chat_details.php?id=<?php echo $litter['mother_mother_id']; ?>" class="btn-parent" title="Maman de <?php echo htmlspecialchars($litter['mother_name']); ?>">
+                                                    <i class="fas fa-female"></i> Maman
+                                                </a>
+                                                <?php endif; ?>
+                                            </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Center Info -->
+                            <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                                <div class="center-divider">
+                                    <div class="divider-icon">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="divider-line"></div>
+                                </div>
+                            </div>
+
+                            <!-- King Image (Right) -->
+                            <div class="col-lg-5">
+                                <div class="cat-showcase king-showcase">
+                                    <div class="cat-image-wrapper" data-img="<?php echo htmlspecialchars($father_img_url); ?>" onclick="openImageModal(this.getAttribute('data-img'))">
+                                        <img src="<?php echo htmlspecialchars($father_img_url); ?>" alt="<?php echo htmlspecialchars($litter['father_name']); ?>" class="cat-main-image">
+                                        <div class="image-overlay">
+                                            <div class="overlay-content">
+                                                <i class="fas fa-search-plus"></i>
+                                                <span>Voir en grand</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cat-info-panel">
+                                        <div class="cat-badge king-badge">
+                                            <i class="fas fa-crown"></i> King
+                                        </div>
+                                        <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['father_name']); ?></h4>
+                                        <div class="cat-actions">
+                                            <a href="chat_details.php?id=<?php echo $litter['father_id']; ?>" class="btn-profile">
+                                                <i class="fas fa-info-circle"></i> Voir le profil
+                                            </a>
+                                            <?php if (!empty($litter['father_father_id']) || !empty($litter['father_mother_id'])): ?>
+                                            <div class="parent-buttons">
+                                                <?php if (!empty($litter['father_father_id'])): ?>
+                                                <a href="chat_details.php?id=<?php echo $litter['father_father_id']; ?>" class="btn-parent" title="Papa de <?php echo htmlspecialchars($litter['father_name']); ?>">
+                                                    <i class="fas fa-male"></i> Papa
+                                                </a>
+                                                <?php endif; ?>
+                                                <?php if (!empty($litter['father_mother_id'])): ?>
+                                                <a href="chat_details.php?id=<?php echo $litter['father_mother_id']; ?>" class="btn-parent" title="Maman de <?php echo htmlspecialchars($litter['father_name']); ?>">
                                                     <i class="fas fa-female"></i> Maman
                                                 </a>
                                                 <?php endif; ?>
@@ -224,11 +224,11 @@ function get_main_image($pdo, $cat_id) {
 
                         <!-- CTA Button -->
                         <div class="litter-cta">
-                            <button onclick="openWaitingListModal(<?php echo $litter['id']; ?>, '<?php echo htmlspecialchars($litter['season_text']); ?>', '<?php echo htmlspecialchars($litter['father_name']); ?>', '<?php echo htmlspecialchars($litter['mother_name']); ?>')" class="btn-waiting-list">
+                            <a href="adoption.php#formulaire-adoption" class="btn-waiting-list">
                                 <span class="btn-icon"><i class="fas fa-clipboard-list"></i></span>
                                 <span class="btn-text">Rejoindre la Liste d'Attente</span>
                                 <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

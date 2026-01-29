@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Récupération des données
     $name = $_POST['name'];
-    $slug_id = $_POST['slug_id'] ?: strtolower(preg_replace('/[^A-Za-z0-9]/', '', $name));
+    $slug_id = isset($_POST['slug_id']) && !empty($_POST['slug_id']) ? $_POST['slug_id'] : strtolower(preg_replace('/[^A-Za-z0-9]/', '', $name));
     
     // Logique TYPE (Chaton vs King vs Queen)
     $cat_type = $_POST['cat_type']; // 'kitten', 'king', 'queen'
