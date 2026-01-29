@@ -231,11 +231,7 @@ include 'includes/header.php';
                     </div>
                     <?php endif; ?>
                     
-                    <div class="mt-3 text-center">
-                        <a href="#contact" class="btn btn-cat" onclick="scrollToContact()" style="background: var(--primary-color); color: white;">
-                            <i class="fas fa-envelope"></i> Demande de renseignements
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
             <?php endif; ?>

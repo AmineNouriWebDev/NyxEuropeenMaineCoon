@@ -100,7 +100,7 @@ include 'includes/header.php';
 
             <div class="mt-5">
                 <h6 class="text-white mb-3 text-uppercase small letter-spacing-1">Suivez-Nous</h6>
-                <div class="social-icons">
+                <div class="social-links">
                     <a href="https://www.facebook.com/profile.php?id=61581523927046" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/nyxcoon_cattery_montreal/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.tiktok.com/@nyx_coon_cattery" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
