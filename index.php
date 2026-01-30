@@ -139,40 +139,52 @@ $cats = get_cats_from_db($pdo, 'available');
                 <div class="kitten-details">
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="kitten-name"><?php echo htmlspecialchars($cat['name']); ?></h3>
-                    <span class="kitten-gender <?php echo strtolower($cat['gender']); ?>">
-                      <i class="text-white fas fa-<?php echo strtolower($cat['gender']) == 'male' ? 'mars' : 'venus'; ?>"></i>
-                    </span>
                   </div>
                   
                   <div class="kitten-info-grid">
-                    <!-- Âge avec icône calendrier -->
+                    <!-- Sexe : Icone Mixte + Texte -->
                     <div class="info-item">
-                      <i class="fas fa-calendar-alt"></i>
+                      <i class="fas fa-venus-mars text-dark"></i>
+                      <span><?php echo strtolower($cat['gender']) == 'male' ? 'Mâle' : 'Femelle'; ?></span>
+                    </div>
+
+                    <!-- Âge avec icône calendrier noir -->
+                    <div class="info-item">
+                      <i class="fas fa-calendar-alt text-dark"></i>
                       <span><?php echo $age_display; ?></span>
                     </div>
                     
-                    <!-- Couleur avec icône palette -->
+                    <!-- Qualité avec icône chat noir -->
                     <div class="info-item">
-                      <i class="fas fa-palette"></i>
-                      <span><?php echo format_cat_color($cat); ?></span>
-                    </div>
-                    
-                    <!-- Qualité avec icône paw -->
-                    <div class="info-item">
-                      <i class="fas fa-paw"></i>
+                      <i class="fas fa-cat text-dark"></i>
                       <span><?php echo htmlspecialchars($cat['quality']); ?></span>
                     </div>
 
-                    <!-- Type de pattes (si défini et différent de Régulières) -->
-                    <?php if (!empty($cat['paw_type']) && $cat['paw_type'] !== 'Régulières'): ?>
+                    <!-- Couleur avec icône palette noir -->
                     <div class="info-item">
-                        <i class="fas fa-hand-paper"></i>
-                        <span><?php echo htmlspecialchars($cat['paw_type']); ?></span>
+                      <i class="fas fa-palette text-dark"></i>
+                      <span><?php echo htmlspecialchars($cat['color']); ?></span>
                     </div>
-                    <?php endif; ?>
-
-                    <!-- Parents -->
-                    <!-- Parents supprimés de l'accueil (gardés pour détails) -->
+                    
+                    <!-- Effets Spéciaux (Checkboxes) -->
+                    <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.85em;">
+                        <?php 
+                        $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                        $effects = [
+                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                        ];
+                        
+                        foreach($effects as $label => $active): 
+                        ?>
+                        <div class="effect-checkbox d-flex align-items-center">
+                            <i class="far fa-<?php echo $active ? 'check-square' : 'square'; ?> mr-1 text-dark"></i>
+                            <span class="<?php echo $active ? 'font-weight-bold text-dark' : 'text-muted'; ?>"><?php echo $label; ?></span>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                   </div>
                   
                   <!-- Prix réorganisés : CAD puis USD avec anciens prix -->

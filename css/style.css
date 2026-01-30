@@ -715,7 +715,8 @@ h6 {
 
 .kitten-card:hover {
   transform: translateY(-15px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 50px rgba(118, 75, 162, 0.5);
+  border: 2px solid var(--primary-color);
 }
 
 .kitten-card:before {
@@ -2238,4 +2239,30 @@ body.home .mobile-logo {
   padding: 100px 0 80px;
   position: relative;
   overflow: hidden;
+}
+
+/* Kitten Info Grid - Vertical Stack */
+.kitten-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.info-item i {
+  width: 20px;
+  text-align: center;
+}
+
+/* Specific styling for checkboxes row to keep them inline/wrapped as requested */
+.special-effects-row {
+  flex-direction: row;
+  flex-wrap: wrap;
 }

@@ -65,7 +65,7 @@
           <!-- Navigation Buttons -->
           <div class="nav-buttons">
             <a href="index.php" class="nav-btn">
-              <span>CHATONS</span>
+              <span>CHATONS & CHATS</span>
               <span>DISPONIBLES</span>
             </a>
             <a href="kings.php" class="nav-btn">
@@ -75,7 +75,7 @@
               <span>QUEENS</span>
             </a>
             <a href="chatons_reserves.php" class="nav-btn">
-              <span>CHATONS</span>
+              <span>CHATONS & CHATS</span>
               <span>RÉSERVÉS</span>
             </a>
             <a href="portees_a_venir.php" class="nav-btn">
