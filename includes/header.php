@@ -39,23 +39,7 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-around align-items-center">
           <!-- Réseaux Sociaux - Gauche -->
-          <div class="social-links">
-            <a href="https://www.tiktok.com/@nyx_coon_cattery" target="_blank" class="social-icon tiktok" title="TikTok">
-              <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.youtube.com/@chatterienyxcooneuropéenmainec" target="_blank" class="social-icon youtube" title="YouTube">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61581523927046" target="_blank" class="social-icon facebook" title="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/nyxcoon_cattery_montreal/" target="_blank" class="social-icon instagram" title="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/15142695930" target="_blank" class="social-icon whatsapp" title="WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
+          <!-- Social links removed and moved to index.php -->
 
           <!-- Logos Associations - Droite -->
           <div class="association-logos">
@@ -112,6 +96,11 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Mobile Logo (visible uniquement en mobile) -->
+    <div class="mobile-logo">
+      <img src="img/logo_principal.png" alt="Nyx Maine Coon">
     </div>
 
     <!-- Mobile Menu Button -->

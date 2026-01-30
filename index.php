@@ -7,6 +7,11 @@ include 'includes/header.php';
 $cats = get_cats_from_db($pdo, 'available');
 ?>
 
+<script>
+  // Ajouter la classe 'home' au body pour cette page uniquement
+  document.body.classList.add('home');
+</script>
+
 <!-- Hero Section avec nouvelle vidéo -->
 <section id="hero-section" style="position: relative; height: 100vh; width: 100%; overflow: hidden;">
   <div class="video-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
@@ -15,31 +20,18 @@ $cats = get_cats_from_db($pdo, 'available');
       Your browser does not support the video tag.
     </video>
     <!-- Fallback image -->
-    <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Maine Coon Hero" class="video-fallback" style="width: 100%; height: 100%; object-fit: cover;" />
+   
   </div>
   <div class="hero-overlay"></div>
   
   <div class="hero-content" style="position: relative; z-index: 3; height: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 0 20px;">
-    <div style="width: 100%; margin-top: 75px;">
+    <div style="width: 100%; margin-top: 0px;">
       <!-- Contenu aligné à l'extrémité gauche -->
       <div class="row ml-0 mr-0">
         <div class="col-lg-6 col-md-8 text-left pl-0">
-          <h1 class="hero-title cursive-font" style="text-align: left;font-size: 3em">
-            Trouvez Votre Compagnon <span class="highlight">Parfait</span>
-          </h1>
-          <p class="hero-subtitle" style="text-align: left;">
-            Découvrez la majesté et la nature douce de nos chatons Maine Coon
-            de race pure. Chacun est élevé avec amour, soin et dévouement pour
-            trouver son foyer pour toujours.
-          </p>
-          <div class="mt-4" style="text-align: left;">
-            <a href="#kittens" class="btn-cat mr-3 pulse">
-              <i class="fas fa-paw"></i> Voir Nos Chatons
-            </a>
-            <a href="adoption.php" class="btn-cat btn-cat-secondary">
-              <i class="fas fa-heart"></i> Processus d'Adoption
-            </a>
-          </div>
+          <!-- Logo Principal replace Text -->
+          <img src="img/logo_principal.png" alt="Nyx Maine Coon" style="width: 100%; max-width: 400px; height: auto; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+          
           
      
 
@@ -49,12 +41,37 @@ $cats = get_cats_from_db($pdo, 'available');
   </div>
 </section>
 
+<!-- Social Links Section (Moved from Header) -->
+<section class="social-links-section py-4" style="background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@nyx_coon_cattery" target="_blank" class="social-icon tiktok" title="TikTok" style="width: 50px; height: 50px; font-size: 24px; margin: 0 10px;">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://www.youtube.com/@chatterienyxcooneuropéenmainec" target="_blank" class="social-icon youtube" title="YouTube" style="width: 50px; height: 50px; font-size: 24px; margin: 0 10px;">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61581523927046" target="_blank" class="social-icon facebook" title="Facebook" style="width: 50px; height: 50px; font-size: 24px; margin: 0 10px;">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/nyxcoon_cattery_montreal/" target="_blank" class="social-icon instagram" title="Instagram" style="width: 50px; height: 50px; font-size: 24px; margin: 0 10px;">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/15142695930" target="_blank" class="social-icon whatsapp" title="WhatsApp" style="width: 50px; height: 50px; font-size: 24px; margin: 0 10px;">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Kittens Section -->
-<section class="kitten-section" id="kittens">
+<section class="kitten-section purple-hero-bg" id="kittens">
   <div class="container">
     <div class="section-title">
       <h2>
-        Nos <span style="color: var(--primary-color)">Chatons</span> Disponibles
+        Nos <span style="color: var(--accent-color)">Chatons</span> Disponibles
       </h2>
       <p class="mt-3" style="max-width: 600px; margin: 0 auto">
         Chaque chaton est socialisé, examiné et prêt à apporter de la joie à votre foyer
@@ -164,7 +181,7 @@ $cats = get_cats_from_db($pdo, 'available');
                       <?php if (!empty($cat['price_cad'])): ?>
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center">
-                                <span style="font-size: 1.2em; margin-right: 8px;">🇨🇦</span>
+                                <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 8px; vertical-align: middle;">
                                 <span class="font-weight-bold text-dark">CAD</span>
                             </div>
                             <div class="text-right">
@@ -179,7 +196,7 @@ $cats = get_cats_from_db($pdo, 'available');
                       <?php if (!empty($cat['price_usd'])): ?>
                         <div class="d-flex justify-content-between align-items-center pt-1" style="border-top: 1px dashed #e0e0e0;">
                             <div class="d-flex align-items-center">
-                                <span style="font-size: 1.2em; margin-right: 8px;">🇺🇸</span>
+                                <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 8px; vertical-align: middle;">
                                 <span class="font-weight-bold text-muted" style="font-size: 0.9em;">USD</span>
                             </div>
                             <div class="text-right">

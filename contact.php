@@ -49,17 +49,15 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section Contact -->
-<section class="page-hero" style="background: url('https://images.unsplash.com/photo-1513245543132-31f507417b26?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover; height: 50vh; position: relative; margin-top: 0;">
-    <div class="overlay" style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));"></div>
-    <div class="container h-100 d-flex align-items-center justify-content-center text-center position-relative text-white">
-        <div style="margin-top: 80px;"> <!-- Marge pour le header fixe -->
-            <h1 class="cursive-font display-3 mb-3">Contactez-Nous</h1>
-            <p class="lead font-weight-light">Nous serions ravis de vous entendre à propos de nos gentils géants</p>
-        </div>
-    </div>
-</section>
+<!-- Purple Hero Header -->
 
-<div class="container my-5" style="margin-top: -80px; position: relative; z-index: 10;">
+
+<section class="purple-hero-bg py-5 " >
+    <div class="litter-hero text-center py-5 " >
+    <h1 class="font-weight-bold display-4" style="margin-top: 150px; font-family: 'Amatic SC', cursive;">Contactez-Nous</h1>
+    <p class="lead" style="color: rgba(255,255,255,0.9);">Nous serions ravis de vous entendre</p>
+</div>
+<div class="container my-5">
     <!-- Feedback Toast -->
     <div id="contactToast" class="contact-toast">
         <i class="fas fa-check-circle"></i>
@@ -151,6 +149,7 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
+</section>
 
 <style>
 /* Toast Notification Style */
@@ -159,7 +158,7 @@ include 'includes/header.php';
     top: 20px;
     left: 50%;
     transform: translateX(-50%) translateY(-100px);
-    background-color: var(--secondary-color); /* Turquoise */
+    background-color: var(--primary-color); /* Mauve */
     color: white;
     padding: 15px 30px;
     border-radius: 50px;

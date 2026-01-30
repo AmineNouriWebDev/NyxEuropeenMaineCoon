@@ -24,7 +24,8 @@ if ($selected_id) {
 ?>
 
 <!-- Spacer pour le menu fixe -->
-<div style="height: 120px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);"></div>
+<!-- Purple Hero Header -->
+
 
 <?php if (isset($_GET['msg'])): ?>
 <div class="container mt-3">
@@ -38,7 +39,7 @@ if ($selected_id) {
 <?php endif; ?>
 
 <!-- Kings Section -->
-<section class="kitten-section" id="kings">
+<section class="kitten-section purple-hero-bg" id="kings">
   <div class="container">
     <div class="section-title">
       <?php if ($selected_id && !empty($cats)): ?>
@@ -103,7 +104,7 @@ if ($selected_id) {
                       </a>
                     <?php endif; ?>
                   </div>
-                  <div class="kitten-status available" style="background: var(--secondary-color);">King</div>
+                  <div class="kitten-status available" style="background: var(--primary-color);">King</div>
                   <?php if ($cat['for_sale']): ?>
                   <div class="kitten-status" style="background: #e74c3c; position: absolute; top: 60px; right: 10px;">
                     <i class="fas fa-tag"></i> Disponible

@@ -5,51 +5,47 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section About -->
-<section class="page-hero" style="background: url('img/about-bg.jpg') no-repeat center center/cover; height: 70vh; position: relative;">
-    <div class="overlay" style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4);"></div>
-    <div class="container h-100 d-flex align-items-center justify-content-center text-center position-relative text-white">
-        <div>
-            <h1 class="cursive-font display-1">Notre Histoire</h1>
-            <p class="lead">Passion, Excellence et Amour pour les Maine Coons</p>
-        </div>
-    </div>
-</section>
+<!-- Purple Hero Header -->
+<div class="litter-hero text-center py-5">
+    <h1 class="font-weight-bold display-4" style="margin-top: 200px; font-family: 'Amatic SC', cursive;">Notre Histoire</h1>
+    <p class="lead" style="color: rgba(255,255,255,0.9);">Passion, Excellence et Amour pour les Maine Coons</p>
+</div>
 
 <!-- Our Vision -->
-<section class="py-5">
+<section class="py-5 purple-hero-bg">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4">
                 <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-lg shadow-lg" alt="Maine Coon Portrait">
             </div>
             <div class="col-md-6">
-                <h2 class="section-title-start text-dark mb-4">Plus Qu'un Simple Élevage</h2>
-                <p class="lead">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
-                <p>Situé au cœur de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
+                <h2 class="section-title-start text-white mb-4">Plus Qu'un Simple Élevage</h2>
+                <p class="lead text-white">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
+                <p class="text-white">Situé au cœur de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
                 
                 <div class="row mt-4">
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-heart fa-2x mr-3" style="color: var(--primary-color);"></i>
-                            <span class="font-weight-bold">Élevé en Famille</span>
+                            <i class="fas fa-heart fa-2x mr-3" style="color: white;"></i>
+                            <span class="font-weight-bold text-white">Élevé en Famille</span>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-notes-medical fa-2x mr-3" style="color: var(--secondary-color);"></i>
-                            <span class="font-weight-bold">Testé pour la Santé</span>
+                            <i class="fas fa-notes-medical fa-2x mr-3" style="color: white;"></i>
+                            <span class="font-weight-bold text-white">Testé pour la Santé</span>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-globe-americas fa-2x mr-3" style="color: var(--accent-color);"></i>
-                            <span class="font-weight-bold">Lignées Européennes</span>
+                            <i class="fas fa-globe-americas fa-2x mr-3" style="color: white;"></i>
+                            <span class="font-weight-bold text-white">Lignées Européennes</span>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-certificate fa-2x mr-3" style="color: var(--cat-eye-green);"></i>
-                            <span class="font-weight-bold">Enregistré</span>
+                            <i class="fas fa-certificate fa-2x mr-3" style="color: white;"></i>
+                            <span class="font-weight-bold text-white">Enregistré</span>
                         </div>
                     </div>
                 </div>
@@ -59,7 +55,7 @@ include 'includes/header.php';
 </section>
 
 <!-- Values Section -->
-<section class="py-5 bg-light">
+<section class="py-5 purple-hero-bg">
     <div class="container text-center">
         <h2 class="mb-5">Nos Valeurs Fondamentales</h2>
         <div class="row">
@@ -95,7 +91,7 @@ include 'includes/header.php';
 </section>
 
 <!-- CTA -->
-<section class="py-5 text-center text-white" style="background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));">
+<section class="py-5 text-center purple-hero-bg">
     <div class="container">
         <h2 class="text-white mb-3">Prêt à accueillir un géant ?</h2>
         <p class="lead mb-4">Découvrez nos chatons disponibles ou apprenez-en plus sur le processus d'adoption.</p>

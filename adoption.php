@@ -4,19 +4,16 @@ require_once 'includes/functions.php';
 include 'includes/header.php';
 ?>
 
-<!-- Spacer pour le menu fixe -->
-<div style="height: 120px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);"></div>
-
 <!-- Hero Section -->
-<section class="py-5 text-center bg-light">
+<section class="litter-hero  text-center "style="padding-top: 200px;">
     <div class="container">
         <h1 class="display-4 font-weight-bold" style="font-family: 'Vijaya', serif;">Processus d'Adoption</h1>
-        <p class="lead text-muted">Rejoignez la famille NYX COON</p>
+        <p class="lead" style="color: rgba(255,255,255,0.9);">Rejoignez la famille NYX COON</p>
     </div>
 </section>
 
 <!-- 1. Processus Steps -->
-<section class="py-5">
+<section class="py-5 purple-hero-bg">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -48,18 +45,18 @@ include 'includes/header.php';
 </section>
 
 <!-- 2. Liste VIP - Diamants -->
-<section class="py-5 bg-white position-relative" id="vip-list">
+<section class="py-5 purple-hero-bg position-relative" id="vip-list">
     <div class="container">
         <!-- Titre Diamants -->
         <div class="text-center mb-5">
-            <h2 class="display-4" style="color: var(--primary-color); font-family: 'Amatic SC', cursive;">
+            <h2 class="display-4 text-white" style="font-family: 'Amatic SC', cursive;">
                 <i class="fas fa-gem mx-3 fa-xs"></i> LISTE D'ATTENTE VIP <i class="fas fa-gem mx-3 fa-xs"></i>
             </h2>
             <div class="divider-custom"></div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-lg-8 text-center text-muted mb-5 lead-text">
+            <div class="col-lg-8 text-center text-white mb-5 lead-text">
                 <p>Voici la liste idéale pour ceux et celles qui rêvent d'accueillir un magnifique chaton NYX COON dans un avenir rapproché.</p>
                 <p>Cette inscription implique un engagement de votre part : un dépôt vous sera demandé afin d'y figurer. En contrepartie, vous bénéficierez d'un <strong>accès prioritaire</strong> à nos portées.</p>
                 <p>À chaque naissance, vous recevrez des photos en exclusivité. Lorsque les chatons seront prêts à être réservés, vous serez contacté(e) personnellement. Vous disposerez ensuite d'un délai de <strong>24 heures</strong> pour faire votre choix en toute tranquillité.</p>
@@ -76,7 +73,7 @@ include 'includes/header.php';
 
         <!-- 3. Formulaire -->
         <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
-            <div class="card-header bg-primary text-white p-4">
+            <div class="card-header text-white p-4 purple-hero-bg">
                 <h3 class="mb-0"><i class="fas fa-paw mr-2"></i> Formulaire de Candidature VIP</h3>
             </div>
             <div class="card-body p-5">
@@ -208,7 +205,7 @@ include 'includes/header.php';
 </section>
 
 <!-- 4. FAQ -->
-<section class="py-5 bg-light">
+<section class="py-5 purple-hero-bg">
     <div class="container">
         <h2 class="text-center mb-5 font-weight-bold">Questions Fréquemment Posées</h2>
         
@@ -244,7 +241,7 @@ include 'includes/header.php';
 .hover-lift { transition: transform 0.3s; }
 .hover-lift:hover { transform: translateY(-5px); }
 .lead-text p { font-size: 1.1rem; line-height: 1.8; }
-.divider-custom { height: 4px; width: 100px; background: var(--accent-color); margin: 20px auto; border-radius: 2px; }
+.divider-custom { height: 4px; width: 100px; background: rgba(255, 255, 255, 0.5); margin: 20px auto; border-radius: 2px; }
 </style>
 
 <script>

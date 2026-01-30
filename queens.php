@@ -24,7 +24,7 @@ if ($selected_id) {
 ?>
 
 <!-- Spacer pour le menu fixe -->
-<div style="height: 120px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);"></div>
+
 
 <?php if (isset($_GET['msg'])): ?>
 <div class="container mt-3">
@@ -38,7 +38,7 @@ if ($selected_id) {
 <?php endif; ?>
 
 <!-- Queens Section -->
-<section class="kitten-section" id="queens">
+<section class="kitten-section purple-hero-bg" id="queens">
   <div class="container">
     <div class="section-title">
       <?php if ($selected_id && !empty($cats)): ?>
