@@ -160,6 +160,12 @@ $cats = get_cats_from_db($pdo, 'available');
                       <span><?php echo htmlspecialchars($cat['quality']); ?></span>
                     </div>
 
+                    <!-- Type de pattes avec icône patte -->
+                    <div class="info-item">
+                      <i class="fas fa-paw text-dark"></i>
+                      <span><?php echo htmlspecialchars($cat['paw_type'] ?? 'Régulières'); ?></span>
+                    </div>
+
                     <!-- Couleur avec icône palette noir -->
                     <div class="info-item">
                       <i class="fas fa-palette text-dark"></i>

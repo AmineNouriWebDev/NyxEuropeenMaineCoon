@@ -104,6 +104,16 @@ include 'includes/header.php';
                     </div>
                 <?php endforeach; ?>
             </div>
+
+            <!-- Description Riche -->
+            <?php if (!empty($cat['description'])): ?>
+            <div class="card shadow-sm border-0 rounded-lg p-4 mt-4">
+                <h3 class="mb-4 text-primary" style="font-family: 'Vijaya', serif;">À propos de <?php echo htmlspecialchars($cat['name']); ?></h3>
+                <div class="blog-content">
+                    <?php echo $cat['description']; ?>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
 
         <!-- Informations -->
@@ -115,8 +125,8 @@ include 'includes/header.php';
             <div class="kitten-price-container mb-4">
                 <?php if (!empty($cat['price_cad'])): ?>
                 <div class="d-flex align-items-center mb-2">
-                    <span class="flag-icon mr-2">🇨🇦</span>
-                    <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format($cat['price_cad'], 0, ',', ' '); ?> $CAD</span>
+                    <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 8px; vertical-align: middle;">
+                    <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format($cat['price_cad'], 0, ',', ' '); ?> $</span>
                     <?php if (!empty($cat['old_price_cad'])): ?>
                         <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_price_cad'], 0, ',', ' '); ?> $</span>
                     <?php endif; ?>
@@ -125,8 +135,8 @@ include 'includes/header.php';
                 
                 <?php if (!empty($cat['price_usd'])): ?>
                 <div class="d-flex align-items-center">
-                    <span class="flag-icon mr-2">🇺🇸</span>
-                    <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format($cat['price_usd'], 0, ',', ' '); ?> $USD</span>
+                    <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 8px; vertical-align: middle;">
+                    <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format($cat['price_usd'], 0, ',', ' '); ?> $</span>
                     <?php if (!empty($cat['old_price_usd'])): ?>
                         <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_price_usd'], 0, ',', ' '); ?> $</span>
                     <?php endif; ?>
@@ -145,12 +155,12 @@ include 'includes/header.php';
                     <span><?php echo calculate_age($cat['birth_date']); ?></span>
                 </div>
                 <div class="info-item">
-                    <i class="fas fa-paw"></i>
+                    <i class="fas fa-cat"></i>
                     <span><?php echo htmlspecialchars($cat['quality']); ?></span>
                 </div>
                 <?php if (!empty($cat['paw_type'])): ?>
                 <div class="info-item">
-                    <i class="fas fa-hand-paper"></i>
+                    <i class="fas fa-paw"></i>
                     <span><?php echo htmlspecialchars($cat['paw_type']); ?></span>
                 </div>
                 <?php endif; ?>
@@ -199,11 +209,13 @@ include 'includes/header.php';
                             <i class="fas fa-paw text-info"></i> Service de Saillie
                         </h6>
                         <div class="d-flex align-items-center mb-2">
-                            <span class="badge badge-primary mr-2" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
-                                <?php echo number_format($cat['stud_price_cad'], 2); ?> $CAD
+                            <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 16px; margin-right: 5px; vertical-align: middle;">
+                            <span class="badge badge-primary mr-3" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
+                                <?php echo number_format($cat['stud_price_cad'], 0, ',', ' '); ?> $
                             </span>
-                            <span class="text-muted">
-                                (<?php echo number_format($cat['stud_price_usd'], 2); ?> $USD)
+                            <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 16px; margin-right: 5px; vertical-align: middle;">
+                            <span class="text-muted font-weight-bold">
+                                <?php echo number_format($cat['stud_price_usd'], 0, ',', ' '); ?> $
                             </span>
                         </div>
                         <?php if (!empty($cat['sale_description'])): ?>
@@ -218,11 +230,13 @@ include 'includes/header.php';
                             <i class="fas fa-home text-success"></i> Disponible à la Retraite
                         </h6>
                         <div class="d-flex align-items-center mb-2">
-                            <span class="badge badge-success mr-2" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
-                                <?php echo number_format($cat['retirement_price_cad'], 2); ?> $CAD
+                            <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 16px; margin-right: 5px; vertical-align: middle;">
+                            <span class="badge badge-success mr-3" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
+                                <?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $
                             </span>
-                            <span class="text-muted">
-                                (<?php echo number_format($cat['retirement_price_usd'], 2); ?> $USD)
+                            <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 16px; margin-right: 5px; vertical-align: middle;">
+                            <span class="text-muted font-weight-bold">
+                                <?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $
                             </span>
                         </div>
                         <?php if (!empty($cat['sale_description']) && ($cat['sale_type'] !== 'both')): ?>
@@ -250,24 +264,7 @@ include 'includes/header.php';
             <!-- Informations Complémentaires (Nouveau Bloc) -->
             <div class="accordion shadow-sm rounded-lg overflow-hidden" id="accordionInfo">
                 
-                <!-- Droits de reproduction -->
-                <div class="card border-0 mb-1">
-                    <div class="card-header bg-white" id="headingRights">
-                        <h2 class="mb-0">
-                            <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
-                                <span><i class="fas fa-venus-mars text-primary mr-2"></i> Droits de reproduction</span>
-                                <i class="fas fa-chevron-down small"></i>
-                            </div>
-                        </h2>
-                    </div>
-                    <div id="collapseRights" class="collapse show">
-                        <div class="card-body bg-light">
-                            <p class="mb-0">Disponible à un coût additionnel de <strong>1500$</strong>.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Inclus avec l'adoption -->
+                <!-- 1. Inclus avec l'adoption -->
                 <div class="card border-0 mb-1">
                     <div class="card-header bg-white" id="headingIncluded">
                         <h2 class="mb-0">
@@ -294,28 +291,8 @@ include 'includes/header.php';
                     </div>
                 </div>
 
-                <!-- Options de paiement -->
+                <!-- 2. Livraison -->
                 <div class="card border-0 mb-1">
-                    <div class="card-header bg-white" id="headingPayment">
-                        <h2 class="mb-0">
-                            <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
-                                <span><i class="fas fa-credit-card text-warning mr-2"></i> Options de paiement</span>
-                                <i class="fas fa-chevron-down small"></i>
-                            </div>
-                        </h2>
-                    </div>
-                    <div id="collapsePayment" class="collapse show">
-                        <div class="card-body bg-light">
-                            <ul class="list-unstyled mb-0 pl-2">
-                                <li class="mb-1"><i class="fas fa-money-bill-wave text-success mr-2"></i> En argent</li>
-                                <li><i class="fas fa-university text-info mr-2"></i> Virement bancaire</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Livraison -->
-                <div class="card border-0">
                     <div class="card-header bg-white" id="headingDelivery">
                         <h2 class="mb-0">
                             <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
@@ -335,23 +312,48 @@ include 'includes/header.php';
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Description Riche -->
-    <?php if (!empty($cat['description'])): ?>
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="card shadow-sm border-0 rounded-lg p-4">
-                <h3 class="mb-4 text-primary" style="font-family: 'Vijaya', serif;">À propos de <?php echo htmlspecialchars($cat['name']); ?></h3>
-                <div class="blog-content">
-                    <?php echo $cat['description']; ?>
+                <!-- 3. Options de paiement -->
+                <div class="card border-0 mb-1">
+                    <div class="card-header bg-white" id="headingPayment">
+                        <h2 class="mb-0">
+                            <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
+                                <span><i class="fas fa-credit-card text-warning mr-2"></i> Options de paiement</span>
+                                <i class="fas fa-chevron-down small"></i>
+                            </div>
+                        </h2>
+                    </div>
+                    <div id="collapsePayment" class="collapse show">
+                        <div class="card-body bg-light">
+                            <ul class="list-unstyled mb-0 pl-2">
+                                <li class="mb-1"><i class="fas fa-money-bill-wave text-success mr-2"></i> En argent</li>
+                                <li><i class="fas fa-university text-info mr-2"></i> Virement bancaire</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Droits de reproduction -->
+                <div class="card border-0">
+                    <div class="card-header bg-white" id="headingRights">
+                        <h2 class="mb-0">
+                            <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
+                                <span><i class="fas fa-venus-mars text-primary mr-2"></i> Droits de reproduction</span>
+                                <i class="fas fa-chevron-down small"></i>
+                            </div>
+                        </h2>
+                    </div>
+                    <div id="collapseRights" class="collapse show">
+                        <div class="card-body bg-light">
+                            <p class="mb-0">Disponible à un coût additionnel de <strong>1500$</strong>.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <?php endif; ?>
+
+
     
     <!-- Formulaire Contact Direct -->
     <div class="row mt-5" id="inquiryFormColumn">
