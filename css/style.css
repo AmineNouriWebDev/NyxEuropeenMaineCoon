@@ -15,10 +15,10 @@
   /* Vert yeux de chat */
 }
 
-/* Nouvelles polices - VIJAYA FORCÉE */
+/* Nouvelles polices - Playwrite NZ */
 html,
 body {
-  font-family: "Vijaya", "Georgia", serif !important;
+  font-family: "Charm", cursive !important;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   color: #2d3436;
   margin: 0;
@@ -44,7 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Vijaya", "Georgia", serif !important;
+  font-family: "Charm", cursive !important;
   color: var(--dark-color);
   font-weight: 600;
 }
