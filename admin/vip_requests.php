@@ -140,6 +140,11 @@ require_once 'includes/header.php';
                         <p id="modalDate"></p>
                     </div>
                 </div>
+
+                <hr>
+                <h6>Questions / Infos complémentaires</h6>
+                <div class="bg-light p-3 rounded" id="modalQuestions" style="white-space: pre-line;"></div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -169,6 +174,9 @@ function openDetails(data) {
     
     document.getElementById('modalHear').textContent = data.hear_about_us;
     document.getElementById('modalDate').textContent = `${data.adoption_date_day ? data.adoption_date_day + '/' : ''}${data.adoption_date_month}/${data.adoption_date_year}`;
+    
+    // Ajout Question
+    document.getElementById('modalQuestions').textContent = data.questions;
 
     // Ajout Préférences manquantes
     const genderMap = {'Male': 'Mâle', 'Female': 'Femelle', 'None': 'Aucune préférence'};
