@@ -188,6 +188,26 @@ include 'includes/header.php';
                     <i class="fas fa-palette text-dark"></i>
                     <span class="text-dark"><?php echo format_cat_color($cat); ?></span>
                 </div>
+                
+                <!-- Effets Spéciaux (Checkboxes) -->
+                <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.85em;">
+                    <?php 
+                    $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                    $effects = [
+                        'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                        'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                        'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                        'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                    ];
+                    
+                    foreach($effects as $label => $active): 
+                    ?>
+                    <div class="effect-checkbox d-flex align-items-center">
+                        <i class="far fa-<?php echo $active ? 'check-square' : 'square'; ?> mr-1 text-dark"></i>
+                        <span class="<?php echo $active ? 'font-weight-bold text-dark' : 'text-muted'; ?>"><?php echo $label; ?></span>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <!-- Parents -->
