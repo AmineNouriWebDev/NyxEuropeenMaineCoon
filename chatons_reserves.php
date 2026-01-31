@@ -128,9 +128,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                     </div>
                   </div>
                   
-                  <div class="kitten-actions mt-3">
-                    <a href="chat_details.php?id=<?php echo $cat['id']; ?>" class="btn-cat btn-sm w-100">Voir Détails</a>
-                  </div>
+                  
                 </div>
               </div>
             </div>
