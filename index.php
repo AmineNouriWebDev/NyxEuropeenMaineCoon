@@ -169,13 +169,7 @@ $cats = get_cats_from_db($pdo, 'available');
                     <!-- Couleur avec icône palette noir -->
                     <div class="info-item">
                       <i class="fas fa-palette text-dark"></i>
-                      <span>
-                        <?php 
-                        $display_color = $cat['color'] ?? '';
-                        $display_color = str_ireplace(['SMOKE', 'SILVER', 'SHADED', 'CHINCHILLA'], '', $display_color);
-                        echo htmlspecialchars(trim($display_color)); 
-                        ?>
-                      </span>
+                      <span><?php echo format_cat_color($cat); ?></span>
                     </div>
                     
                     <!-- Effets Spéciaux (Checkboxes) -->

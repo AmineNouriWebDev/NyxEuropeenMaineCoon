@@ -52,9 +52,10 @@ function get_cats_from_db($pdo, $status = 'available')
         $stmt->execute($params);
         $cats = $stmt->fetchAll();
 
-        // Pour chaque chat, récupérer les images
+        // Pour chaque chat, récupérer les images et enrichir les données
         foreach ($cats as &$cat) {
             $cat['images'] = get_cat_images($pdo, $cat['id']);
+            ensure_cat_has_color_code($cat, $pdo);
         }
 
         return $cats;
@@ -248,5 +249,45 @@ function format_cat_color($cat) {
         }
     }
     
-    return $effects_html . trim($color_display);
+    return trim($color_display) . (!empty($cat['color_code']) ? ' (' . htmlspecialchars($cat['color_code']) . ')' : '');
+}
+
+/**
+ * Helper pour peupler le code couleur si manquant (pour les vieux enregistrements)
+ */
+function ensure_cat_has_color_code(&$cat, $pdo) {
+    if (!empty($cat['color_code'])) return; // Déjà bon
+
+    if (empty($cat['color'])) return; // Rien à faire
+
+    // On charge la map des couleurs (cache statique pour perf)
+    static $colors_map = null;
+    if ($colors_map === null) {
+        try {
+            $stmt = $pdo->query("SELECT code, name_fr FROM colors");
+            $colors_map = $stmt->fetchAll(PDO::FETCH_KEY_PAIR); // code => name_fr
+            // On veut name_fr => code pour la recherche
+            $colors_map = array_flip($colors_map); 
+        } catch (Exception $e) {
+            $colors_map = [];
+        }
+    }
+
+    // Recherche de la couleur dans la string (Ex: "SMOKE Noir" -> on cherche "Noir")
+    $best_match_len = 0;
+    $best_code = null;
+
+    foreach ($colors_map as $name => $code) {
+        // Recherche insensible à la casse
+        if (mb_stripos($cat['color'], $name) !== false) {
+            if (mb_strlen($name) > $best_match_len) {
+                $best_match_len = mb_strlen($name);
+                $best_code = $code;
+            }
+        }
+    }
+
+    if ($best_code) {
+        $cat['color_code'] = $best_code;
+    }
 }

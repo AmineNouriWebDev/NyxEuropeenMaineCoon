@@ -106,35 +106,68 @@ if ($selected_id) {
                   </div>
                   <div class="kitten-status available" style="background: var(--primary-color);">King</div>
                   <?php if ($cat['for_sale']): ?>
-                  <div class="kitten-status" style="background: #e74c3c; position: absolute; top: 60px; right: 10px;">
-                    <i class="fas fa-tag"></i> Disponible
-                  </div>
+                  
                   <?php endif; ?>
                 </div>
                 
                 <div class="kitten-details">
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="kitten-name"><?php echo htmlspecialchars($cat['name']); ?></h3>
-                    <span class="kitten-gender male">
-                      <i class="fas fa-mars"></i>
-                    </span>
+                    <!-- Sexe : Icone Mixte + Texte (comme index) -->
                   </div>
                   
                   <div class="kitten-info-grid">
+                    <!-- Sexe -->
                     <div class="info-item">
-                      <i class="fas fa-birthday-cake"></i>
+                      <i class="fas fa-venus-mars text-dark"></i>
+                      <span>Mâle</span>
+                    </div>
+
+                    <!-- Âge -->
+                    <div class="info-item">
+                      <i class="fas fa-calendar-alt text-dark"></i>
                       <span><?php echo $age_display; ?></span>
                     </div>
+                    
+                    <!-- Qualité -->
                     <div class="info-item">
-                      <i class="fas fa-palette"></i>
-                      <span><?php echo format_cat_color($cat); ?></span>
+                      <i class="fas fa-cat text-dark"></i>
+                      <span><?php echo htmlspecialchars($cat['quality'] ?? 'King'); ?></span>
                     </div>
-                    <?php if (!empty($cat['paw_type'])): ?>
+
+                    <!-- Type de pattes -->
                     <div class="info-item">
-                        <i class="fas fa-paw"></i>
-                        <span><?php echo htmlspecialchars($cat['paw_type']); ?></span>
+                      <i class="fas fa-paw text-dark"></i>
+                      <span><?php echo htmlspecialchars($cat['paw_type'] ?? 'Régulières'); ?></span>
                     </div>
-                    <?php endif; ?>
+
+                    <!-- Couleur -->
+                    <div class="info-item">
+                      <i class="fas fa-palette text-dark"></i>
+                      <span>
+                        <?php echo format_cat_color($cat); ?>
+                      </span>
+                    </div>
+                    
+                    <!-- Effets Spéciaux -->
+                    <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.85em;">
+                        <?php 
+                        $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                        $effects = [
+                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                        ];
+                        
+                        foreach($effects as $label => $active): 
+                        ?>
+                        <div class="effect-checkbox d-flex align-items-center">
+                            <i class="far fa-<?php echo $active ? 'check-square' : 'square'; ?> mr-1 text-dark"></i>
+                            <span class="<?php echo $active ? 'font-weight-bold text-dark' : 'text-muted'; ?>"><?php echo $label; ?></span>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                   </div>
                   
                   <?php if ($cat['for_sale']): ?>
@@ -143,8 +176,8 @@ if ($selected_id) {
                     <div class="mb-2">
                       <small class="text-muted"><i class="fas fa-paw text-info"></i> Saillie</small>
                       <div>
-                        <strong><?php echo number_format($cat['stud_price_cad'], 2); ?> $CAD</strong>
-                        <span class="text-muted">/ <?php echo number_format($cat['stud_price_usd'], 2); ?> $USD</span>
+                        <strong><?php echo number_format($cat['stud_price_cad'], 0, ',', ' '); ?> $CAD</strong>
+                        <span class="text-muted">/ <?php echo number_format($cat['stud_price_usd'], 0, ',', ' '); ?> $USD</span>
                       </div>
                     </div>
                     <?php endif; ?>
@@ -152,8 +185,8 @@ if ($selected_id) {
                     <div>
                       <small class="text-muted"><i class="fas fa-home text-success"></i> Retraite</small>
                       <div>
-                        <strong><?php echo number_format($cat['retirement_price_cad'], 2); ?> $CAD</strong>
-                        <span class="text-muted">/ <?php echo number_format($cat['retirement_price_usd'], 2); ?> $USD</span>
+                        <strong class="text-muted"><?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $CAD</strong>
+                        <span class="text-muted">/ <?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $USD</span>
                       </div>
                     </div>
                     <?php endif; ?>

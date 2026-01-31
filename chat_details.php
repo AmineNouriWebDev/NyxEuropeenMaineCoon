@@ -28,6 +28,10 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id]);
 $cat = $stmt->fetch();
 
+if ($cat) {
+    ensure_cat_has_color_code($cat, $pdo);
+}
+
 if (!$cat) {
     header('Location: index.php');
     exit;
@@ -60,8 +64,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 include 'includes/header.php';
 ?>
 
-<!-- Spacer -->
-<div style="height: 120px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);"></div>
+<style>
+    /* Force opaque background for header sections on this page */
+    .top-section, .nav-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        position: relative; /* Ensure it stacks correctly if needed */
+        z-index: 1000;
+    }
+    .top-section .social-icon {
+        border-color: rgba(255,255,255,0.3);
+    }
+</style>
+
+<!-- Returns to standard header with spacer -->
+<div style="height: 100px;"></div>
+
+<!-- Main Section with Purple Background -->
+<section class="kitten-section purple-hero-bg" style="padding-top: 20px; min-height: 100vh;">
+
 
 <div class="container my-5">
     <!-- Breadcrumb -->
@@ -360,7 +380,18 @@ include 'includes/header.php';
         <div class="col-lg-8 mx-auto">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-header bg-primary text-white p-4 rounded-top">
-                    <h3 class="mb-0"><i class="fas fa-envelope-open-text"></i> Intéressé par ce chaton ?</h3>
+                    <h3 class="mb-0">
+                        <i class="fas fa-envelope-open-text"></i> 
+                        <?php 
+                        if (strtolower($cat['status']) == 'king') {
+                            echo "INTÉRESSÉ PAR UNE SAILLIE ?";
+                        } elseif (strtolower($cat['status']) == 'queen') {
+                            echo "question à propos de cette QUEEN ?";
+                        } else {
+                            echo "Intéressé par ce chaton ?";
+                        }
+                        ?>
+                    </h3>
                 </div>
                 <div class="card-body p-5">
                     <form method="post" action="">
@@ -386,6 +417,7 @@ include 'includes/header.php';
                         <button type="submit" class="btn btn-cat w-100 btn-lg">Envoyer ma demande</button>
                     </form>
                 </div>
+</section>
             </div>
         </div>
     </div>

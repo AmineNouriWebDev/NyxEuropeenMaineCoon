@@ -73,33 +73,59 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                 <div class="kitten-details">
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="kitten-name"><?php echo htmlspecialchars($cat['name']); ?></h3>
-                    <span class="kitten-gender <?php echo strtolower($cat['gender']); ?>">
-                      <i class="text-white fas fa-<?php echo strtolower($cat['gender']) == 'male' ? 'mars' : 'venus'; ?>"></i>
-                    </span>
+                    <!-- Sexe (index style) -->
                   </div>
                   
                   <div class="kitten-info-grid">
+                    <!-- Sexe -->
                     <div class="info-item">
-                      <i class="fas fa-calendar-alt"></i>
-                      <span><?php echo $age_display; ?></span>
+                      <i class="fas fa-venus-mars text-dark"></i>
+                      <span><?php echo strtolower($cat['gender']) == 'male' ? 'Mâle' : 'Femelle'; ?></span>
                     </div>
 
+                    <!-- Âge -->
                     <div class="info-item">
-                      <i class="fas fa-palette"></i>
-                      <span><?php echo format_cat_color($cat); ?></span>
+                      <i class="fas fa-calendar-alt text-dark"></i>
+                      <span><?php echo $age_display; ?></span>
                     </div>
                     
+                    <!-- Qualité -->
                     <div class="info-item">
-                      <i class="fas fa-paw"></i>
+                      <i class="fas fa-cat text-dark"></i>
                       <span><?php echo htmlspecialchars($cat['quality']); ?></span>
                     </div>
 
-                    <?php if (!empty($cat['paw_type']) && $cat['paw_type'] !== 'Régulières'): ?>
+                    <!-- Type de pattes -->
                     <div class="info-item">
-                        <i class="fas fa-hand-paper"></i>
-                        <span><?php echo htmlspecialchars($cat['paw_type']); ?></span>
+                      <i class="fas fa-paw text-dark"></i>
+                      <span><?php echo htmlspecialchars($cat['paw_type'] ?? 'Régulières'); ?></span>
                     </div>
-                    <?php endif; ?>
+
+                    <!-- Couleur -->
+                    <div class="info-item">
+                      <i class="fas fa-palette text-dark"></i>
+                      <span><?php echo format_cat_color($cat); ?></span>
+                    </div>
+                    
+                    <!-- Effets Spéciaux -->
+                    <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.85em;">
+                        <?php 
+                        $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                        $effects = [
+                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                        ];
+                        
+                        foreach($effects as $label => $active): 
+                        ?>
+                        <div class="effect-checkbox d-flex align-items-center">
+                            <i class="far fa-<?php echo $active ? 'check-square' : 'square'; ?> mr-1 text-dark"></i>
+                            <span class="<?php echo $active ? 'font-weight-bold text-dark' : 'text-muted'; ?>"><?php echo $label; ?></span>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                   </div>
                   
                   <div class="kitten-actions mt-3">
