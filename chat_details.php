@@ -129,7 +129,7 @@ include 'includes/header.php';
             <?php if (!empty($cat['description'])): ?>
             <div class="card shadow-sm border-0 rounded-lg p-4 mt-4">
                 <h3 class="mb-4 text-primary" style="font-family: 'Vijaya', serif;">À propos de <?php echo htmlspecialchars($cat['name']); ?></h3>
-                <div class="blog-content">
+                <div class="blog-content text-dark" >
                     <?php echo $cat['description']; ?>
                 </div>
             </div>
@@ -139,7 +139,7 @@ include 'includes/header.php';
         <!-- Informations -->
         <div class="col-lg-5">
             <h1 class="display-4 font-weight-bold mb-2" style="font-family: 'Vijaya', serif;"><?php echo htmlspecialchars($cat['name']); ?></h1>
-            <h3 class="text-muted h4 mb-4"><?php echo format_cat_color($cat); ?></h3>
+            
             
             <!-- Prix -->
             <div class="kitten-price-container mb-4">
@@ -166,24 +166,28 @@ include 'includes/header.php';
 
             <!-- Détails Grid -->
             <div class="kitten-info-grid mb-4">
-                <div class="info-item">
-                    <i class="fas fa-venus-mars"></i>
-                    <span><?php echo $cat['gender'] == 'Male' ? 'Mâle' : 'Femelle'; ?></span>
+                <div class="info-item text-dark">
+                    <i class="fas fa-venus-mars text-dark"></i>
+                    <span class="text-dark"><?php echo $cat['gender'] == 'Male' ? ' Mâle' : 'Femelle'; ?></span>
+                </div>
+                <div class="info-item text-dark">
+                    <i class="fas fa-calendar-alt text-dark"></i>
+                    <span class="text-dark"><?php echo calculate_age($cat['birth_date']); ?></span>
                 </div>
                 <div class="info-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span><?php echo calculate_age($cat['birth_date']); ?></span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-cat"></i>
-                    <span><?php echo htmlspecialchars($cat['quality']); ?></span>
+                    <i class="fas fa-cat text-dark"></i>
+                    <span class="text-dark"><?php echo htmlspecialchars($cat['quality']); ?></span>
                 </div>
                 <?php if (!empty($cat['paw_type'])): ?>
                 <div class="info-item">
-                    <i class="fas fa-paw"></i>
-                    <span><?php echo htmlspecialchars($cat['paw_type']); ?></span>
+                    <i class="fas fa-paw text-dark"></i>
+                    <span class="text-dark"><?php echo htmlspecialchars($cat['paw_type']); ?></span>
                 </div>
                 <?php endif; ?>
+                <div class="info-item">
+                    <i class="fas fa-palette text-dark"></i>
+                    <span class="text-dark"><?php echo format_cat_color($cat); ?></span>
+                </div>
             </div>
 
             <!-- Parents -->
@@ -282,7 +286,7 @@ include 'includes/header.php';
             </div>
 
             <!-- Informations Complémentaires (Nouveau Bloc) -->
-            <div class="accordion shadow-sm rounded-lg overflow-hidden" id="accordionInfo">
+            <div class="accordion shadow-sm rounded-lg overflow-hidden text-dark" id="accordionInfo">
                 
                 <!-- 1. Inclus avec l'adoption -->
                 <div class="card border-0 mb-1">
