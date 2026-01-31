@@ -17,27 +17,97 @@ include 'includes/header.php';
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="timeline-steps">
+                    <!-- Intro Paragraph (Glassmorphism Style) -->
+                <div class="intro-glass-card mb-5 text-center text-white position-relative" style="padding: 3rem 2rem; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                    <!-- Background Backdrop -->
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.2); z-index: 0;"></div>
+                    
+                    <div class="position-relative" style="z-index: 1;">
+                        <div class="mb-3">
+                            <i class="fas fa-crown text-warning fa-2x mb-2"></i>
+                        </div>
+                        <h3 class="font-weight-bold mb-4" style="font-family: 'Vijaya', serif; font-size: 2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            Liste de Priorité & Engagement
+                        </h3>
+                        <p class="lead mb-4" style="font-size: 1.2rem; line-height: 1.6; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                            Voici la liste idéale pour ceux et celles qui rêvent d'accueillir un magnifique chaton 
+                            <span class="font-weight-bold" style="color: #fff; border-bottom: 2px solid rgba(255,255,255,0.3);">NYX COON</span> 
+                            dans un avenir rapproché.
+                        </p>
+                        <div class="d-inline-block px-4 py-3 rounded-lg" style="background: rgba(0,0,0,0.2); border-radius: 15px;">
+                            <p class="mb-0 font-italic" style="font-size: 1.05rem; color: rgba(255,255,255,0.95);">
+                                <i class="fas fa-quote-left mr-2 opacity-50"></i>
+                                Cette inscription implique un engagement de votre part : un dépôt vous sera demandé afin d'y figurer. 
+                                En contrepartie, vous bénéficierez d'un <strong class="text-warning">accès prioritaire</strong> à nos portées.
+                                <i class="fas fa-quote-right ml-2 opacity-50"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="stepsAccordion">
                     <?php 
                     $steps = [
-                        1 => "Prendre connaissance des conditions et prix",
-                        2 => "Pourquoi optez pour la liste de priorité",
-                        3 => "Remplir le formulaire de demande",
-                        4 => "Choisissez votre coup de cœur (vers 3-4 semaines)",
-                        5 => "Visite virtuelle et choix final (Dépôt 25%)",
-                        6 => "Suivi hebdomadaire de la croissance",
-                        7 => "Récupération vers 12-14 semaines"
+                        1 => [
+                            'title' => "Prendre connaissance des conditions et prix",
+                            'desc' => "Le coût d'un chaton Maine Coon varie en fonction de facteurs tels que le pedigree, la lignée et la réputation de l'éleveur. Des informations supplémentaires peuvent être fournies sur demande. Les prix peuvent variés de 3000$ à 4500$ (taxes incluses). Il y a des frais additionnels pour un chaton polydactile, s'il a les yeux vairons ou bleus ou avec mitaines blanches. Le mieux est de faire la demande directement lors du choix du chaton."
+                        ],
+                        2 => [
+                            'title' => "Pourquoi optez pour la liste de priorité",
+                            'desc' => "Pourquoi une liste de priorité avec dépôt ?
+- La liste de priorité vous réserves un privilège de sélection sur les prochaines portées à venir
+- Pour nous assurer d’avoir une bonne famille pour nos chatons
+- Pour établir un lien avec les familles avant l'adoption"
+                        ],
+                        3 => [
+                            'title' => "Remplir le formulaire de demande",
+                            'desc' => '<a href="#vipForm" class="btn btn-sm btn-primary mt-2">Accéder au formulaire ci-dessous <i class="fas fa-arrow-down"></i></a>'
+                        ],
+                        4 => [
+                            'title' => "Présentation des chatons disponibles selon votre ordre de priorité. (vers l'âge de 6 à 8 semaines)",
+                            'desc' => "Quand votre tour sera venu de choisir votre chaton, vous serez contacté personnellement. Ainsi vous disposerez d'une période de réflexion de 24hr pour arrêter votre coup de cœur. L'étape suivante sera la signature du contrat de vente."
+                        ],
+                        5 => [
+                            'title' => "Visite virtuelle et choix final (Dépôt)",
+                            'desc' => "Si vous le désirez, nous pourrons vous présenter différents chatons en visite virtuelle afin de vous aider à fixer la sélection. Par la suite, la signature du contrat et un versement de 1000$ vous seront demandés."
+                        ],
+                        6 => [
+                            'title' => "Suivi hebdomadaire de la croissance",
+                            'desc' => "Préparez-vous à voir votre chaton grandir et avoir des nouvelles photos à chaque semaine de sa vie et ce jusqu'à son départ! Vous le verrez grandir et socialiser avec ses congénères."
+                        ],
+                        7 => [
+                            'title' => "Récupération vers 14 semaines",
+                            'desc' => "Lors de son départ, votre petit Nyx Coon sera prêt à découvrir de nouveaux horizons. Il sera socialisé avec les enfants, les chiens et les chats. Préparez-vous à en voir de toute les couleurs…"
+                        ]
                     ];
-                    foreach($steps as $num => $desc): ?>
-                    <div class="step mb-4 d-flex align-items-center bg-white p-3 rounded shadow-sm hover-lift">
-                        <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mr-3 font-weight-bold" style="width: 50px; height: 50px; font-size: 1.5rem; min-width: 50px;">
-                            <?php echo $num; ?>
+                    foreach($steps as $num => $step): ?>
+                    <div class="card mb-3 border-0 shadow-sm rounded overflow-hidden">
+                        <div class="card-header bg-white p-0 border-0" id="heading<?php echo $num; ?>">
+                            <button class="btn btn-block text-left d-flex align-items-center p-4 focus-none step-btn" type="button" data-toggle="collapse" data-target="#collapse<?php echo $num; ?>" aria-expanded="false" aria-controls="collapse<?php echo $num; ?>" style="text-decoration: none; color: inherit;">
+                                <div class="step-num bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mr-3 font-weight-bold flex-shrink-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
+                                    <?php echo $num; ?>
+                                </div>
+                                <h5 class="step-title font-weight-bold text-dark mb-0 flex-grow-1 pr-3"><?php echo $step['title']; ?></h5>
+                                <i class="fas fa-chevron-down text-primary transition-icon" style="font-size: 1.2rem;"></i>
+                            </button>
                         </div>
-                        <div class="step-desc h5 mb-0 text-dark">
-                            <?php echo $desc; ?>
+                        <div id="collapse<?php echo $num; ?>" class="collapse" aria-labelledby="heading<?php echo $num; ?>" data-parent="#stepsAccordion">
+                            <div class="card-body bg-light pl-5 ml-4 text-muted" style="border-top: 1px solid rgba(0,0,0,0.05);">
+                                <div style="white-space: pre-line; padding-left: 15px; border-left: 3px solid var(--primary-color);">
+                                    <?php echo $step['desc']; ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <?php endforeach; ?>
+                    </div>
+
+                    <style>
+                        .step-btn:focus { box-shadow: none; }
+                        .step-btn[aria-expanded="true"] .transition-icon { transform: rotate(180deg); }
+                        .transition-icon { transition: transform 0.3s ease; }
+                        .step-btn:hover { background-color: #f8f9fa; }
+                    </style>
                 </div>
             </div>
         </div>
@@ -47,22 +117,7 @@ include 'includes/header.php';
 <!-- 2. Liste VIP - Diamants -->
 <section class="py-5 purple-hero-bg position-relative" id="vip-list">
     <div class="container">
-        <!-- Titre Diamants -->
-        <div class="text-center mb-5">
-            <h2 class="display-4 text-white" style="font-family: 'Amatic SC', cursive;">
-                <i class="fas fa-gem mx-3 fa-xs"></i> LISTE D'ATTENTE VIP <i class="fas fa-gem mx-3 fa-xs"></i>
-            </h2>
-            <div class="divider-custom"></div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center text-white mb-5 lead-text">
-                <p>Voici la liste idéale pour ceux et celles qui rêvent d'accueillir un magnifique chaton NYX COON dans un avenir rapproché.</p>
-                <p>Cette inscription implique un engagement de votre part : un dépôt vous sera demandé afin d'y figurer. En contrepartie, vous bénéficierez d'un <strong>accès prioritaire</strong> à nos portées.</p>
-                <p>À chaque naissance, vous recevrez des photos en exclusivité. Lorsque les chatons seront prêts à être réservés, vous serez contacté(e) personnellement. Vous disposerez ensuite d'un délai de <strong>24 heures</strong> pour faire votre choix en toute tranquillité.</p>
-                <p>De plus, votre inscription vous donne accès à notre <span class="text-primary"><i class="fab fa-facebook-square"></i> groupe Facebook privé</span> réservé aux membres.</p>
-            </div>
-        </div>
+        <!-- (Section Intro removed as per request) -->
 
         <!-- Texte Explicatif Formulaire -->
         <div class="alert alert-info shadow-sm border-0 rounded-lg p-4 mb-5">
@@ -74,7 +129,7 @@ include 'includes/header.php';
         <!-- 3. Formulaire -->
         <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
             <div class="card-header text-white p-4 purple-hero-bg">
-                <h3 class="mb-0"><i class="fas fa-paw mr-2"></i> Formulaire de Candidature VIP</h3>
+                <h3 class="mb-0"><i class="fas fa-paw mr-2"></i> Je veux mettre mon nom sur la liste de priorité</h3>
             </div>
             <div class="card-body p-5">
                 <form id="vipForm">
@@ -99,34 +154,8 @@ include 'includes/header.php';
                         </div>
                     </div>
 
-                    <!-- Adresse -->
-                    <h5 class="text-secondary mb-3 mt-4 border-bottom pb-2">Votre Adresse</h5>
-                    <div class="row">
-                        <div class="col-12 form-group mb-3">
-                            <label>Adresse *</label>
-                            <input type="text" name="address" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group mb-3">
-                            <label>Ville *</label>
-                            <input type="text" name="city" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group mb-3">
-                            <label>Code Postal *</label>
-                            <input type="text" name="postal_code" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group mb-3">
-                            <label>Pays/Région *</label>
-                            <input type="text" name="country" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <!-- Questions Détaillées -->
+                    <!-- Mieux vous connaître -->
                     <h5 class="text-secondary mb-3 mt-4 border-bottom pb-2">Mieux vous connaître</h5>
-                    
-                    <div class="form-group mb-4">
-                        <label>Dites-nous qui vous êtes, parlez-nous de votre famille et de votre quotidien *</label>
-                        <textarea name="family_description" class="form-control" rows="4" required></textarea>
-                    </div>
 
                     <div class="form-group mb-4">
                         <label>Combien d'animaux avez-vous à la maison? *</label>
@@ -181,14 +210,14 @@ include 'includes/header.php';
                     <div class="bg-light p-4 rounded mb-4">
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="checkPriority" required>
-                            <label class="form-check-label" for="checkPriority">
+                            <label class="form-check-label text-dark" for="checkPriority">
                                 Je comprends que cette liste fonctionne par ordre de priorité et que l'éleveur se conserve toujours un choix sur les chatons disponibles. *
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="checkDeposit" required>
-                            <label class="form-check-label" for="checkDeposit">
-                                Si ma demande est approuvée, je suis d'accord à verser un dépôt de 300$ (déductible) par virement afin de devenir membre VIP. *
+                            <label class="form-check-label text-dark" for="checkDeposit">
+                                Si ma demande est approuvée, je suis d'accord à verser un dépôt de 300$ (déductible) par virement afin d'être sur la liste de priorité *
                             </label>
                         </div>
                     </div>

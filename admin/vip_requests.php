@@ -51,7 +51,6 @@ require_once 'includes/header.php';
                             <th>Statut</th>
                             <th>Date</th>
                             <th>Candidat</th>
-                            <th>Ville/Pays</th>
                             <th>Préférences</th>
                             <th>Actions</th>
                         </tr>
@@ -71,10 +70,6 @@ require_once 'includes/header.php';
                                     <strong><?php echo htmlspecialchars($r['first_name'] . ' ' . $r['last_name']); ?></strong><br>
                                     <small><a href="mailto:<?php echo htmlspecialchars($r['email']); ?>"><?php echo htmlspecialchars($r['email']); ?></a></small><br>
                                     <small><?php echo htmlspecialchars($r['phone']); ?></small>
-                                </td>
-                                <td>
-                                    <?php echo htmlspecialchars($r['city']); ?><br>
-                                    <span class="text-muted"><?php echo htmlspecialchars($r['country']); ?></span>
                                 </td>
                                 <td>
                                     <strong>Genre:</strong> <?php echo $r['gender_preference'] == 'Male' ? 'Mâle' : ($r['gender_preference'] == 'Female' ? 'Femelle' : 'Indifférent'); ?><br>
@@ -124,14 +119,10 @@ require_once 'includes/header.php';
                         <h6>Infos Personnelles</h6>
                         <p id="modalInfos"></p>
                     </div>
-                    <div class="col-md-6">
-                        <h6>Adresse</h6>
-                        <p id="modalAddress"></p>
-                    </div>
+                    <!-- (Adresse supprimée) -->
                 </div>
                 <hr>
-                <h6>Famille & Quotidien</h6>
-                <div class="bg-light p-3 rounded mb-3" id="modalFamily"></div>
+                <!-- (Famille supprimée) -->
                 
                 <h6>Animaux actuels</h6>
                 <div class="bg-light p-3 rounded mb-3" id="modalPets"></div>
@@ -170,13 +161,9 @@ function openDetails(data) {
         Tél: ${data.phone}
     `;
     
-    document.getElementById('modalAddress').innerHTML = `
-        ${data.address}<br>
-        ${data.postal_code} ${data.city}<br>
-        ${data.country}
-    `;
+    // address removed
+    // family removed
     
-    document.getElementById('modalFamily').textContent = data.family_description;
     document.getElementById('modalPets').textContent = data.existing_pets;
     document.getElementById('modalEnvironment').textContent = data.environment_type;
     

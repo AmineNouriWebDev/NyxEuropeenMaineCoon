@@ -11,8 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Récupération et nettoyage
 $fields = [
     'first_name', 'last_name', 'phone', 'email', 
-    'address', 'city', 'postal_code', 'country',
-    'family_description', 'existing_pets', 'environment_type',
+    'existing_pets', 'environment_type',
     'hear_about_us', 'color_preferences', 'gender_preference', 
     'date_year', 'date_month', 'date_day', 'questions'
 ];
@@ -31,18 +30,16 @@ if (empty($data['email']) || empty($data['first_name']) || empty($data['last_nam
 try {
     $sql = "INSERT INTO vip_requests (
         first_name, last_name, phone, email, 
-        address, city, postal_code, country,
-        family_description, existing_pets, environment_type,
+        existing_pets, environment_type,
         hear_about_us, color_preferences, gender_preference,
         adoption_date_year, adoption_date_month, adoption_date_day,
         is_approved_deposit
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         $data['first_name'], $data['last_name'], $data['phone'], $data['email'],
-        $data['address'], $data['city'], $data['postal_code'], $data['country'],
-        $data['family_description'], $data['existing_pets'], $data['environment_type'],
+        $data['existing_pets'], $data['environment_type'],
         $data['hear_about_us'], $data['color_preferences'], $data['gender_preference'],
         (int)$data['date_year'], (int)$data['date_month'], (int)$data['date_day']
     ]);
