@@ -14,7 +14,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
 <section class="kitten-section purple-hero-bg" id="reserved">
   <div class="container">
     <div class="section-title">
-      <h2>Chatons <span style="color: var(--primary-color)">Réservés</span></h2>
+      <h2>Chatons & Chats <span style="color: var(--primary-color)">Réservés</span></h2>
       <p class="mt-3" style="max-width: 600px; margin: 0 auto">
         Ces chatons ont déjà trouvé leur famille pour la vie.
       </p>

@@ -71,7 +71,7 @@ $cats = get_cats_from_db($pdo, 'available');
   <div class="container">
     <div class="section-title">
       <h2>
-        Nos <span style="color: var(--accent-color)">Chatons</span> Disponibles
+        Nos <span style="color: var(--accent-color)">Chatons & Chats</span> Disponibles
       </h2>
       <p class="mt-3" style="max-width: 600px; margin: 0 auto">
         Chaque chaton est socialisé, examiné et prêt à apporter de la joie à votre foyer
