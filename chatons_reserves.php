@@ -37,9 +37,9 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
             $status_color = $is_sold ? '#e74c3c' : '#f39c12';
             ?>
             
-            <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper" style="opacity: 0.95;">
-              <div class="kitten-card">
-                <div class="kitten-image-slider">
+            <div class="col-lg-4 col-md-6 mb-4 reserved-card-wrapper" style="opacity: 1 !important; visibility: visible !important; display: block !important; transform: none !important; min-height: 100px;">
+              <div class="reserved-card" style="opacity: 1 !important; visibility: visible !important; transform: none !important; background: white;">
+                <div class="reserved-card-slider">
                   <div id="carousel-<?php echo $cat_id; ?>" class="carousel slide" data-ride="carousel" data-interval="false">
                     <ol class="carousel-indicators">
                       <?php foreach ($images as $k => $img): ?>
@@ -65,18 +65,18 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                     <?php endif; ?>
                   </div>
                   
-                  <div class="kitten-status" style="background: <?php echo $status_color; ?>;">
+                  <div class="reserved-card-status" style="background: <?php echo $status_color; ?>;">
                       <?php echo $status_text; ?>
                   </div>
                 </div>
                 
-                <div class="kitten-details">
+                <div class="reserved-card-details">
                   <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h3 class="kitten-name"><?php echo htmlspecialchars($cat['name']); ?></h3>
+                    <h3 class="reserved-card-name"><?php echo htmlspecialchars($cat['name']); ?></h3>
                     <!-- Sexe (index style) -->
                   </div>
                   
-                  <div class="kitten-info-grid">
+                  <div class="reserved-card-info-grid">
                     <!-- Sexe -->
                     <div class="info-item">
                       <i class="fas fa-venus-mars text-dark"></i>
@@ -129,7 +129,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                   </div>
                   
                   <!-- Boutons Parents -->
-                  <div class="kitten-actions mt-3 d-flex gap-2" style="gap: 10px;">
+                  <div class="reserved-card-actions mt-3 d-flex gap-2" style="gap: 10px;">
                     <?php if (!empty($cat['father_id']) && !empty($cat['father_name'])): ?>
                       <a href="chat_details.php?id=<?php echo $cat['father_id']; ?>" class="btn-cat btn-sm flex-fill" style="font-size: 0.8rem; padding: 8px 12px;">
                         <i class="fas fa-crown text-warning"></i> Voir Papa
