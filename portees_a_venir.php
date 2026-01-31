@@ -19,7 +19,7 @@ $sql = "SELECT l.*,
         LEFT JOIN chats m_father ON m.father_id = m_father.id
         LEFT JOIN chats m_mother ON m.mother_id = m_mother.id
         WHERE l.is_active = 1
-        ORDER BY l.created_at DESC";
+        ORDER BY l.created_at ";
 $litters = $pdo->query($sql)->fetchAll();
 
 // Récupérer toutes les couleurs pour le mapping code -> nom
