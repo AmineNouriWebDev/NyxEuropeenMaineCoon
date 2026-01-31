@@ -124,10 +124,10 @@
         </div>
         
         <!-- Navigation Links -->
-        <a href="index.php" class="mobile-nav-link">CHATONS DISPONIBLES</a>
+        <a href="index.php" class="mobile-nav-link">CHATONS & CHATS DISPONIBLES</a>
         <a href="kings.php" class="mobile-nav-link">KINGS</a>
         <a href="queens.php" class="mobile-nav-link">QUEENS</a>
-        <a href="chatons_reserves.php" class="mobile-nav-link">CHATONS RÉSERVÉS</a>
+        <a href="chatons_reserves.php" class="mobile-nav-link">CHATONS & CHATS RÉSERVÉS</a>
         <a href="portees_a_venir.php" class="mobile-nav-link">PORTÉES À VENIR</a>
         <a href="adoption.php" class="mobile-nav-link">PROCESSUS D'ADOPTION</a>
         <a href="contact.php" class="mobile-nav-link">CONTACTS</a>
