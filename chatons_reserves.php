@@ -128,6 +128,19 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                     </div>
                   </div>
                   
+                  <!-- Boutons Parents -->
+                  <div class="kitten-actions mt-3 d-flex gap-2" style="gap: 10px;">
+                    <?php if (!empty($cat['father_id']) && !empty($cat['father_name'])): ?>
+                      <a href="chat_details.php?id=<?php echo $cat['father_id']; ?>" class="btn-cat btn-sm flex-fill" style="font-size: 0.8rem; padding: 8px 12px;">
+                        <i class="fas fa-crown text-warning"></i> Voir Papa
+                      </a>
+                    <?php endif; ?>
+                    <?php if (!empty($cat['mother_id']) && !empty($cat['mother_name'])): ?>
+                      <a href="chat_details.php?id=<?php echo $cat['mother_id']; ?>" class="btn-cat btn-cat-secondary btn-sm flex-fill" style="font-size: 0.8rem; padding: 8px 12px;">
+                        <i class="fas fa-heart text-danger"></i> Voir Maman
+                      </a>
+                    <?php endif; ?>
+                  </div>
                   
                 </div>
               </div>

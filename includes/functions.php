@@ -25,7 +25,9 @@ function get_cats_from_db($pdo, $status = 'available')
     try {
         $sql = "SELECT c.*, 
                        f.name AS father_name, 
+                       f.id AS father_id,
                        m.name AS mother_name,
+                       m.id AS mother_id,
                        c.for_sale,
                        c.sale_type,
                        c.stud_price_cad,
