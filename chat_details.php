@@ -141,7 +141,8 @@ include 'includes/header.php';
             <h1 class="display-4 font-weight-bold mb-2" style="font-family: 'Vijaya', serif;"><?php echo htmlspecialchars($cat['name']); ?></h1>
             
             
-            <!-- Prix -->
+            <!-- Prix (masqué si vide) -->
+            <?php if (!empty($cat['price_cad']) || !empty($cat['price_usd'])): ?>
             <div class="kitten-price-container mb-4">
                 <?php if (!empty($cat['price_cad'])): ?>
                 <div class="d-flex align-items-center mb-2">
@@ -163,6 +164,7 @@ include 'includes/header.php';
                 </div>
                 <?php endif; ?>
             </div>
+            <?php endif; ?>
 
             <!-- Détails Grid -->
             <div class="kitten-info-grid mb-4">

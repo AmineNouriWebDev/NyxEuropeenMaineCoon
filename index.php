@@ -227,6 +227,20 @@ $cats = get_cats_from_db($pdo, 'available');
                       <?php endif; ?>
                   </div>
 
+                  <!-- Boutons Parents -->
+                  <div class="d-flex justify-content-between mt-3" style="gap: 10px;">
+                    <?php if (!empty($cat['father_id']) && !empty($cat['father_name'])): ?>
+                      <a href="chat_details.php?id=<?php echo $cat['father_id']; ?>" class="btn-cat btn-sm flex-fill text-center" style="font-size: 0.8rem; padding: 8px 12px;">
+                        <i class="fas fa-crown text-warning mr-1"></i> Voir Papa
+                      </a>
+                    <?php endif; ?>
+                    <?php if (!empty($cat['mother_id']) && !empty($cat['mother_name'])): ?>
+                      <a href="chat_details.php?id=<?php echo $cat['mother_id']; ?>" class="btn-cat btn-cat-secondary btn-sm flex-fill text-center" style="font-size: 0.8rem; padding: 8px 12px;">
+                        <i class="fas fa-heart text-danger mr-1"></i> Voir Maman
+                      </a>
+                    <?php endif; ?>
+                  </div>
+
                   <div class="kitten-actions mt-3">
                     <a href="chat_details.php?id=<?php echo $cat['id']; ?>" class="btn-cat btn-sm">Voir Détails</a>
                     <a href="javascript:void(0);" onclick="openInquiryModal('<?php echo $cat['id']; ?>', '<?php echo addslashes(htmlspecialchars($cat['name'])); ?>')" class="btn-cat btn-cat-secondary btn-sm">Se Renseigner</a>
