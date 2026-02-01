@@ -12,40 +12,40 @@ include 'includes/header.php';
 </div>
 
 <!-- Our Vision -->
-<section class="py-5 purple-hero-bg">
-    <div class="container">
+<section class="py-5 purple-hero-bg ">
+    <div class="container ">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4">
                 <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-lg shadow-lg" alt="Maine Coon Portrait">
             </div>
             <div class="col-md-6">
-                <h2 class="section-title-start text-white mb-4">Plus Qu'un Simple Élevage</h2>
-                <p class="lead text-white">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
-                <p class="text-white">Situé au cœur de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
+                <h2 class="section-title-start text-dark mb-4">Plus Qu'un Simple Élevage</h2>
+                <p class="lead text-dark">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
+                <p class="text-dark">Situé au cœur de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
                 
                 <div class="row mt-4">
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-heart fa-2x mr-3" style="color: white;"></i>
-                            <span class="font-weight-bold text-white">Élevé en Famille</span>
+                            <i class="fas fa-heart fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Élevé en Famille</span>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-notes-medical fa-2x mr-3" style="color: white;"></i>
-                            <span class="font-weight-bold text-white">Testé pour la Santé</span>
+                            <i class="fas fa-notes-medical fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Testé pour la Santé</span>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-globe-americas fa-2x mr-3" style="color: white;"></i>
-                            <span class="font-weight-bold text-white">Lignées Européennes</span>
+                            <i class="fas fa-globe-americas fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Lignées Européennes</span>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-certificate fa-2x mr-3" style="color: white;"></i>
-                            <span class="font-weight-bold text-white">Enregistré</span>
+                            <i class="fas fa-certificate fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Enregistré</span>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ include 'includes/header.php';
 <!-- Values Section -->
 <section class="py-5 purple-hero-bg">
     <div class="container text-center">
-        <h2 class="mb-5">Nos Valeurs Fondamentales</h2>
+        <h2 class="mb-5 text-dark">Nos Valeurs Fondamentales</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
@@ -93,10 +93,10 @@ include 'includes/header.php';
 <!-- CTA -->
 <section class="py-5 text-center purple-hero-bg">
     <div class="container">
-        <h2 class="text-white mb-3">Prêt à accueillir un géant ?</h2>
-        <p class="lead mb-4">Découvrez nos chatons disponibles ou apprenez-en plus sur le processus d'adoption.</p>
-        <a href="index.php#kittens" class="btn btn-light rounded-pill px-4 py-2 font-weight-bold text-dark mr-3">Voir les Chatons</a>
-        <a href="adoption.php" class="btn btn-outline-light rounded-pill px-4 py-2 font-weight-bold">Comment Adopter</a>
+        <h2 class="text-dark mb-3">Prêt à accueillir un géant ?</h2>
+        <p class="lead mb-4 text-dark">Découvrez nos chatons disponibles ou apprenez-en plus sur le processus d'adoption.</p>
+        <a href="index.php#kittens" class="btn btn-cat rounded-pill px-4 py-2 font-weight-bold mr-3">Voir les Chatons</a>
+        <a href="adoption.php" class="btn btn-cat-secondary rounded-pill px-4 py-2 font-weight-bold">Comment Adopter</a>
     </div>
 </section>
 

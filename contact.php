@@ -48,15 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
 include 'includes/header.php';
 ?>
 
-<!-- Hero Section Contact -->
 <!-- Purple Hero Header -->
-
-
-<section class="purple-hero-bg py-5 " >
-    <div class="litter-hero text-center py-5 " >
-    <h1 class="font-weight-bold display-4" style="margin-top: 150px; font-family: 'Amatic SC', cursive;">Contactez-Nous</h1>
-    <p class="lead" style="color: rgba(255,255,255,0.9);">Nous serions ravis de vous entendre</p>
+<div class="litter-hero">
+    <div class="container">
+        <div class="hero-content text-center">
+            <h1 class="hero-title" style="font-family: 'Amatic SC', cursive;">Contactez-Nous</h1>
+            <p class="hero-subtitle">Nous serions ravis de vous entendre</p>
+        </div>
+    </div>
 </div>
+
+<section class="purple-hero-bg py-5">
 <div class="container my-5">
     <!-- Feedback Toast -->
     <div id="contactToast" class="contact-toast">
