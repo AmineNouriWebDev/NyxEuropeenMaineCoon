@@ -2488,3 +2488,47 @@ body.home .mobile-logo {
     transform: none !important;
   }
 }
+
+/* Special Effects Badges */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.4);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0);
+    transform: scale(1.02);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 144, 226, 0);
+    transform: scale(1);
+  }
+}
+
+.special-effect-badge {
+  display: inline-block;
+  padding: 8px 15px;
+  margin: 5px 0;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: pulse-border 2s infinite;
+  text-align: center;
+  width: 100%;
+  /* Full width in the info item */
+}
+
+.info-item.special-effect-container {
+  padding: 10px 0;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}

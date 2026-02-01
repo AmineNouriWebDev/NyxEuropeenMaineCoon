@@ -173,23 +173,29 @@ $cats = get_cats_from_db($pdo, 'available');
                     </div>
                     
                     <!-- Effets Spéciaux (Checkboxes) -->
-                    <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.85em;">
+                    <!-- Effets Spéciaux (Badge Animé) -->
+                    <div class="info-item special-effect-container">
                         <?php 
                         $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
                         $effects = [
-                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
-                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
-                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
-                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                            'SMOKE' => stripos($full_desc, 'smoke') !== false,
+                            'SILVER' => stripos($full_desc, 'silver') !== false,
+                            'SHADED' => stripos($full_desc, 'shaded') !== false,
+                            'CHINCHILLA' => stripos($full_desc, 'chinchilla') !== false
                         ];
                         
-                        foreach($effects as $label => $active): 
+                        $has_effect = false;
+                        foreach($effects as $label => $active) {
+                            if ($active) {
+                                echo '<span class="special-effect-badge">' . $label . '</span>';
+                                $has_effect = true;
+                            }
+                        }
+                        
+                        if (!$has_effect) {
+                            // Optionnel : ne rien afficher ou un placeholder
+                        }
                         ?>
-                        <div class="effect-checkbox d-flex align-items-center">
-                            <i class="far fa-<?php echo $active ? 'check-square' : 'square'; ?> mr-1 text-dark"></i>
-                            <span class="<?php echo $active ? 'font-weight-bold text-dark' : 'text-muted'; ?>"><?php echo $label; ?></span>
-                        </div>
-                        <?php endforeach; ?>
                     </div>
                   </div>
                   
