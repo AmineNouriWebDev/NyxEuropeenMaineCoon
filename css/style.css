@@ -277,7 +277,7 @@ h6 {
 /* Mobile Logo */
 .mobile-logo {
   display: none;
-  position: fixed !important;
+  position: absolute !important;
   top: 15px !important;
   left: 15px !important;
   transform: none !important;
@@ -295,7 +295,7 @@ h6 {
 /* Mobile Menu Button */
 .mobile-menu-toggle {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 15px;
   right: 15px;
   z-index: 2000;

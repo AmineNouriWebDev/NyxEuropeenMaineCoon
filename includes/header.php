@@ -98,6 +98,8 @@
       </div>
     </div>
 
+  </nav>
+
     <!-- Mobile Logo (visible uniquement en mobile) -->
     <div class="mobile-logo">
       <img src="img/logo_principal.png" alt="Nyx Maine Coon">
@@ -145,7 +147,6 @@
         </div>
       </div>
     </div>
-  </nav>
 
   <script>
     // Mobile Menu Toggle
