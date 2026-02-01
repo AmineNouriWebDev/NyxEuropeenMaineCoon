@@ -41,10 +41,10 @@
     </div>
 
     <div class="footer-links">
-      <a href="index.php">Chatons Disponibles</a>
+      <a href="index.php">Chatons & Chats Disponibles</a>
       <a href="kings.php">Kings</a>
       <a href="queens.php">Queens</a>
-      <a href="chatons_reserves.php">Chatons Réservés</a>
+      <a href="chatons_reserves.php">Chatons & Chats Réservés</a>
       <a href="portees_a_venir.php">Portées à Venir</a>
       <a href="adoption.php">Processus d'Adoption</a>
       <a href="contact.php">Contacts</a>
