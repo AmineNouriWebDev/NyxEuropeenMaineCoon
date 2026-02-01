@@ -214,7 +214,7 @@ require_once 'includes/header.php';
                         if ($currentStatus === 'queen') $currentType = 'queen';
                         ?>
                         <select class="form-select" name="cat_type" id="catTypeSelect" onchange="updateFormFields()">
-                            <option value="kitten" <?php echo $currentType == 'kitten' ? 'selected' : ''; ?>>Chaton</option>
+                            <option value="kitten" <?php echo $currentType == 'kitten' ? 'selected' : ''; ?>>Chaton ou Chat</option>
                             <option value="king" <?php echo $currentType == 'king' ? 'selected' : ''; ?>>King (Mâle Reproducteur)</option>
                             <option value="queen" <?php echo $currentType == 'queen' ? 'selected' : ''; ?>>Queen (Femelle Reproductrice)</option>
                         </select>

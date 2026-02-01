@@ -95,8 +95,8 @@ if (isset($_GET['msg'])) {
                                     if ($cat['status'] == 'available') { $statusBadge = 'success'; $statusLabel = 'Disponible'; }
                                     if ($cat['status'] == 'reserved') { $statusBadge = 'warning'; $statusLabel = 'Réservé'; }
                                     if ($cat['status'] == 'sold') { $statusBadge = 'danger'; $statusLabel = 'Vendu'; }
-                                    if ($cat['status'] == 'king') { $statusBadge = 'info'; $statusLabel = 'King'; }
-                                    if ($cat['status'] == 'queen') { $statusBadge = 'primary'; $statusLabel = 'Queen'; }
+                                    if ($cat['status'] == 'king') { $statusBadge = 'info" style="background-color: #4169E1 !important; border-color: #4169E1;'; $statusLabel = 'King'; }
+                                    if ($cat['status'] == 'queen') { $statusBadge = 'primary" style="background-color: #FF69B4 !important; border-color: #FF69B4;'; $statusLabel = 'Queen'; }
                                     ?>
                                     <span class="badge bg-<?php echo $statusBadge; ?>">
                                         <?php echo $statusLabel; ?>
