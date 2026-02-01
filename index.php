@@ -356,5 +356,34 @@ function submitInquiry(event) {
   });
 }
 </script>
-
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('#kittens');
+    const container = section.querySelector('.container');
+    
+    console.log('=== SECTION BACKGROUND ===');
+    console.log('Section BG:', window.getComputedStyle(section).background);
+    
+    console.log('\n=== CONTAINER BACKGROUND ===');
+    console.log('Container BG:', window.getComputedStyle(container).background);
+    
+    console.log('\n=== PSEUDO-ÉLÉMENTS ===');
+    const before = window.getComputedStyle(section, '::before');
+    const after = window.getComputedStyle(section, '::after');
+    console.log('::before content:', before.content);
+    console.log('::before BG:', before.background);
+    console.log('::after content:', after.content);
+    console.log('::after BG:', after.background);
+    
+    // Lister TOUS les enfants avec background
+    console.log('\n=== TOUS LES ENFANTS ===');
+    section.querySelectorAll('*').forEach((el, i) => {
+        const bg = window.getComputedStyle(el).background;
+        if (bg && bg !== 'rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box') {
+            console.log(`Élément ${i} [${el.tagName}.${el.className}]:`, bg);
+        }
+    });
+});
+</script>
+    
 <?php include 'includes/footer.php'; ?>

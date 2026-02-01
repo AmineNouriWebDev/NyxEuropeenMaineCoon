@@ -10,6 +10,12 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
 <!-- Spacer pour le menu fixe -->
 
 
+<!-- Purple Hero Header -->
+<div class="litter-hero text-center py-5">
+    <h1 class="font-weight-bold display-4" style="margin-top: 200px; font-family: 'Amatic SC', cursive;">Chatons Réservés</h1>
+    <p class="lead" style="color: rgba(255,255,255,0.9);">Ces chatons ont déjà trouvé leur famille pour la vie</p>
+</div>
+
 <!-- Reserved Section -->
 <section class="kitten-section purple-hero-bg" id="reserved">
   <div class="container">

@@ -29,6 +29,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo_principal.png">
+  
 </head>
 
 <body>

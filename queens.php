@@ -37,6 +37,12 @@ if ($selected_id) {
 </div>
 <?php endif; ?>
 
+<!-- Purple Hero Header -->
+<div class="litter-hero text-center py-5">
+    <h1 class="font-weight-bold display-4" style="margin-top: 200px; font-family: 'Amatic SC', cursive;">Nos Queens</h1>
+    <p class="lead" style="color: rgba(255,255,255,0.9);">Nos magnifiques femelles, la fondation de notre chatterie. Douceur et beauté réunies.</p>
+</div>
+
 <!-- Queens Section -->
 <section class="kitten-section purple-hero-bg" id="queens">
   <div class="container">

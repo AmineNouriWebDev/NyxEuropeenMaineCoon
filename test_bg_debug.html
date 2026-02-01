@@ -1,0 +1,35 @@
+<!-- Test de Background - À supprimer après -->
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const section = document.querySelector('#kittens');
+
+        console.log('=== ANALYSE DE LA SECTION #kittens ===');
+        console.log('Section element:', section);
+        console.log('Section classes:', section.className);
+
+        // Voir tous les enfants
+        console.log('\nENFANTS DIRECTS:');
+        Array.from(section.children).forEach((child, i) => {
+            const computed = window.getComputedStyle(child);
+            console.log(`Enfant ${i}:`, child.className);
+            console.log('  Background:', computed.background);
+            console.log('  Position:', computed.position);
+            console.log('  Z-index:', computed.zIndex);
+        });
+
+        // Voir tous les pseudo-éléments
+        console.log('\nPSEUDO-ÉLÉMENTS:');
+        const before = window.getComputedStyle(section, ':before');
+        const after = window.getComputedStyle(section, ':after');
+        console.log('::before background:', before.background);
+        console.log('::before content:', before.content);
+        console.log('::after background:', after.background);
+        console.log('::after content:', after.content);
+
+        // Background de la section elle-même
+        const sectionBg = window.getComputedStyle(section);
+        console.log('\nSECTION ELLE-MÊME:');
+        console.log('Background:', sectionBg.background);
+        console.log('Background-color:', sectionBg.backgroundColor);
+    });
+</script>

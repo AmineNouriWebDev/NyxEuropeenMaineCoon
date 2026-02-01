@@ -11,7 +11,7 @@
   /* Blanc cassé doux */
   --wood-color: #d8c3a5;
   /* Couleur bois chaleureuse */
-  --cat-eye-green: #00b894;
+  --cat-eye-green: #636e72;
   /* Vert yeux de chat */
 }
 
@@ -19,7 +19,8 @@
 html,
 body {
   font-family: "Charm", cursive !important;
-  background: linear-gradient(135deg, #f9f7f7 0%, #eeeeee 100%);
+  /* MODIFIÉ : Dégradé GRIS NEUTRE CHAUD (sans teinte bleue) */
+  background: radial-gradient(circle at top left, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%);
   color: #2d3436;
   margin: 0;
   padding: 0;
@@ -123,7 +124,7 @@ h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, #ff0050, #00f2ea);
+  background: linear-gradient(45deg, #ff0050, #636e72);
   opacity: 0.8;
   z-index: -1;
 }
@@ -232,22 +233,46 @@ h6 {
   min-width: 130px;
   height: 70px;
   padding: 6px 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white !important;
-  font-weight: 800;
+  /* NOUVEAU : Fond gris opaque élégant avec glassmorphism */
+  background: rgba(99, 110, 114, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* NOUVEAU : Texte mauve/violet pour lisibilité */
+  color: #502180 !important;
+  font-weight: 900;
   font-size: 13px;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none !important;
   border-radius: 0;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   line-height: 1.2;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Animation de colorisation de gauche à droite avec ::before */
+.nav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
 }
 
 .nav-btn span {
   display: block;
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease;
 }
 
 /* Premier bouton arrondi à gauche */
@@ -261,12 +286,22 @@ h6 {
 }
 
 .nav-btn:hover {
-  background: var(--primary-color);
-  color: white !important;
+  /* Déclencher l'animation de gauche à droite */
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(102, 16, 242, 0.3);
-  border-color: var(--primary-color);
+  box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: #764ba2;
   text-decoration: none !important;
+}
+
+.nav-btn:hover::before {
+  /* Remplir de gauche à droite */
+  width: 100%;
+}
+
+.nav-btn:hover span {
+  /* Texte devient blanc au survol */
+  color: white !important;
 }
 
 .nav-btn:active {
@@ -678,7 +713,22 @@ h6 {
 /* Section des chatons */
 .kitten-section {
   padding: 100px 0;
-  background: transparent;
+  /* MODIFIÉ : Background GRIS NEUTRE CHAUD pour séparer visuellement du header violet */
+  background: radial-gradient(circle at top left, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%) !important;
+  position: relative;
+}
+
+/* MODIFIÉ : Style général - GRIS NEUTRE CHAUD pour toutes les sections */
+section:not([class*="hero"]):not(.social-links-section) {
+  background: radial-gradient(circle at top left, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%) !important;
+  position: relative;
+}
+
+/* Alternative : sections avec classe spécifique pour plus de contrôle */
+.content-section {
+  background: radial-gradient(circle at top left, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%) !important;
+  padding: 80px 0;
+  position: relative;
 }
 
 .section-title {
@@ -1549,7 +1599,7 @@ button:hover {
 }
 
 .kitten-status.available {
-  background: linear-gradient(135deg, #00b894 0%, #00d2a0 100%);
+  background: linear-gradient(135deg, #636e72 0%, #00d2a0 100%);
 }
 
 .kitten-status.reserved {
@@ -1593,13 +1643,13 @@ button:hover {
 }
 
 .kitten-gender.male {
-  background: linear-gradient(135deg, #4ecdc4 0%, #44A08D 100%);
+  background: linear-gradient(135deg, #636e72 0%, #44A08D 100%);
   color: white;
 }
 
 .kitten-gender.female {
   background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-  color: #00b894;
+  color: #636e72;
   /* Couleur verte pour contraster avec le fond rouge */
 }
 
@@ -2194,33 +2244,69 @@ button:hover {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* Global Purple Background from Portees a Venir */
-.purple-hero-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  position: relative;
-  overflow: hidden;
-  color: white;
-  /* Ensure text is white on this dark background */
-}
-
-.purple-hero-bg::before {
+/* AMÉLIORATION : Effet Wave élégant et fluide en bas du header */
+.litter-hero::after {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: -1px;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+  width: 100%;
+  height: 100px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="%23f5f7fa" d="M0,64 C240,100 480,100 720,64 C960,28 1200,28 1440,64 L1440,120 L0,120 Z" opacity="1"/></svg>') no-repeat bottom;
   background-size: cover;
   pointer-events: none;
+  z-index: 10;
 }
 
+/* Global Purple Background - MODIFIÉ pour appliquer GRIS aux sections de contenu */
+.purple-hero-bg {
+  /* NOUVEAU : Fond GRIS NEUTRE CHAUD au lieu de violet */
+  background: radial-gradient(circle at top left, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%);
+  position: relative;
+  overflow: visible;
+}
+
+/* SUPPRIMÉ : L'effet wave du ::before pour ne pas l'appliquer aux sections de contenu */
+/* On garde seulement le wave sur .litter-hero qui est le header */
+
+/* Styles de texte pour fond gris - TOUS les textes doivent être sombres */
 .purple-hero-bg .section-title h2 {
-  color: white !important;
+  color: var(--dark-color) !important;
 }
 
 .purple-hero-bg .section-title p {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(45, 52, 54, 0.8) !important;
+}
+
+/* Ajout : Assurer que TOUS les textes dans purple-hero-bg sont sombres */
+.purple-hero-bg h1,
+.purple-hero-bg h2,
+.purple-hero-bg h3,
+.purple-hero-bg h4,
+.purple-hero-bg h5,
+.purple-hero-bg h6 {
+  color: var(--dark-color) !important;
+}
+
+.purple-hero-bg p,
+.purple-hero-bg .lead,
+.purple-hero-bg span,
+.purple-hero-bg div:not(.btn):not(.badge):not([class*="gradient"]) {
+  color: var(--dark-color) !important;
+}
+
+/* Exception: les éléments qui doivent garder leur couleur spécifique */
+.purple-hero-bg .text-white {
+  color: white !important;
+  /* Pour les éléments avec classe text-white explicite */
+}
+
+.purple-hero-bg .text-primary {
+  color: var(--primary-color) !important;
+}
+
+.purple-hero-bg .text-muted {
+  color: #6c757d !important;
 }
 
 /* Cacher le logo nav uniquement sur la page d'accueil */
@@ -2231,14 +2317,6 @@ body.home .main-logo {
 /* Cacher aussi le logo mobile sur la page d'accueil */
 body.home .mobile-logo {
   display: none !important;
-}
-
-/* Global Litter Hero Style - Purple Gradient */
-.litter-hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 100px 0 80px;
-  position: relative;
-  overflow: hidden;
 }
 
 /* Kitten Info Grid - Vertical Stack */
