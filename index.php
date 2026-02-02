@@ -258,25 +258,6 @@ $cats = get_cats_from_db($pdo, 'available');
       <?php endif; ?>
     </div>
 
-    <!-- Featured Stats -->
-    <div class="row mt-5 pt-5">
-      <div class="col-md-3 col-6 text-center">
-        <div class="cursive-font" style="font-size: 3rem; color: var(--primary-color)">200+</div>
-        <div>Familles Heureuses</div>
-      </div>
-      <div class="col-md-3 col-6 text-center">
-        <div class="cursive-font" style="font-size: 3rem; color: var(--secondary-color)">15</div>
-        <div>Ans d'Expérience</div>
-      </div>
-      <div class="col-md-3 col-6 text-center">
-        <div class="cursive-font" style="font-size: 3rem; color: var(--accent-color)">100%</div>
-        <div>Garantie Santé</div>
-      </div>
-      <div class="col-md-3 col-6 text-center">
-        <div class="cursive-font" style="font-size: 3rem; color: var(--cat-eye-green)">5★</div>
-        <div>Avis Clients</div>
-      </div>
-    </div>
   </div>
 </section>
 

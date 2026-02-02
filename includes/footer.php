@@ -34,11 +34,6 @@
       </div>
     </div>
 
-    <div class="footer-cats">
-      <div class="cat-icon">😺</div>
-      <div class="cat-icon">🐱</div>
-      <div class="cat-icon">😸</div>
-    </div>
 
     <div class="footer-links">
       <a href="index.php">Chatons & Chats Disponibles</a>
