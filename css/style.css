@@ -2518,7 +2518,7 @@ body.home .mobile-logo {
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 50px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 1px;
   animation: pulse-border 2s infinite;
   text-align: center;

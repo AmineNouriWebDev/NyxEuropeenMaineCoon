@@ -191,8 +191,8 @@ include 'includes/header.php';
                     <span class="text-dark"><?php echo format_cat_color($cat); ?></span>
                 </div>
                 
-                <!-- Effets Spéciaux (Checkboxes) -->
-                <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.85em;">
+                <!-- Effets Spéciaux (Badges) -->
+                <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
                     <?php 
                     $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
                     $effects = [
@@ -202,13 +202,12 @@ include 'includes/header.php';
                         'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
                     ];
                     
-                    foreach($effects as $label => $active): 
+                    foreach($effects as $label => $active) {
+                        if ($active) {
+                            echo '<span class="special-effect-badge text-white">' . $label . '</span>';
+                        }
+                    }
                     ?>
-                    <div class="effect-checkbox d-flex align-items-center">
-                        <i class="far fa-<?php echo $active ? 'check-square' : 'square'; ?> mr-1 text-dark"></i>
-                        <span class="<?php echo $active ? 'font-weight-bold text-dark' : 'text-muted'; ?>"><?php echo $label; ?></span>
-                    </div>
-                    <?php endforeach; ?>
                 </div>
             </div>
 
