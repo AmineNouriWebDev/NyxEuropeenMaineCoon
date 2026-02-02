@@ -23,25 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
         exit;
     }
     
-    // Configuration Email
-    // Note: Pour que mail() fonctionne en local, il faut un serveur SMTP configuré (ex: Sendmail dans XAMPP)
-    // En production, cela fonctionnera généralement directement.
-    $to = "nouri.medamine1987@gmail.com"; 
-    $email_subject = "Neue Nachricht von $name: $subject";
-    $email_body = "You have received a new message from your website contact form.\n\n".
-                  "Name: $name\n".
-                  "Email: $email\n".
-                  "Subject: $subject\n".
-                  "Message:\n$message";
-    
-    $headers = "From: noreply@nyxcooncattery.com\n"; // Utilisez une adresse de votre domaine
-    $headers .= "Reply-To: $email";
-    
-    // Envoi (Simulé en succès si l'envoi échoue en local à cause de la config)
-    $mailSent = @mail($to, $email_subject, $email_body, $headers);
-    
-    // Pour le développement local, on retourne toujours succès si les champs sont valides
-    echo json_encode(['success' => true]); 
+    try {
+        // Insertion en base de données
+        $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)");
+        $result = $stmt->execute([$name, $email, $subject, $message]);
+        
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            throw new Exception("Erreur lors de l'insertion");
+        }
+    } catch (Exception $e) {
+        error_log("Contact Form Error: " . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => 'Une erreur est survenue. Veuillez réessayer.']);
+    }
     exit;
 }
 
@@ -52,7 +47,7 @@ include 'includes/header.php';
 <div class="litter-hero">
     <div class="container">
         <div class="hero-content text-center">
-            <h1 class="hero-title" style="font-family: 'Amatic SC', cursive;">Contactez-Nous</h1>
+            <h1 class="hero-title" style="font-family: 'Amatic SC', cursive;">Contacts & Infos</h1>
             <p class="hero-subtitle">Nous serions ravis de vous entendre</p>
         </div>
     </div>
@@ -77,7 +72,7 @@ include 'includes/header.php';
                     <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary fa-lg"></i>
                     <div>
                         <h6 class="text-white mb-1">Localisation</h6>
-                        <span class="text-white-50">Montréal, Québec, Canada</span>
+                        <span class="text-white">Rive sud de Montréal, code postal : J5R 0K4</span>
                     </div>
                 </div>
                 
@@ -85,7 +80,7 @@ include 'includes/header.php';
                     <i class="fas fa-envelope mt-1 mr-3 text-primary fa-lg"></i>
                     <div>
                         <h6 class="text-white mb-1">E-mail</h6>
-                        <a href="mailto:nyxcooncattery@gmail.com" class="text-white-50 text-decoration-none">nyxcooncattery@gmail.com</a>
+                        <a href="mailto:nyxcooncattery@gmail.com" class="text-white text-decoration-none">nyxcooncattery@gmail.com</a>
                     </div>
                 </div>
                 
@@ -93,7 +88,7 @@ include 'includes/header.php';
                     <i class="fab fa-whatsapp mt-1 mr-3 text-success fa-lg"></i>
                     <div>
                         <h6 class="text-white mb-1">WhatsApp</h6>
-                        <a href="https://wa.me/15142695930" class="text-white-50 text-decoration-none">+1-514-269-5930</a>
+                        <a href="https://wa.me/15142695930" class="text-white text-decoration-none">+1-514-269-5930</a>
                     </div>
                 </div>
             </div>
@@ -151,6 +146,95 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
+</section>
+
+<!-- Our Vision (From About Page) -->
+<section class="py-5 purple-hero-bg ">
+    <div class="container ">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4">
+                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-lg shadow-lg" alt="Maine Coon Portrait">
+            </div>
+            <div class="col-md-6">
+                <h2 class="section-title-start text-dark mb-4">Plus Qu'un Simple Élevage</h2>
+                <p class="lead text-dark">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
+                <p class="text-dark">Situé au cœur de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-heart fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Élevé en Famille</span>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-notes-medical fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Testé pour la Santé</span>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-globe-americas fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Lignées Européennes</span>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-certificate fa-2x mr-3" style="color: var(--primary-color);"></i>
+                            <span class="font-weight-bold text-dark">Enregistré</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section (From About Page) -->
+<section class="py-5 purple-hero-bg">
+    <div class="container text-center">
+        <h2 class="mb-5 text-dark">Nos Valeurs Fondamentales</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
+                    <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-heartbeat fa-2x"></i>
+                    </div>
+                    <h4>Santé d'Abord</h4>
+                    <p>Tous nos chats reproducteurs sont testés ADN pour HCM, SMA et PKDef. Nous effectuons des échographies cardiaques régulières pour assurer les lignées les plus saines possibles.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
+                    <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-brain fa-2x"></i>
+                    </div>
+                    <h4>Socialisation</h4>
+                    <p>Nos chatons sont élevés au sein de la famille, pas en cages. Ils sont exposés quotidiennement aux bruits domestiques, aux enfants et à d'autres animaux pour s'assurer qu'ils sont confiants et affectueux.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
+                    <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-trophy fa-2x"></i>
+                    </div>
+                    <h4>Excellence</h4>
+                    <p>Nous visons le "look sauvage" typique des lignées européennes : museaux forts, grandes oreilles avec de lourdes pointes de lynx et une ossature substantielle.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA (From About Page) -->
+<section class="py-5 text-center purple-hero-bg">
+    <div class="container">
+        <h2 class="text-dark mb-3">Prêt à accueillir un géant ?</h2>
+        <p class="lead mb-4 text-dark">Découvrez nos chatons disponibles ou apprenez-en plus sur le processus d'adoption.</p>
+        <a href="index.php#kittens" class="btn btn-cat rounded-pill px-4 py-2 font-weight-bold mr-3">Voir les Chatons</a>
+        <a href="adoption.php" class="btn btn-cat-secondary rounded-pill px-4 py-2 font-weight-bold">Comment Adopter</a>
+    </div>
 </section>
 
 <style>

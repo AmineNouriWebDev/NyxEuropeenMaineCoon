@@ -44,9 +44,9 @@
 
           <!-- Logos Associations - Droite -->
           <div class="association-logos">
-            <img src="img/icones/l1.png" alt="Association 1" class="assoc-logo">
-            <img src="img/icones/l2.png" alt="Association 2" class="assoc-logo">
-            <img src="img/icones/l3.png" alt="Association 3" class="assoc-logo">
+            <a href="https://www.wcf-bestcat.de/" target="_blank"><img src="img/icones/l1.png" alt="Association 1" class="assoc-logo"></a>
+            <a href="https://tica.org/" target="_blank"><img src="img/icones/l2.png" alt="Association 2" class="assoc-logo"></a>
+            <a href="https://www.cca-afc.com/" target="_blank"><img src="img/icones/l3.png" alt="Association 3" class="assoc-logo"></a>
           </div>
         </div>
       </div>
@@ -88,10 +88,10 @@
               <span>D'ADOPTION</span>
             </a>
             <a href="contact.php" class="nav-btn">
-              <span>CONTACTS & Info</span>
+              <span>CONTACTS & INFO</span>
             </a>
             <a href="about.php" class="nav-btn">
-              <span>En Construction</span>
+              <span>EN CONSTRUCTION</span>
              
             </a>
           </div>
@@ -133,8 +133,8 @@
         <a href="chatons_reserves.php" class="mobile-nav-link">CHATONS & CHATS RÉSERVÉS</a>
         <a href="portees_a_venir.php" class="mobile-nav-link">PORTÉES À VENIR</a>
         <a href="adoption.php" class="mobile-nav-link">PROCESSUS D'ADOPTION</a>
-        <a href="contact.php" class="mobile-nav-link">CONTACTS</a>
-        <a href="about.php" class="mobile-nav-link">À PROPOS DE NOUS</a>
+        <a href="contact.php" class="mobile-nav-link">CONTACTS & INFO</a>
+        <a href="about.php" class="mobile-nav-link">EN CONSTRUCTION</a>
         
         <!-- Réseaux Sociaux en BAS -->
         <div class="mobile-social-bottom mt-4">

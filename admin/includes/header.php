@@ -155,7 +155,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'vip_requests') !== false ? 'active' : ''; ?>" href="vip_requests.php">
-                <i class="fas fa-gem"></i> Demandes VIP
+                <i class="fas fa-gem"></i> Demandes d'adoption
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'contact_messages.php' ? 'active' : ''; ?>" href="contact_messages.php">
+                <i class="fas fa-inbox"></i> Messages Contact
             </a>
         </li>
         <li class="nav-item">

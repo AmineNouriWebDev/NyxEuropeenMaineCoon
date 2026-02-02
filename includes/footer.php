@@ -27,9 +27,9 @@
   <div class="container">
     <div class="footer-logo">
       <div class="logo-cat">
-        <img src="img/logo_principal.png" alt="Nyx European Maine Coon Logo" />
+        <img src="img/logo-footer.png" alt="Nyx European Maine Coon Logo" />
       </div>
-      <div class="logo-text" style="font-size: 2.5rem; margin-top: 10px">
+      <div class="logo-text" style="font-size: 2.5rem; margin-top: 10px; font-family: 'Fuzzy Bubbles', cursive;">
         Nyx European <span>Maine Coon</span>
       </div>
     </div>
@@ -42,8 +42,8 @@
       <a href="chatons_reserves.php">Chatons & Chats Réservés</a>
       <a href="portees_a_venir.php">Portées à Venir</a>
       <a href="adoption.php">Processus d'Adoption</a>
-      <a href="contact.php">Contacts</a>
-      <a href="about.php">À Propos de Nous</a>
+      <a href="contact.php">Contacts & Infos</a>
+      <a href="about.php">En Construction</a>
     </div>
 
     <div class="text-center mt-4">
