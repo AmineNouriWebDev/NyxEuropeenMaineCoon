@@ -29,8 +29,8 @@ if (!filter_var($visitor_email, FILTER_VALIDATE_EMAIL)) {
 }
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$cat_id, $cat_name, $visitor_name, $visitor_email, $visitor_phone, $message]);
+    $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$cat_id, $cat_name, $visitor_name, $visitor_email, $visitor_phone, $message, date('Y-m-d H:i:s')]);
 
     echo json_encode(['success' => true, 'message' => 'Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.']);
 } catch (PDOException $e) {

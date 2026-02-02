@@ -9,7 +9,7 @@ if (isset($_GET['toggle']) && isset($_GET['id'])) {
     $stmt->execute([$id]);
     $current = $stmt->fetchColumn();
     $new = ($current == 'new') ? 'contacted' : 'new';
-    PDO::prepare("UPDATE vip_requests SET status = ? WHERE id = ?")->execute([$new, $id]);
+    $pdo->prepare("UPDATE vip_requests SET status = ? WHERE id = ?")->execute([$new, $id]);
     header("Location: vip_requests.php?msg=Statut mis à jour");
     exit;
 }

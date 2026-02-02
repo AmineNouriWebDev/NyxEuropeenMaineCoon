@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
     
     try {
         // Insertion en base de données
-        $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)");
-        $result = $stmt->execute([$name, $email, $subject, $message]);
+        $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message, created_at) VALUES (?, ?, ?, ?, ?)");
+        $result = $stmt->execute([$name, $email, $subject, $message, date('Y-m-d H:i:s')]);
         
         if ($result) {
             echo json_encode(['success' => true]);

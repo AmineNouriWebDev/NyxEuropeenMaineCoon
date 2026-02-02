@@ -34,8 +34,9 @@ try {
         hear_about_us, color_preferences, gender_preference,
         adoption_date_year, adoption_date_month, adoption_date_day,
         questions,
+        created_at,
         is_approved_deposit
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
@@ -43,7 +44,8 @@ try {
         $data['existing_pets'], $data['environment_type'],
         $data['hear_about_us'], $data['color_preferences'], $data['gender_preference'],
         (int)$data['date_year'], (int)$data['date_month'], (int)$data['date_day'],
-        $data['questions']
+        $data['questions'],
+        date('Y-m-d H:i:s')
     ]);
 
     // Send Admin Email (Optional but recommended)
