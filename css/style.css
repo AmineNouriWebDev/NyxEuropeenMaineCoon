@@ -18,7 +18,7 @@
 /* Nouvelles polices - Playwrite NZ */
 html,
 body {
-  font-family: "Charm", cursive !important;
+  font-family: "Fuzzy Bubbles", cursive !important;
   /* MODIFIÉ : Dégradé GRIS NEUTRE CHAUD (sans teinte bleue) */
   background: radial-gradient(circle at top left, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%);
   color: #2d3436;
@@ -45,7 +45,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Charm", cursive !important;
+  font-family: "Fuzzy Bubbles", cursive !important;
   color: var(--dark-color);
   font-weight: 600;
 }
