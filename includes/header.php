@@ -88,11 +88,11 @@
               <span>D'ADOPTION</span>
             </a>
             <a href="contact.php" class="nav-btn">
-              <span>CONTACTS</span>
+              <span>CONTACTS & Info</span>
             </a>
             <a href="about.php" class="nav-btn">
-              <span>À PROPOS</span>
-              <span>DE NOUS</span>
+              <span>En Construction</span>
+             
             </a>
           </div>
         </div>

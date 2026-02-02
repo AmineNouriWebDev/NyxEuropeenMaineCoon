@@ -144,7 +144,7 @@ include 'includes/header.php';
                 </div>
 
                 <button type="submit" class="btn btn-cat py-3 px-5 shadow-sm" id="submitBtn">
-                    <span id="btnText">Envoyer le Message <i class="fas fa-paper-plane ml-2"></i></span>
+                    <span id="btnText" style="color: white !important;">Envoyer le Message <i class="fas fa-paper-plane ml-2"></i></span>
                     <span id="btnLoader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Envoi...</span>
                 </button>
             </form>
