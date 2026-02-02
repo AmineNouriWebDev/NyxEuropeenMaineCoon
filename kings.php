@@ -45,11 +45,11 @@ if ($selected_id) {
 </div>
 
 <!-- Kings Section -->
-<section class="kitten-section purple-hero-bg" id="kings">
-  <div class="container">
-    <div class="section-title">
+<section class="kitten-section purple-hero-bg py-0" id="kings">
+  <div class="container py-0">
+    <div class="section-title py-0">
       <?php if ($selected_id && !empty($cats)): ?>
-          <div class="alert alert-info d-inline-block">
+          <div class="alert alert-info d-inline-block py-0">
               <i class="fas fa-crown"></i> Profil du Père
           </div>
           <h2 class="mt-2 text-primary"><?php echo htmlspecialchars($cats[0]['name']); ?></h2>
@@ -59,10 +59,7 @@ if ($selected_id) {
               </a>
           </div>
       <?php else: ?>
-          <h2>Nos <span style="color: var(--primary-color)">Kings</span></h2>
-          <p class="mt-3" style="max-width: 600px; margin: 0 auto">
-            Nos superbes mâles reproducteurs, sélectionnés pour leur gabarit, leur santé et leur tempérament exceptionnel.
-          </p>
+         
       <?php endif; ?>
     </div>
 

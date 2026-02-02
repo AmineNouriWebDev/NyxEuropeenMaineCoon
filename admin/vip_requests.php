@@ -9,8 +9,16 @@ if (isset($_GET['toggle']) && isset($_GET['id'])) {
     $stmt->execute([$id]);
     $current = $stmt->fetchColumn();
     $new = ($current == 'new') ? 'contacted' : 'new';
-    $pdo->prepare("UPDATE vip_requests SET status = ? WHERE id = ?")->execute([$new, $id]);
+    PDO::prepare("UPDATE vip_requests SET status = ? WHERE id = ?")->execute([$new, $id]);
     header("Location: vip_requests.php?msg=Statut mis à jour");
+    exit;
+}
+
+// Delete Request
+if (isset($_GET['delete']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $pdo->prepare("DELETE FROM vip_requests WHERE id = ?")->execute([$id]);
+    header("Location: vip_requests.php?msg=Demande supprimée");
     exit;
 }
 
@@ -81,6 +89,9 @@ require_once 'includes/header.php';
                                     </button>
                                     <a href="?toggle=1&id=<?php echo $r['id']; ?>" class="btn btn-sm <?php echo $r['status'] == 'new' ? 'btn-success' : 'btn-outline-secondary'; ?>">
                                         <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="?delete=1&id=<?php echo $r['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Supprimer définitivement cette demande ?')">
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>

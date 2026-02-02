@@ -17,6 +17,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'toggle_status' && isset($_GET[
     exit;
 }
 
+// Fonction pour supprimer une demande
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $stmt = $pdo->prepare("DELETE FROM adoption_requests WHERE id = ?");
+    $stmt->execute([$id]);
+    
+    header("Location: requests.php?msg=" . urlencode("Demande supprimée avec succès."));
+    exit;
+}
+
 // Pagination
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 10;
@@ -125,6 +135,10 @@ require_once 'includes/header.php';
                                             <i class="fab fa-whatsapp"></i>
                                         </a>
                                     <?php endif; ?>
+
+                                    <a href="requests.php?action=delete&id=<?php echo $req['id']; ?>" class="btn btn-sm btn-danger" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette demande ?');">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

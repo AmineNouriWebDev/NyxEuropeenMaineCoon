@@ -178,16 +178,16 @@ $cats = get_cats_from_db($pdo, 'available');
                         <?php 
                         $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
                         $effects = [
-                            'SMOKE' => stripos($full_desc, 'smoke') !== false,
-                            'SILVER' => stripos($full_desc, 'silver') !== false,
-                            'SHADED' => stripos($full_desc, 'shaded') !== false,
-                            'CHINCHILLA' => stripos($full_desc, 'chinchilla') !== false
+                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
                         ];
                         
                         $has_effect = false;
                         foreach($effects as $label => $active) {
                             if ($active) {
-                                echo '<span class="special-effect-badge">' . $label . '</span>';
+                                echo '<span class="special-effect-badge text-white">' . $label . '</span>';
                                 $has_effect = true;
                             }
                         }

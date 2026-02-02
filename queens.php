@@ -44,7 +44,7 @@ if ($selected_id) {
 </div>
 
 <!-- Queens Section -->
-<section class="kitten-section purple-hero-bg" id="queens">
+<section class="kitten-section purple-hero-bg py-0" id="queens">
   <div class="container">
     <div class="section-title">
       <?php if ($selected_id && !empty($cats)): ?>
@@ -58,10 +58,7 @@ if ($selected_id) {
               </a>
           </div>
       <?php else: ?>
-          <h2>Nos <span style="color: var(--primary-color)">Queens</span></h2>
-          <p class="mt-3" style="max-width: 600px; margin: 0 auto">
-            Nos magnifiques femelles, la fondation de notre chatterie. Douceur et beauté réunies.
-          </p>
+         
       <?php endif; ?>
     </div>
 
