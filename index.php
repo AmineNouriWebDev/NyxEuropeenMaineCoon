@@ -30,7 +30,7 @@ $cats = get_cats_from_db($pdo, 'available');
       <div class="row ml-0 mr-0">
         <div class="col-lg-6 col-md-8 text-left pl-0">
           <!-- Logo Principal replace Text -->
-          <img src="img/logo_principal.png" alt="Nyx Maine Coon" style="width: 100%; max-width: 300px; height: auto; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+          <img id="heroLogo" src="img/logo_principal.png" alt="Nyx Maine Coon" style="width: 100%; max-width: 300px; height: auto; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); transition: opacity 0.3s ease, transform 0.3s ease;">
           
           
      
@@ -384,6 +384,63 @@ window.addEventListener('DOMContentLoaded', function() {
             console.log(`Élément ${i} [${el.tagName}.${el.className}]:`, bg);
         }
     });
+});
+
+// Masquer le logo principal au scroll sur mobile et tablette uniquement
+function handleLogoScroll() {
+    // Vérifier si on est sur mobile ou tablette (largeur <= 1024px)
+    if (window.innerWidth <= 1024) {
+        const heroLogo = document.getElementById('heroLogo');
+        const scrollPosition = window.scrollY;
+        const fadeStart = 50; // Commence à disparaître après 50px
+        const fadeEnd = 150; // Complètement invisible après 150px
+        
+        // Gérer la classe 'scrolled' sur le body pour le pseudo-élément
+        if (scrollPosition >= fadeEnd) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+        
+        if (heroLogo) {
+            if (scrollPosition <= fadeStart) {
+                // Pleinement visible
+                heroLogo.style.opacity = '1';
+                heroLogo.style.transform = 'translateY(0)';
+            } else if (scrollPosition >= fadeEnd) {
+                // Complètement masqué
+                heroLogo.style.opacity = '0';
+                heroLogo.style.transform = 'translateY(-20px)';
+            } else {
+                // Transition progressive
+                const progress = (scrollPosition - fadeStart) / (fadeEnd - fadeStart);
+                heroLogo.style.opacity = (1 - progress).toString();
+                heroLogo.style.transform = `translateY(-${progress * 20}px)`;
+            }
+        }
+    }
+}
+
+// Écouter le scroll
+window.addEventListener('scroll', handleLogoScroll);
+
+// Vérifier au chargement de la page
+window.addEventListener('load', handleLogoScroll);
+
+// Réinitialiser si on redimensionne la fenêtre
+window.addEventListener('resize', function() {
+    const heroLogo = document.getElementById('heroLogo');
+    if (window.innerWidth > 1024) {
+        // Sur desktop, toujours visible
+        document.body.classList.remove('scrolled');
+        if (heroLogo) {
+            heroLogo.style.opacity = '1';
+            heroLogo.style.transform = 'translateY(0)';
+        }
+    } else {
+        // Sur mobile/tablette, recalculer
+        handleLogoScroll();
+    }
 });
 </script>
     

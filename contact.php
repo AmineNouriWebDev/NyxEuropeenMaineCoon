@@ -156,6 +156,23 @@ include 'includes/header.php';
         <span>Message envoyé avec succès ! Nous vous répondrons bientôt.</span>
     </div>
 
+    <!-- Certificat Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="text-center mb-4">
+                <h2 class="section-title-start text-dark" style="font-family: 'Amatic SC', cursive;">Notre Certification</h2>
+                <div class="separator mx-auto mb-4" style="width: 100px; height: 3px; background: var(--primary-color);"></div>
+            </div>
+            <div class="certificate-container" id="certificateContainer">
+                <img src="./img/certificat.jpg" alt="Certificat d'élevage Nyx European Maine Coon" class="certificate-img img-fluid" id="certificateImg">
+                <div class="mobile-zoom-hint">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Toucher pour agrandir</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row shadow-lg rounded-lg overflow-hidden bg-white">
         <!-- Contact Info & Map (Left Column) -->
         <div class="col-lg-5 text-white p-5 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, var(--dark-color) 0%, #2d3436 100%); min-height: 500px;">
@@ -242,6 +259,14 @@ include 'includes/header.php';
     </div>
 </div>
 </section>
+
+<!-- Modal Fullscreen pour le Certificat (Mobile uniquement) -->
+<div id="certificateModal" class="certificate-modal">
+    <span class="certificate-modal-close">&times;</span>
+    <img class="certificate-modal-content" id="modalCertificateImg" src="./img/certificat.jpg" alt="Certificat d'élevage Nyx European Maine Coon">
+    <div class="certificate-modal-caption">Certificat d'élevage Nyx European Maine Coon</div>
+</div>
+
 
 <!-- Our Vision (From About Page) -->
 <section class="py-5 purple-hero-bg ">
@@ -363,9 +388,226 @@ include 'includes/header.php';
 .contact-toast i {
     font-size: 1.5rem;
 }
+
+/* Certificate Styles - Responsive */
+.certificate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.certificate-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop - Grande taille */
+@media (min-width: 1200px) {
+    .certificate-img {
+        max-width: 80%;
+    }
+}
+
+/* Tablette - Taille moyenne */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .certificate-img {
+        max-width: 90%;
+    }
+}
+
+/* Mobile - Pleine largeur avec padding */
+@media (max-width: 767px) {
+    .certificate-container {
+        padding: 10px;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .certificate-img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+    
+    .certificate-img:active {
+        transform: scale(0.98);
+    }
+    
+    .mobile-zoom-hint {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        pointer-events: none;
+        animation: pulse 2s infinite;
+    }
+    
+    .mobile-zoom-hint i {
+        font-size: 14px;
+    }
+}
+
+/* Cache l'indicateur de zoom sur desktop et tablette */
+@media (min-width: 768px) {
+    .mobile-zoom-hint {
+        display: none;
+    }
+}
+
+/* Animation pulse pour l'indicateur */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Modal Styles pour le certificat en plein écran */
+.certificate-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 20px;
+}
+
+.certificate-modal-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    animation: zoomIn 0.3s;
+}
+
+.certificate-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.certificate-modal-close:hover,
+.certificate-modal-close:focus {
+    color: #bbb;
+}
+
+.certificate-modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Ajustements pour mobile dans le modal */
+@media (max-width: 767px) {
+    .certificate-modal {
+        padding: 10px;
+    }
+    
+    .certificate-modal-close {
+        top: 10px;
+        right: 20px;
+        font-size: 35px;
+    }
+    
+    .certificate-modal-caption {
+        font-size: 12px;
+        padding: 15px 0;
+    }
+}
 </style>
 
 <script>
+// Modal pour le certificat (Mobile uniquement)
+function isMobile() {
+    return window.innerWidth <= 767;
+}
+
+const certificateContainer = document.getElementById('certificateContainer');
+const certificateImg = document.getElementById('certificateImg');
+const modal = document.getElementById('certificateModal');
+const modalImg = document.getElementById('modalCertificateImg');
+const closeBtn = document.querySelector('.certificate-modal-close');
+
+// Ouvrir le modal uniquement sur mobile
+if (certificateContainer && certificateImg) {
+    certificateContainer.addEventListener('click', function() {
+        if (isMobile()) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Empêche le scroll en arrière-plan
+        }
+    });
+}
+
+// Fermer le modal
+if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+}
+
+// Fermer le modal en cliquant en dehors de l'image
+if (modal) {
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Gérer le redimensionnement de la fenêtre
+window.addEventListener('resize', function() {
+    if (!isMobile() && modal.style.display === 'block') {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     

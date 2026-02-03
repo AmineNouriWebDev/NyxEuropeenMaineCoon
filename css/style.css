@@ -2372,11 +2372,20 @@ body.home .mobile-logo {
     z-index: 1998 !important;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
     pointer-events: all;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   /* Permettre le clic pour retourner à l'accueil */
   body.home::before {
     cursor: pointer;
+  }
+
+  /* Masquer le pseudo-élément au scroll */
+  body.home.scrolled::before {
+    opacity: 0 !important;
+    transform: translateY(-20px);
+    pointer-events: none;
   }
 }
 
