@@ -82,6 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $retirement_price_usd = !empty($_POST['retirement_price_usd']) ? $_POST['retirement_price_usd'] : null;
     $sale_description = !empty($_POST['sale_description']) ? $_POST['sale_description'] : null;
 
+    // Breeding Rights Prices
+    $breeding_price_cad = !empty($_POST['breeding_price_cad']) ? $_POST['breeding_price_cad'] : null;
+    $breeding_price_usd = !empty($_POST['breeding_price_usd']) ? $_POST['breeding_price_usd'] : null;
+
     // DEBUG
     error_log("Color Code: $color_code, Effects: $special_effect, Legacy: $color");
 
@@ -89,9 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->beginTransaction();
 
         if ($isEditing) {
-            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, sale_description=? WHERE id=?";
+            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, sale_description=?, breeding_price_cad=?, breeding_price_usd=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description, $id]);
+            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd, $id]);
             $msg = "Chat mis à jour avec succès.";
         } else {
             // Check ID
@@ -99,9 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $check->execute([$slug_id]);
             if ($check->fetchColumn() > 0) $slug_id .= '_' . time();
 
-            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, for_sale, sale_type, stud_price_cad, stud_price_usd, retirement_price_cad, retirement_price_usd, sale_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, for_sale, sale_type, stud_price_cad, stud_price_usd, retirement_price_cad, retirement_price_usd, sale_description, breeding_price_cad, breeding_price_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description]);
+            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd]);
             $id = $slug_id;
             $isEditing = true;
             $msg = "Chat créé avec succès.";
@@ -370,9 +374,13 @@ require_once 'includes/header.php';
                                     <label class="small">Prix Actuel</label>
                                     <input type="number" step="0.01" class="form-control" name="price_cad" value="<?php echo $cat['price_cad'] ?? ''; ?>">
                                 </div>
-                                <div>
+                                <div class="mb-2">
                                     <label class="small">Ancien Prix (Avant solde)</label>
                                     <input type="number" step="0.01" class="form-control" name="old_price_cad" value="<?php echo $cat['old_price_cad'] ?? ''; ?>">
+                                </div>
+                                <div>
+                                    <label class="small text-primary font-weight-bold">Prix Droits de Reproduction</label>
+                                    <input type="number" step="0.01" class="form-control" name="breeding_price_cad" value="<?php echo $cat['breeding_price_cad'] ?? ''; ?>">
                                 </div>
                             </div>
                         </div>
@@ -385,9 +393,13 @@ require_once 'includes/header.php';
                                     <label class="small">Prix Actuel</label>
                                     <input type="number" step="0.01" class="form-control" name="price_usd" value="<?php echo $cat['price_usd'] ?? ''; ?>">
                                 </div>
-                                <div>
+                                <div class="mb-2">
                                     <label class="small">Ancien Prix (Avant solde)</label>
                                     <input type="number" step="0.01" class="form-control" name="old_price_usd" value="<?php echo $cat['old_price_usd'] ?? ''; ?>">
+                                </div>
+                                <div>
+                                    <label class="small text-primary font-weight-bold">Prix Droits de Reproduction</label>
+                                    <input type="number" step="0.01" class="form-control" name="breeding_price_usd" value="<?php echo $cat['breeding_price_usd'] ?? ''; ?>">
                                 </div>
                             </div>
                         </div>

@@ -53,6 +53,101 @@ include 'includes/header.php';
     </div>
 </div>
 
+
+<!-- Health Protocol Section (New) -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 font-weight-bold text-primary mb-3" style="font-family: 'Amatic SC', cursive;">Protocoles de Santé Rigoureux</h2>
+                    <div class="separator mx-auto mb-4" style="width: 100px; height: 3px; background: var(--primary-color);"></div>
+                </div>
+
+                <div class="card shadow-lg border-0 rounded-lg overflow-hidden position-relative">
+                    <!-- Decorative corner ribbon or icon could go here -->
+                    <div class="card-body p-4 p-md-5">
+                        <p class="lead text-center text-dark mb-5 font-weight-bold">
+                            Tous nos reproducteurs passent des tests rigoureux de santé avant de faire partie de notre programme d'élevage.
+                        </p>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="media mb-4 align-items-center p-3 rounded hover-bg-light transition-all">
+                                    <div class="icon-box mr-4 text-center rounded-circle bg-light-primary text-primary shadow-sm" style="width: 60px; height: 60px; line-height: 60px; flex-shrink: 0;">
+                                        <i class="fas fa-vial fa-lg"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0 font-weight-bold text-dark">Bilan Sanguin Complet</h6>
+                                        <p class="mb-0 text-muted">Dépistage pour le virus de la leucémie féline (FeLV) et le virus de l’immunodéficience féline (FIV).</p>
+                                    </div>
+                                </div>
+
+                                <div class="media mb-4 align-items-center p-3 rounded hover-bg-light transition-all">
+                                    <div class="icon-box mr-4 text-center rounded-circle bg-light-danger text-danger shadow-sm" style="width: 60px; height: 60px; line-height: 60px; flex-shrink: 0;">
+                                        <i class="fas fa-heartbeat fa-lg"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0 font-weight-bold text-dark">Échographie Cardiaque</h6>
+                                        <p class="mb-0 text-muted">Test pour la cardiomyopathie hypertrophique féline (CMH), certifiés par l'Orthopedic Foundation for Animals (OFA).</p>
+                                    </div>
+                                </div>
+
+                                <div class="media mb-4 align-items-center p-3 rounded hover-bg-light transition-all">
+                                    <div class="icon-box mr-4 text-center rounded-circle bg-light-info text-info shadow-sm" style="width: 60px; height: 60px; line-height: 60px; flex-shrink: 0;">
+                                        <i class="fas fa-x-ray fa-lg"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0 font-weight-bold text-dark">Radiographie des Hanches</h6>
+                                        <p class="mb-0 text-muted">Dépistage certifié pour la dysplasie des hanches par l'Orthopedic Foundation for Animals (OFA).</p>
+                                    </div>
+                                </div>
+
+                                <div class="media mb-4 align-items-center p-3 rounded hover-bg-light transition-all">
+                                    <div class="icon-box mr-4 text-center rounded-circle bg-light-success text-success shadow-sm" style="width: 60px; height: 60px; line-height: 60px; flex-shrink: 0;">
+                                        <i class="fas fa-dna fa-lg"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0 font-weight-bold text-dark">Tests Génétiques ADN</h6>
+                                        <p class="mb-0 text-muted">Dépistage pour la CMH, le déficit en pyruvate kinase (PFDef), l'amyotrophie spinale (SMA) et la maladie polykystique rénale (PKD).</p>
+                                    </div>
+                                </div>
+
+                                <div class="media mb-4 align-items-center p-3 rounded hover-bg-light transition-all">
+                                    <div class="icon-box mr-4 text-center rounded-circle bg-light-warning text-warning shadow-sm" style="width: 60px; height: 60px; line-height: 60px; flex-shrink: 0;">
+                                        <i class="fas fa-microscope fa-lg"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0 font-weight-bold text-dark">Suivi Préventif</h6>
+                                        <p class="mb-0 text-muted">PCR digestifs et respiratoires faits au besoin, ainsi que tous soins nécessaires au maintien d'une santé optimale.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 rounded bg-primary text-white text-center shadow-sm">
+                            <i class="fas fa-project-diagram fa-2x mb-3 text-white-50"></i>
+                            <h5 class="font-weight-bold">Respect des Pedigrees</h5>
+                            <p class="mb-0">Nous veillons rigoureusement à maintenir un coefficient de consanguinité respectant les normes : <br><strong>- de 12% en indirect et 0% en direct.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Inline Styles for this specific section extras -->
+<style>
+.bg-light-primary { background-color: rgba(52, 152, 219, 0.1); }
+.bg-light-danger { background-color: rgba(231, 76, 60, 0.1); }
+.bg-light-info { background-color: rgba(22, 160, 133, 0.1); }
+.bg-light-success { background-color: rgba(46, 204, 113, 0.1); }
+.bg-light-warning { background-color: rgba(241, 196, 15, 0.1); }
+.hover-bg-light:hover { background-color: #f8f9fa; transform: translateX(5px); }
+.transition-all { transition: all 0.3s ease; }
+</style>
+
 <section class="purple-hero-bg py-5">
 <div class="container my-5">
     <!-- Feedback Toast -->
@@ -69,7 +164,7 @@ include 'includes/header.php';
                 <p class="mb-5 text-white-50">Remplissez le formulaire ou contactez-nous directement via ces canaux.</p>
                 
                 <div class="mb-4 d-flex align-items-start">
-                    <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary fa-lg"></i>
+                    <i class="fas fa-map-marker-alt mt-1 mr-3 text-white fa-lg"></i>
                     <div>
                         <h6 class="text-white mb-1">Localisation</h6>
                         <span class="text-white">Rive sud de Montréal, code postal : J5R 0K4</span>
@@ -77,7 +172,7 @@ include 'includes/header.php';
                 </div>
                 
                 <div class="mb-4 d-flex align-items-start">
-                    <i class="fas fa-envelope mt-1 mr-3 text-primary fa-lg"></i>
+                    <i class="fas fa-envelope mt-1 mr-3 text-white fa-lg"></i>
                     <div>
                         <h6 class="text-white mb-1">E-mail</h6>
                         <a href="mailto:nyxcooncattery@gmail.com" class="text-white text-decoration-none">nyxcooncattery@gmail.com</a>
@@ -158,7 +253,7 @@ include 'includes/header.php';
             <div class="col-md-6">
                 <h2 class="section-title-start text-dark mb-4">Plus Qu'un Simple Élevage</h2>
                 <p class="lead text-dark">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
-                <p class="text-dark">Situé au cœur de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
+                <p class="text-dark">Situé sur la rive-sud de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
                 
                 <div class="row mt-4">
                     <div class="col-6 mb-3">
@@ -182,7 +277,7 @@ include 'includes/header.php';
                     <div class="col-6 mb-3">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-certificate fa-2x mr-3" style="color: var(--primary-color);"></i>
-                            <span class="font-weight-bold text-dark">Enregistré</span>
+                            <span class="font-weight-bold text-dark">Enregistré pure race</span>
                         </div>
                     </div>
                 </div>
@@ -190,6 +285,8 @@ include 'includes/header.php';
         </div>
     </div>
 </section>
+
+
 
 <!-- Values Section (From About Page) -->
 <section class="py-5 purple-hero-bg">
@@ -233,7 +330,7 @@ include 'includes/header.php';
         <h2 class="text-dark mb-3">Prêt à accueillir un géant ?</h2>
         <p class="lead mb-4 text-dark">Découvrez nos chatons disponibles ou apprenez-en plus sur le processus d'adoption.</p>
         <a href="index.php#kittens" class="btn btn-cat rounded-pill px-4 py-2 font-weight-bold mr-3">Voir les Chatons</a>
-        <a href="adoption.php" class="btn btn-cat-secondary rounded-pill px-4 py-2 font-weight-bold">Comment Adopter</a>
+        <a href="adoption.php" class="btn btn-cat-secondary rounded-pill px-4 py-2 font-weight-bold text-white">Comment Adopter</a>
     </div>
 </section>
 

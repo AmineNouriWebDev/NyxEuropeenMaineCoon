@@ -46,7 +46,7 @@ function get_main_image($pdo, $cat_id) {
                 <i class="fas fa-heart"></i> Nos Futurs Mariages
             </span>
             <h1 class="hero-title">
-                Portées <span class="gradient-text">À Venir</span>
+                Portées À Venir
             </h1>
             <p class="hero-subtitle">
                 Découvrez nos futurs mariages d'exception et réservez votre chaton de rêve
@@ -77,16 +77,16 @@ function get_main_image($pdo, $cat_id) {
                 <div class="modern-litter-card" data-aos="fade-up" data-aos-delay="<?php echo $index * 100; ?>">
                     <!-- Card Header -->
                     <div class="litter-card-header">
-                        <div class="season-badge">
+                        <div class="season-badge" style="color:white !important;">
                             <i class="fas fa-calendar-star"></i>
                             <?php echo htmlspecialchars($litter['season_text']); ?>
                         </div>
                         <h2 class="litter-title">
-                            <span class="cat-name mother-name"><?php echo htmlspecialchars($litter['mother_name']); ?></span>
-                            <span class="heart-divider">
+                            <span class="cat-name mother-name" style="color:white !important;"><?php echo htmlspecialchars($litter['mother_name']); ?></span>
+                            <span class="heart-divider"style="color:white !important;">
                                 <i class="fas fa-heart"></i>
                             </span>
-                            <span class="cat-name father-name"><?php echo htmlspecialchars($litter['father_name']); ?></span>
+                            <span class="cat-name father-name"style="color:white !important;"><?php echo htmlspecialchars($litter['father_name']); ?></span>
                         </h2>
                     </div>
 
@@ -156,7 +156,7 @@ function get_main_image($pdo, $cat_id) {
                                         </div>
                                     </div>
                                     <div class="cat-info-panel">
-                                        <div class="cat-badge king-badge">
+                                        <div class="cat-badge king-badge" style="color:white !important;">
                                             <i class="fas fa-crown"></i> King
                                         </div>
                                         <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['father_name']); ?></h4>
@@ -225,9 +225,9 @@ function get_main_image($pdo, $cat_id) {
                         <!-- CTA Button -->
                         <div class="litter-cta">
                             <a href="adoption.php#formulaire-adoption" class="btn-waiting-list">
-                                <span class="btn-icon"><i class="fas fa-clipboard-list"></i></span>
-                                <span class="btn-text">Rejoindre la Liste d'Attente</span>
-                                <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+                                <span class="btn-icon text-white"><i class="fas fa-clipboard-list"></i></span>
+                                <span class="btn-text text-white">Rejoindre la Liste d'Attente</span>
+                                <span class="btn-arrow text-white"><i class="fas fa-arrow-right"></i></span>
                             </a>
                         </div>
                     </div>
@@ -388,7 +388,7 @@ function get_main_image($pdo, $cat_id) {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 50px;
-    color: white;
+    color: white !important;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -518,7 +518,7 @@ function get_main_image($pdo, $cat_id) {
 }
 
 .king-badge {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #6163d3ff 0%, #1b1d9bff 100%);
     color: white;
 }
 

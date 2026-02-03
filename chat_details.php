@@ -212,6 +212,8 @@ include 'includes/header.php';
             </div>
 
             <!-- Parents -->
+            <!-- Parents (Masqué pour King/Queen) -->
+            <?php if (!in_array($cat['status'], ['king', 'queen'])): ?>
             <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px; background: #fff5f5;">
                 <div class="card-body">
                     <h5 class="card-title text-primary"><i class="fas fa-users"></i> Parents</h5>
@@ -239,6 +241,7 @@ include 'includes/header.php';
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             
             <!-- Services Disponibles (pour les chats à vendre) -->
             <?php if ($cat['for_sale']): ?>
@@ -307,6 +310,8 @@ include 'includes/header.php';
             </div>
 
             <!-- Informations Complémentaires (Nouveau Bloc) -->
+            <!-- Informations Complémentaires (Masqué pour King/Queen) -->
+            <?php if (!in_array($cat['status'], ['king', 'queen'])): ?>
             <div class="accordion shadow-sm rounded-lg overflow-hidden text-dark" id="accordionInfo">
                 <!-- 4. Droits de reproduction -->
                 <div class="card border-0">
@@ -320,7 +325,27 @@ include 'includes/header.php';
                     </div>
                     <div id="collapseRights" class="collapse show">
                         <div class="card-body bg-light">
-                            <p class="mb-0">Disponible à un coût additionnel de <strong>1500$</strong>.</p>
+                            <?php if (!empty($cat['breeding_price_cad']) || !empty($cat['breeding_price_usd'])): ?>
+                                <ul class="list-unstyled mb-0">
+                                    <?php if (!empty($cat['breeding_price_cad'])): ?>
+                                        <span>Disponible à un cout additionnel de :</span>
+                                        <li class="mb-2 d-flex align-items-center">
+                                             
+                                            <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 10px;">
+                                            <span class="font-weight-bold" style="font-size: 1.1em;"><?php echo number_format($cat['breeding_price_cad'], 0, ',', ' '); ?> $ CAD</span>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if (!empty($cat['breeding_price_usd'])): ?>
+                                        <li class="d-flex align-items-center">
+                                           
+                                            <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 10px;">
+                                            <span class="text-muted font-weight-bold"><?php echo number_format($cat['breeding_price_usd'], 0, ',', ' '); ?> $ USD</span>
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            <?php else: ?>
+                                <p class="mb-0">Contactez-nous pour connaître le prix des droits de reproduction.</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -401,6 +426,7 @@ include 'includes/header.php';
 
                 
             </div>
+            <?php endif; ?>
         </div>
     </div>
 

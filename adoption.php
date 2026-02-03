@@ -18,7 +18,7 @@ include 'includes/header.php';
         <div class="row justify-content-center">
             <div class="col-lg-10">
                     <!-- Intro Paragraph (Glassmorphism Style) -->
-                <div class="intro-glass-card mb-5 text-center text-white position-relative" style="padding: 3rem 2rem; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                <div class="intro-glass-card mb-5 text-center text-white position-relative bg-white" style="padding: 3rem 2rem; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
                     <!-- Background Backdrop -->
                     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.2); z-index: 0;"></div>
                     
@@ -27,7 +27,7 @@ include 'includes/header.php';
                             <i class="fas fa-crown text-warning fa-2x mb-2"></i>
                         </div>
                         <h3 class="font-weight-bold mb-4" style="font-family: 'Vijaya', serif; font-size: 2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            Liste de Priorité & Engagement
+                            Liste de Priorité et d'engagement
                         </h3>
                         <p class="lead mb-4" style="font-size: 1.2rem; line-height: 1.6; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
                             Voici la liste idéale pour ceux et celles qui rêvent d'accueillir un magnifique chaton 
@@ -38,7 +38,7 @@ include 'includes/header.php';
                             <p class="mb-0 font-italic" style="font-size: 1.05rem; color: rgba(255,255,255,0.95);">
                                 <i class="fas fa-quote-left mr-2 opacity-50"></i>
                                 Cette inscription implique un engagement de votre part : un dépôt vous sera demandé afin d'y figurer. 
-                                En contrepartie, vous bénéficierez d'un <strong class="text-warning">accès prioritaire</strong> à nos portées.
+                                En contrepartie, vous bénéficierez d'un accès prioritaire à nos portées.
                                 <i class="fas fa-quote-right ml-2 opacity-50"></i>
                             </p>
                         </div>

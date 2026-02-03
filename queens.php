@@ -62,6 +62,28 @@ if ($selected_id) {
       <?php endif; ?>
     </div>
 
+    <!-- Health Information Text -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-sm" style="background: #fff; border-left: 5px solid var(--primary-color);">
+                <div class="card-body text-left">
+                    <p class="mb-2">
+                        <i class="fas fa-notes-medical text-primary mr-2"></i>
+                        Tous nos chats reproducteurs subissent des tests d'ADN et de santé pour PIF, FeLV, FIV, SMA, PL, PKdef et PKD
+                    </p>
+                    <p class="mb-2">
+                        <i class="fas fa-heartbeat text-danger mr-2"></i>
+                        Ils sont aussi testés génétiquement pour la dysplasie des hanches (HD) et un échographie cardiaque (CMH), tous deux certifés par l'Orthopedic Foundation for Animals (OFA).
+                    </p>
+                    <p class="mb-0">
+                        <i class="fas fa-dna text-success mr-2"></i>
+                        Nous prenons soin de respecter les pedigree pour avoir un coefficient de consanguinité qui respecte la norme (- de 12% indirect et 0% direct).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row" id="cats-grid">
       <?php if(empty($cats)): ?>
           <div class="col-12 text-center p-5">
@@ -172,10 +194,15 @@ if ($selected_id) {
                   
                   <?php if ($cat['for_sale']): ?>
                   <div class="mt-3 p-2" style="background: #f8f9fa; border-radius: 8px; border-left: 3px solid var(--primary-color);">
-                    <small class="text-muted"><i class="fas fa-home text-success"></i> Disponible à la Retraite</small>
                     <div>
-                      <strong class="text-muted"><?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $CAD</strong>
-                      <span class="text-muted">/ <?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $USD</span>
+                      <small class="text-muted d-block mb-1"><i class="fas fa-home text-success"></i> Disponible à la Retraite</small>
+                      <div class="d-flex align-items-center">
+                        <img src="https://flagcdn.com/32x24/ca.png" alt="CAD" style="height: 16px; margin-right: 6px;">
+                        <strong class="mr-3 text-dark"><?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $</strong>
+                        
+                        <img src="https://flagcdn.com/32x24/us.png" alt="USD" style="height: 16px; margin-right: 6px;">
+                        <span class="text-muted font-weight-bold"><?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                      </div>
                     </div>
                   </div>
                   <?php endif; ?>
