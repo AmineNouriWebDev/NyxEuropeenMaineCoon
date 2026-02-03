@@ -223,6 +223,7 @@ h6 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
 }
 
 .nav-btn {
@@ -240,7 +241,7 @@ h6 {
   border: 1px solid rgba(255, 255, 255, 0.15);
   /* NOUVEAU : Texte mauve/violet pour lisibilité */
   color: #ffffff !important;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 13px;
   text-transform: uppercase;
   text-align: center;

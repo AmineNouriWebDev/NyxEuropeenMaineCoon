@@ -308,7 +308,22 @@ include 'includes/header.php';
 
             <!-- Informations Complémentaires (Nouveau Bloc) -->
             <div class="accordion shadow-sm rounded-lg overflow-hidden text-dark" id="accordionInfo">
-                
+                <!-- 4. Droits de reproduction -->
+                <div class="card border-0">
+                    <div class="card-header bg-white" id="headingRights">
+                        <h2 class="mb-0">
+                            <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
+                                <span><i class="fas fa-venus-mars text-primary mr-2"></i> Droits de reproduction</span>
+                                <i class="fas fa-chevron-down small"></i>
+                            </div>
+                        </h2>
+                    </div>
+                    <div id="collapseRights" class="collapse show">
+                        <div class="card-body bg-light">
+                            <p class="mb-0">Disponible à un coût additionnel de <strong>1500$</strong>.</p>
+                        </div>
+                    </div>
+                </div>
                 <!-- 1. Inclus avec l'adoption -->
                 <div class="card border-0 mb-1">
                     <div class="card-header bg-white" id="headingIncluded">
@@ -324,39 +339,23 @@ include 'includes/header.php';
                             <p class="mb-2">En choisissant un de nos précieux, vous choisissez aussi un chaton :</p>
                             <ul class="list-unstyled mb-3 pl-2">
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Vacciné x 2 (8 et 12 semaines)</li>
-                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Enregistré au TICA</li>
+                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Enregistré avec TICA</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Vermifugé</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Micropucé</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Socialisé avec enfants, chats et chiens</li>
+                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Trousse de départ incluant nourriture, jouets, couverture avec l'odeur de la fratrie et plus.</li>
+                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Carnet de santé établi par un vétérinaire certifié</li>
+                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Suivi post adoption</li>
                                 <li class="mb-1"><i class="fas fa-shield-alt text-primary mr-2"></i> Garantie de santé de 10 jours (maladies virales)*</li>
                                 <li class="mb-1"><i class="fas fa-shield-alt text-primary mr-2"></i> Garantie de santé de 1 an (malformations/héréditaire)*</li>
+                                
                             </ul>
                             <small class="text-muted font-italic">*Selon les conditions de votre contrat de vente légal.</small>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. Livraison -->
-                <div class="card border-0 mb-1">
-                    <div class="card-header bg-white" id="headingDelivery">
-                        <h2 class="mb-0">
-                            <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
-                                <span><i class="fas fa-truck text-secondary mr-2"></i> Livraison</span>
-                                <i class="fas fa-chevron-down small"></i>
-                            </div>
-                        </h2>
-                    </div>
-                    <div id="collapseDelivery" class="collapse show">
-                        <div class="card-body bg-light">
-                            <p class="mb-2 font-weight-bold">La livraison est offerte au Canada, États-Unis et autres pays.</p>
-                            <ul class="list-unstyled mb-0 pl-2">
-                                <li class="mb-1"><i class="fas fa-plane text-primary mr-2"></i> Vol en cabine avec accompagnatrice : à partir de 1500$</li>
-                                <li class="mb-1"><i class="fas fa-car text-secondary mr-2"></i> Transport terrestre : à partir de 350$</li>
-                                <li><i class="fas fa-walking text-success mr-2"></i> Ramassage en personne : Gratuit</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+               
 
                 <!-- 3. Options de paiement -->
                 <div class="card border-0 mb-1">
@@ -377,23 +376,30 @@ include 'includes/header.php';
                         </div>
                     </div>
                 </div>
-
-                <!-- 4. Droits de reproduction -->
-                <div class="card border-0">
-                    <div class="card-header bg-white" id="headingRights">
+                 <!-- 2. Livraison -->
+                <div class="card border-0 mb-1">
+                    <div class="card-header bg-white" id="headingDelivery">
                         <h2 class="mb-0">
                             <div class="text-dark font-weight-bold w-100 text-left d-flex justify-content-between align-items-center p-2">
-                                <span><i class="fas fa-venus-mars text-primary mr-2"></i> Droits de reproduction</span>
+                                <span><i class="fas fa-truck text-secondary mr-2"></i> Livraison</span>
                                 <i class="fas fa-chevron-down small"></i>
                             </div>
                         </h2>
                     </div>
-                    <div id="collapseRights" class="collapse show">
+                   
+                    <div id="collapseDelivery" class="collapse show">
                         <div class="card-body bg-light">
-                            <p class="mb-0">Disponible à un coût additionnel de <strong>1500$</strong>.</p>
+                            <p class="mb-2 font-weight-bold">La livraison est offerte au Canada, États-Unis et à l'internationale.</p>
+                            <ol class="list-unstyled mb-0 pl-2">
+                                <li class="mb-1"></i> 1- Ramassage à un point de rencontre à moins de 150km de la chatterie:  GRATUIT</li>
+                                <li class="mb-1"></i> 2- Transport terrestre à un rayon de + de 150km:  à partir de 200$</li>
+                                <li></i> 3- Transport aérien en cabine avec accompagnateur:  à partir de 1500$</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
+
+                
             </div>
         </div>
     </div>
