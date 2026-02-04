@@ -70,7 +70,7 @@ if ($selected_id) {
                 <div class="card-body text-left">
                     <p class="mb-2">
                         <i class="fas fa-notes-medical text-primary mr-2"></i>
-                        Tous nos chats reproducteurs subissent des tests d'ADN et de santé pour PIF, FeLV, FIV, SMA, PL, PKdef et PKD
+                        Tous nos chats reproducteurs subissent des tests d'ADN et de santé pour FeLV, FIV, SMA, PL, PKdef et PKD
                     </p>
                     <p class="mb-2">
                         <i class="fas fa-heartbeat text-danger mr-2"></i>

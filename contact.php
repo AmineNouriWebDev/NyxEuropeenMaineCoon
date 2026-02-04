@@ -99,7 +99,7 @@ include 'includes/header.php';
                                     </div>
                                     <div class="media-body">
                                         <h6 class="mt-0 font-weight-bold text-dark">Radiographie des Hanches</h6>
-                                        <p class="mb-0 text-muted">Dépistage certifié pour la dysplasie des hanches par l'Orthopedic Foundation for Animals (OFA).</p>
+                                        <p class="mb-0 text-muted">Dépistage pour la dysplasie des hanches, certifiés par L'Orthopedic Foundation for Animal (OFA).</p>
                                     </div>
                                 </div>
 
@@ -109,7 +109,7 @@ include 'includes/header.php';
                                     </div>
                                     <div class="media-body">
                                         <h6 class="mt-0 font-weight-bold text-dark">Tests Génétiques ADN</h6>
-                                        <p class="mb-0 text-muted">Dépistage pour la CMH, le déficit en pyruvate kinase (PFDef), l'amyotrophie spinale (SMA) et la maladie polykystique rénale (PKD).</p>
+                                        <p class="mb-0 text-muted">Dépistage pour la cardiomyopathie hypertrophique féline du coeur (CMH), déficit en pyruvate kinase (PFDef), amyotrophie spinale (SMA) et la maladie polykystique rénale (PKD). </p>
                                     </div>
                                 </div>
 
@@ -273,7 +273,7 @@ include 'includes/header.php';
     <div class="container ">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4">
-                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-lg shadow-lg" alt="Maine Coon Portrait">
+                <img src="./img/about.jpeg" class="img-fluid rounded-lg shadow-lg" alt="Maine Coon Portrait">
             </div>
             <div class="col-md-6">
                 <h2 class="section-title-start text-dark mb-4">Plus Qu'un Simple Élevage</h2>
@@ -313,41 +313,7 @@ include 'includes/header.php';
 
 
 
-<!-- Values Section (From About Page) -->
-<section class="py-5 purple-hero-bg">
-    <div class="container text-center">
-        <h2 class="mb-5 text-dark">Nos Valeurs Fondamentales</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
-                    <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-heartbeat fa-2x"></i>
-                    </div>
-                    <h4>Santé d'Abord</h4>
-                    <p>Tous nos chats reproducteurs sont testés ADN pour HCM, SMA et PKDef. Nous effectuons des échographies cardiaques régulières pour assurer les lignées les plus saines possibles.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
-                    <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-brain fa-2x"></i>
-                    </div>
-                    <h4>Socialisation</h4>
-                    <p>Nos chatons sont élevés au sein de la famille, pas en cages. Ils sont exposés quotidiennement aux bruits domestiques, aux enfants et à d'autres animaux pour s'assurer qu'ils sont confiants et affectueux.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
-                    <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-trophy fa-2x"></i>
-                    </div>
-                    <h4>Excellence</h4>
-                    <p>Nous visons le "look sauvage" typique des lignées européennes : museaux forts, grandes oreilles avec de lourdes pointes de lynx et une ossature substantielle.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <!-- CTA (From About Page) -->
 <section class="py-5 text-center purple-hero-bg">

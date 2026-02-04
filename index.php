@@ -16,7 +16,7 @@ $cats = get_cats_from_db($pdo, 'available');
 <section id="hero-section" style="position: relative; height: 100vh; width: 100%; overflow: hidden;">
   <div class="video-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
     <video autoplay muted loop playsinline id="hero-video" style="min-width: 100%; min-height: 100%; width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); object-fit: cover;">
-      <source src="img/hero.mp4" type="video/mp4" />
+      <source src="img/video_hero.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
     <!-- Fallback image -->
@@ -69,6 +69,19 @@ $cats = get_cats_from_db($pdo, 'available');
 <!-- Kittens Section -->
 <section class="kitten-section purple-hero-bg" id="kittens">
   <div class="container">
+    <!-- Excellence Card (centered) -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 bg-white rounded shadow-sm h-100 kitten-card">
+          <div class="icon-circle mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+            <i class="fas fa-trophy fa-2x"></i>
+          </div>
+          <h4>Excellence</h4>
+          <p>Nous visons le "look sauvage" typique des lignées européennes : museaux forts, grandes oreilles avec de lourdes pointes de lynx et une ossature substantielle.</p>
+        </div>
+      </div>
+    </div>
+    
     <div class="section-title">
       <h2>
         Nos <span style="color: var(--accent-color)">Chatons & Chats</span> Disponibles
