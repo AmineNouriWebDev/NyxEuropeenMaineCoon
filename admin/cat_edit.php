@@ -264,11 +264,11 @@ require_once 'includes/header.php';
                         <input type="date" class="form-control" name="birth_date" value="<?php echo $cat['birth_date'] ?? ''; ?>" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Qualité</label>
+                        <label class="form-label">DESTINÉ À</label>
                         <select class="form-select" name="quality">
-                            <option value="Pet Quality" <?php echo ($cat['quality'] ?? '') == 'Pet Quality' ? 'selected' : ''; ?>>Compagnie (Pet Quality)</option>
-                            <option value="Breeding Quality" <?php echo ($cat['quality'] ?? '') == 'Breeding Quality' ? 'selected' : ''; ?>>Élevage (Breeding Quality)</option>
-                            <option value="Pet & Breeding Quality" <?php echo ($cat['quality'] ?? '') == 'Pet & Breeding Quality' ? 'selected' : ''; ?>>Compagnie & Élevage</option>
+                            <option value="Animal de compagnie" <?php echo ($cat['quality'] ?? '') == 'Animal de compagnie' ? 'selected' : ''; ?>>Animal de compagnie</option>
+                            <option value="Animal d'élevage" <?php echo ($cat['quality'] ?? '') == 'Animal d\'élevage' ? 'selected' : ''; ?>>Animal d'élevage</option>
+                            <option value="Animal de compagnie ou d'élevage" <?php echo ($cat['quality'] ?? '') == 'Animal de compagnie ou d\'élevage' ? 'selected' : ''; ?>>Animal de compagnie ou d'élevage</option>
                         </select>
                     </div>
                 </div>
