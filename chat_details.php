@@ -277,10 +277,18 @@ include 'includes/header.php';
                             <span class="badge badge-primary mr-3" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
                                 <?php echo number_format($cat['stud_price_cad'], 0, ',', ' '); ?> $
                             </span>
+                            <?php if (!empty($cat['old_stud_price_cad'])): ?>
+                                <span class="old-price mr-3 text-muted"><?php echo number_format($cat['old_stud_price_cad'], 0, ',', ' '); ?> $</span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 16px; margin-right: 5px; vertical-align: middle;">
                             <span class="text-muted font-weight-bold">
                                 <?php echo number_format($cat['stud_price_usd'], 0, ',', ' '); ?> $
                             </span>
+                            <?php if (!empty($cat['old_stud_price_usd'])): ?>
+                                <span class="old-price ml-2 text-muted"><?php echo number_format($cat['old_stud_price_usd'], 0, ',', ' '); ?> $</span>
+                            <?php endif; ?>
                         </div>
                         <?php if (!empty($cat['sale_description'])): ?>
                         <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description'])); ?></p>
@@ -298,10 +306,18 @@ include 'includes/header.php';
                             <span class="badge badge-success mr-3" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
                                 <?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $
                             </span>
+                            <?php if (!empty($cat['old_retirement_price_cad'])): ?>
+                                <span class="old-price mr-3 text-muted"><?php echo number_format($cat['old_retirement_price_cad'], 0, ',', ' '); ?> $</span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 16px; margin-right: 5px; vertical-align: middle;">
                             <span class="text-muted font-weight-bold">
                                 <?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $
                             </span>
+                            <?php if (!empty($cat['old_retirement_price_usd'])): ?>
+                                <span class="old-price ml-2 text-muted"><?php echo number_format($cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                            <?php endif; ?>
                         </div>
                         <?php if (!empty($cat['sale_description']) && ($cat['sale_type'] !== 'both')): ?>
                         <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description'])); ?></p>

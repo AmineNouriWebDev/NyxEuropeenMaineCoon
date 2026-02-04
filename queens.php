@@ -193,19 +193,27 @@ if ($selected_id) {
                   </div>
                   
                   <?php if ($cat['for_sale']): ?>
-                  <div class="mt-3 p-2" style="background: #f8f9fa; border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                  <div class="kitten-price-container mt-3 px-3 py-2" style="background: #f8f9fa; border-radius: 12px; border: 1px solid #eee;">
                     <div>
                       <small class="text-muted d-block mb-1"><i class="fas fa-home text-success"></i> Disponible à la Retraite</small>
+                      <div class="d-flex align-items-center mb-2">
+                        <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 8px; vertical-align: middle;">
+                        <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $</span>
+                        <?php if (!empty($cat['old_retirement_price_cad'])): ?>
+                            <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_retirement_price_cad'], 0, ',', ' '); ?> $</span>
+                        <?php endif; ?>
+                      </div>
                       <div class="d-flex align-items-center">
-                        <img src="https://flagcdn.com/32x24/ca.png" alt="CAD" style="height: 16px; margin-right: 6px;">
-                        <strong class="mr-3 text-dark"><?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $</strong>
-                        
-                        <img src="https://flagcdn.com/32x24/us.png" alt="USD" style="height: 16px; margin-right: 6px;">
-                        <span class="text-muted font-weight-bold"><?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                        <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 8px; vertical-align: middle;">
+                        <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                        <?php if (!empty($cat['old_retirement_price_usd'])): ?>
+                            <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>
                   <?php endif; ?>
+                  
                   
                   <div class="kitten-actions mt-3">
                     <a href="chat_details.php?id=<?php echo $cat['id']; ?>" class="btn-cat btn-sm">Voir Détails</a>

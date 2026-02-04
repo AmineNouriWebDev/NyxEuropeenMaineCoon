@@ -78,8 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sale_type = !empty($_POST['sale_type']) ? $_POST['sale_type'] : null;
     $stud_price_cad = !empty($_POST['stud_price_cad']) ? $_POST['stud_price_cad'] : null;
     $stud_price_usd = !empty($_POST['stud_price_usd']) ? $_POST['stud_price_usd'] : null;
+    $old_stud_price_cad = !empty($_POST['old_stud_price_cad']) ? $_POST['old_stud_price_cad'] : null;
+    $old_stud_price_usd = !empty($_POST['old_stud_price_usd']) ? $_POST['old_stud_price_usd'] : null;
     $retirement_price_cad = !empty($_POST['retirement_price_cad']) ? $_POST['retirement_price_cad'] : null;
     $retirement_price_usd = !empty($_POST['retirement_price_usd']) ? $_POST['retirement_price_usd'] : null;
+    $old_retirement_price_cad = !empty($_POST['old_retirement_price_cad']) ? $_POST['old_retirement_price_cad'] : null;
+    $old_retirement_price_usd = !empty($_POST['old_retirement_price_usd']) ? $_POST['old_retirement_price_usd'] : null;
     $sale_description = !empty($_POST['sale_description']) ? $_POST['sale_description'] : null;
 
     // Breeding Rights Prices
@@ -93,9 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->beginTransaction();
 
         if ($isEditing) {
-            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, sale_description=?, breeding_price_cad=?, breeding_price_usd=? WHERE id=?";
+            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, old_stud_price_cad=?, old_stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, old_retirement_price_cad=?, old_retirement_price_usd=?, sale_description=?, breeding_price_cad=?, breeding_price_usd=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd, $id]);
+            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $old_stud_price_cad, $old_stud_price_usd, $retirement_price_cad, $retirement_price_usd, $old_retirement_price_cad, $old_retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd, $id]);
             $msg = "Chat mis à jour avec succès.";
         } else {
             // Check ID
@@ -103,9 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $check->execute([$slug_id]);
             if ($check->fetchColumn() > 0) $slug_id .= '_' . time();
 
-            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, for_sale, sale_type, stud_price_cad, stud_price_usd, retirement_price_cad, retirement_price_usd, sale_description, breeding_price_cad, breeding_price_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, for_sale, sale_type, stud_price_cad, stud_price_usd, old_stud_price_cad, old_stud_price_usd, retirement_price_cad, retirement_price_usd, old_retirement_price_cad, old_retirement_price_usd, sale_description, breeding_price_cad, breeding_price_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $retirement_price_cad, $retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd]);
+            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $old_stud_price_cad, $old_stud_price_usd, $retirement_price_cad, $retirement_price_usd, $old_retirement_price_cad, $old_retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd]);
             $id = $slug_id;
             $isEditing = true;
             $msg = "Chat créé avec succès.";
@@ -462,6 +466,14 @@ require_once 'includes/header.php';
                                             <label class="small">Prix Saillie (USD)</label>
                                             <input type="number" step="0.01" class="form-control" name="stud_price_usd" value="<?php echo $cat['stud_price_usd'] ?? ''; ?>" placeholder="0.00">
                                         </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Ancien Prix Saillie (CAD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="old_stud_price_cad" value="<?php echo $cat['old_stud_price_cad'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Ancien Prix Saillie (USD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="old_stud_price_usd" value="<?php echo $cat['old_stud_price_usd'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -480,6 +492,14 @@ require_once 'includes/header.php';
                                         <div class="col-md-6 mb-2">
                                             <label class="small">Prix Retraite (USD)</label>
                                             <input type="number" step="0.01" class="form-control" name="retirement_price_usd" value="<?php echo $cat['retirement_price_usd'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Ancien Prix Retraite (CAD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="old_retirement_price_cad" value="<?php echo $cat['old_retirement_price_cad'] ?? ''; ?>" placeholder="0.00">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="small">Ancien Prix Retraite (USD)</label>
+                                            <input type="number" step="0.01" class="form-control" name="old_retirement_price_usd" value="<?php echo $cat['old_retirement_price_usd'] ?? ''; ?>" placeholder="0.00">
                                         </div>
                                     </div>
                                 </div>
