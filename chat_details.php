@@ -30,6 +30,13 @@ $cat = $stmt->fetch();
 
 if ($cat) {
     ensure_cat_has_color_code($cat, $pdo);
+    
+    // Fetch color name_fr from colors table
+    if (!empty($cat['color_code'])) {
+        $stmt_color = $pdo->prepare("SELECT name_fr FROM colors WHERE code = ?");
+        $stmt_color->execute([$cat['color_code']]);
+        $cat['color_name_fr'] = $stmt_color->fetchColumn();
+    }
 }
 
 if (!$cat) {
@@ -140,6 +147,35 @@ include 'includes/header.php';
         <div class="col-lg-5">
             <h1 class="display-4 font-weight-bold mb-2" style="font-family: 'Vijaya', serif;"><?php echo htmlspecialchars($cat['name']); ?></h1>
             
+            <!-- Color Information Display -->
+            <div class="mb-3" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <?php if (!empty($cat['color_name_fr']) || !empty($cat['color_code'])): ?>
+                    <span style="color: #b3b3b3ff; font-size: 1.1rem; font-weight: 700; ">
+                        <?php echo htmlspecialchars($cat['color_name_fr'] ?? ''); ?>
+                        <?php if (!empty($cat['color_code'])): ?>
+                            <span style="color: #6c757d;">(<?php echo htmlspecialchars($cat['color_code']); ?>)</span>
+                        <?php endif; ?>
+                    </span>
+                <?php endif; ?>
+                
+                <?php 
+                // Display special effects
+                $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                $effects = [
+                    'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                    'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                    'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                    'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                ];
+                
+                foreach($effects as $label => $active) {
+                    if ($active) {
+                        echo '<span style="background: #000; color: #fff !important; padding: 4px 12px; border-radius: 4px; font-size: 0.9rem; font-weight: 500;">' . $label . '</span>';
+                    }
+                }
+                ?>
+            </div>
+            
             
             <!-- Prix (masqué si vide) -->
             <?php if (!empty($cat['price_cad']) || !empty($cat['price_usd'])): ?>
@@ -186,29 +222,9 @@ include 'includes/header.php';
                     <span class="text-dark"><?php echo htmlspecialchars($cat['paw_type']); ?></span>
                 </div>
                 <?php endif; ?>
-                <div class="info-item">
-                    <i class="fas fa-palette text-dark"></i>
-                    <span class="text-dark"><?php echo format_cat_color($cat); ?></span>
-                </div>
+
                 
-                <!-- Effets Spéciaux (Badges) -->
-                <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
-                    <?php 
-                    $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
-                    $effects = [
-                        'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
-                        'SILVER(s)' => stripos($full_desc, 'silver') !== false,
-                        'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
-                        'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
-                    ];
-                    
-                    foreach($effects as $label => $active) {
-                        if ($active) {
-                            echo '<span class="special-effect-badge text-white">' . $label . '</span>';
-                        }
-                    }
-                    ?>
-                </div>
+
             </div>
 
             <!-- Parents -->
