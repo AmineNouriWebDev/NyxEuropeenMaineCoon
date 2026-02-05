@@ -95,8 +95,8 @@ $cats = get_cats_from_db($pdo, 'available');
     <div class="row" id="kittens-grid">
       <?php if(empty($cats)): ?>
           <div class="col-12 text-center p-5">
-              <h3>Aucun chaton disponible pour le moment.</h3>
-              <p>Revenez bientôt ou consultez nos <a href="portees_a_venir.php">portées à venir</a> !</p>
+              <h3>Tous nos petits Nyx Coon on trouvé un foyer.</h3>
+              <p>Ne perdez pas votre chance et inscrivez-vous sur la liste de priorité 👉 <a href="portees_a_venir.php">portées à venir</a> !</p>
           </div>
       <?php else: ?>
           <?php foreach ($cats as $cat): ?>
@@ -154,6 +154,45 @@ $cats = get_cats_from_db($pdo, 'available');
                     <h3 class="kitten-name"><?php echo htmlspecialchars($cat['name']); ?></h3>
                   </div>
                   
+                  <!-- Couleur et Effets Spéciaux (Style chat_details.php) -->
+                  <div class="mb-3" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                      <?php 
+                      // Récupérer le nom de la couleur depuis la table colors
+                      $color_name_fr = '';
+                      if (!empty($cat['color_code'])) {
+                          $stmt_color = $pdo->prepare("SELECT name_fr FROM colors WHERE code = ?");
+                          $stmt_color->execute([$cat['color_code']]);
+                          $color_name_fr = $stmt_color->fetchColumn();
+                      }
+                      
+                      if (!empty($color_name_fr) || !empty($cat['color_code'])): 
+                      ?>
+                          <span style="color: #b3b3b3ff; font-size: 1.1rem; font-weight: 700;">
+                              <?php echo htmlspecialchars($color_name_fr ?? ''); ?>
+                              <?php if (!empty($cat['color_code'])): ?>
+                                  <span style="color: #6c757d;">(<?php echo htmlspecialchars($cat['color_code']); ?>)</span>
+                              <?php endif; ?>
+                          </span>
+                      <?php endif; ?>
+                      
+                      <?php 
+                      // Afficher les effets spéciaux
+                      $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                      $effects = [
+                          'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                          'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                          'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                          'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                      ];
+                      
+                      foreach($effects as $label => $active) {
+                          if ($active) {
+                              echo '<span style="background: #000; color: #fff !important; padding: 4px 12px; border-radius: 4px; font-size: 0.9rem; font-weight: 500;">' . $label . '</span>';
+                          }
+                      }
+                      ?>
+                  </div>
+                  
                   <div class="kitten-info-grid">
                     <!-- Sexe : Icone Mixte + Texte -->
                     <div class="info-item">
@@ -177,38 +216,6 @@ $cats = get_cats_from_db($pdo, 'available');
                     <div class="info-item">
                       <i class="fas fa-paw text-dark"></i>
                       <span><?php echo htmlspecialchars($cat['paw_type'] ?? 'Régulières'); ?></span>
-                    </div>
-
-                    <!-- Couleur avec icône palette noir -->
-                    <div class="info-item">
-                      <i class="fas fa-palette text-dark"></i>
-                      <span><?php echo format_cat_color($cat); ?></span>
-                    </div>
-                    
-                    <!-- Effets Spéciaux (Checkboxes) -->
-                    <!-- Effets Spéciaux (Badge Animé) -->
-                    <div class="info-item special-effect-container">
-                        <?php 
-                        $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
-                        $effects = [
-                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
-                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
-                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
-                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
-                        ];
-                        
-                        $has_effect = false;
-                        foreach($effects as $label => $active) {
-                            if ($active) {
-                                echo '<span class="special-effect-badge text-white">' . $label . '</span>';
-                                $has_effect = true;
-                            }
-                        }
-                        
-                        if (!$has_effect) {
-                            // Optionnel : ne rien afficher ou un placeholder
-                        }
-                        ?>
                     </div>
                   </div>
                   

@@ -42,9 +42,7 @@ function get_main_image($pdo, $cat_id) {
 <div class="litter-hero">
     <div class="container">
         <div class="hero-content text-center">
-            <span class="hero-badge">
-                <i class="fas fa-heart"></i> Nos Futurs Mariages
-            </span>
+            
             <h1 class="hero-title">
                 Portées À Venir
             </h1>

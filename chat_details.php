@@ -111,7 +111,7 @@ include 'includes/header.php';
                 <img id="mainImage" src="<?php echo asset_url('img/' . ($images[0] ?? 'default.jpg')); ?>" class="w-100 h-100" style="object-fit: cover;" alt="<?php echo htmlspecialchars($cat['name']); ?>">
                 
                 <?php if ($cat['status'] !== 'available'): ?>
-                    <div class="kitten-status <?php echo $cat['status']; ?>">
+                    <div class="kitten-status <?php echo $cat['status']; ?>"style="color:white !important;">
                         <?php 
                         if ($cat['status'] == 'reserved') echo 'Réservé';
                         elseif ($cat['status'] == 'sold') echo 'Vendu';
@@ -365,7 +365,7 @@ include 'includes/header.php';
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Vermifugé</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Micropucé</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Socialisé avec enfants, chats et chiens</li>
-                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Trousse de départ incluant nourriture, jouets, couverture avec l'odeur de la fratrie et plus.</li>
+                                <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Trousse de départ incluant nourriture, jouets, couverture avec l'odeur de la fratrie et plus</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Carnet de santé établi par un vétérinaire certifié</li>
                                 <li class="mb-1"><i class="fas fa-check text-success mr-2"></i> Suivi post adoption</li>
                                 <li class="mb-1"><i class="fas fa-shield-alt text-primary mr-2"></i> Garantie de santé de 10 jours (maladies virales)*</li>

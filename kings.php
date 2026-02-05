@@ -74,11 +74,11 @@ if ($selected_id) {
                     </p>
                     <p class="mb-2">
                         <i class="fas fa-heartbeat text-danger mr-2"></i>
-                        Ils sont aussi testés génétiquement pour la dysplasie des hanches (HD) et un échographie cardiaque (CMH), tous deux certifés par l'Orthopedic Foundation for Animals (OFA).
+                        Ils sont aussi testés génétiquement pour la dysplasie des hanches (HD) et un échographie cardiaque (CMH), tous deux certifés par l'Orthopedic Foundation for Animals (OFA)
                     </p>
                     <p class="mb-0">
                         <i class="fas fa-dna text-success mr-2"></i>
-                        Nous prenons soin de respecter les pedigree pour avoir un coefficient de consanguinité qui respecte la norme (- de 12% indirect et 0% direct).
+                        Nous prenons soin de respecter les pedigrees pour avoir un coefficient de consanguinité qui respecte la norme (Moins de 12% indirect et 0% direct, COI%)
                     </p>
                 </div>
             </div>
@@ -141,6 +141,45 @@ if ($selected_id) {
                     <!-- Sexe : Icone Mixte + Texte (comme index) -->
                   </div>
                   
+                  <!-- Couleur et Effets Spéciaux (Style chat_details.php) -->
+                  <div class="mb-3" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                      <?php 
+                      // Récupérer le nom de la couleur depuis la table colors
+                      $color_name_fr = '';
+                      if (!empty($cat['color_code'])) {
+                          $stmt_color = $pdo->prepare("SELECT name_fr FROM colors WHERE code = ?");
+                          $stmt_color->execute([$cat['color_code']]);
+                          $color_name_fr = $stmt_color->fetchColumn();
+                      }
+                      
+                      if (!empty($color_name_fr) || !empty($cat['color_code'])): 
+                      ?>
+                          <span style="color: #b3b3b3ff; font-size: 1.1rem; font-weight: 700;">
+                              <?php echo htmlspecialchars($color_name_fr ?? ''); ?>
+                              <?php if (!empty($cat['color_code'])): ?>
+                                  <span style="color: #6c757d;">(<?php echo htmlspecialchars($cat['color_code']); ?>)</span>
+                              <?php endif; ?>
+                          </span>
+                      <?php endif; ?>
+                      
+                      <?php 
+                      // Afficher les effets spéciaux
+                      $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
+                      $effects = [
+                          'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
+                          'SILVER(s)' => stripos($full_desc, 'silver') !== false,
+                          'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
+                          'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
+                      ];
+                      
+                      foreach($effects as $label => $active) {
+                          if ($active) {
+                              echo '<span style="background: #000; color: #fff !important; padding: 4px 12px; border-radius: 4px; font-size: 0.9rem; font-weight: 500;">' . $label . '</span>';
+                          }
+                      }
+                      ?>
+                  </div>
+                  
                   <div class="kitten-info-grid">
                     <!-- Sexe -->
                     <div class="info-item">
@@ -164,33 +203,6 @@ if ($selected_id) {
                     <div class="info-item">
                       <i class="fas fa-paw text-dark"></i>
                       <span><?php echo htmlspecialchars($cat['paw_type'] ?? 'Régulières'); ?></span>
-                    </div>
-
-                    <!-- Couleur -->
-                    <div class="info-item">
-                      <i class="fas fa-palette text-dark"></i>
-                      <span>
-                        <?php echo format_cat_color($cat); ?>
-                      </span>
-                    </div>
-                    
-                    <!-- Effets Spéciaux -->
-                    <div class="info-item special-effects-row" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
-                        <?php 
-                        $full_desc = ($cat['color'] ?? '') . ' ' . ($cat['special_effect'] ?? '');
-                        $effects = [
-                            'SMOKE(s)' => stripos($full_desc, 'smoke') !== false,
-                            'SILVER(s)' => stripos($full_desc, 'silver') !== false,
-                            'SHADED(s)' => stripos($full_desc, 'shaded') !== false,
-                            'CHINCHILLA(s)' => stripos($full_desc, 'chinchilla') !== false
-                        ];
-                        
-                        foreach($effects as $label => $active) {
-                            if ($active) {
-                                echo '<span class="special-effect-badge text-white">' . $label . '</span>';
-                            }
-                        }
-                        ?>
                     </div>
                   </div>
                   
