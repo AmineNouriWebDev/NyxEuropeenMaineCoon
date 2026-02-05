@@ -128,7 +128,7 @@ include 'includes/header.php';
                         <div class="mt-4 p-4 rounded bg-primary text-white text-center shadow-sm">
                             <i class="fas fa-project-diagram fa-2x mb-3 text-white-50"></i>
                             <h5 class="font-weight-bold">Respect des Pedigrees</h5>
-                            <p class="mb-0">Nous veillons rigoureusement à maintenir un coefficient de consanguinité respectant les normes : <br><strong>- de 12% en indirect et 0% en direct.</strong></p>
+                            <p class="mb-0">Nous veillons rigoureusement à maintenir un coefficient de consanguinité respectant les normes : <br><strong>moins de 12% indirect et 0% direct (COI%).</strong></p>
                         </div>
                     </div>
                 </div>

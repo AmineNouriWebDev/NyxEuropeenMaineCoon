@@ -10,6 +10,7 @@ $mother_id = '';
 $season_text = '';
 $description = '';
 $expected_colors = '';
+$expected_effects = '';
 $is_active = 1;
 $msg = $_GET['msg'] ?? '';
 
@@ -32,6 +33,7 @@ if (isset($_GET['id'])) {
         $season_text = $litter['season_text'];
         $description = $litter['description'];
         $expected_colors = $litter['expected_colors'];
+        $expected_effects = $litter['expected_effects'];
         $is_active = $litter['is_active'];
     }
 }
@@ -46,17 +48,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $color_codes = $_POST['color_codes'] ?? [];
     $expected_colors = implode(', ', $color_codes); // Store as comma-separated string
     
+    // Process special effects from checkboxes
+    $special_effects = $_POST['special_effects'] ?? [];
+    $expected_effects = implode(',', $special_effects); // Store as comma-separated string
+    
     $is_active = isset($_POST['is_active']) ? 1 : 0;
 
     if ($isEditing) {
-        $stmt = $pdo->prepare("UPDATE upcoming_litters SET father_id=?, mother_id=?, season_text=?, description=?, expected_colors=?, is_active=? WHERE id=?");
-        $stmt->execute([$father_id, $mother_id, $season_text, $description, $expected_colors, $is_active, $id]);
+        $stmt = $pdo->prepare("UPDATE upcoming_litters SET father_id=?, mother_id=?, season_text=?, description=?, expected_colors=?, expected_effects=?, is_active=? WHERE id=?");
+        $stmt->execute([$father_id, $mother_id, $season_text, $description, $expected_colors, $expected_effects, $is_active, $id]);
         $msg = "Portée mise à jour avec succès.";
         // Redirect back to same page
         header("Location: litter_edit.php?id=$id&msg=" . urlencode($msg));
     } else {
-        $stmt = $pdo->prepare("INSERT INTO upcoming_litters (father_id, mother_id, season_text, description, expected_colors, is_active) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$father_id, $mother_id, $season_text, $description, $expected_colors, $is_active]);
+        $stmt = $pdo->prepare("INSERT INTO upcoming_litters (father_id, mother_id, season_text, description, expected_colors, expected_effects, is_active) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$father_id, $mother_id, $season_text, $description, $expected_colors, $expected_effects, $is_active]);
         $id = $pdo->lastInsertId();
         $msg = "Nouvelle portée créée avec succès.";
         // Redirect to list page to clear form
@@ -135,6 +141,27 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <small class="text-muted">Cochez les couleurs probables pour cette portée.</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Effets Spéciaux Probables</label>
+                <div class="card p-3 mb-2">
+                    <div class="d-flex flex-wrap gap-3">
+                        <?php
+                        $effects = ['SMOKE', 'SILVER', 'SHADED', 'CHINCHILLA'];
+                        $currentEffects = !empty($expected_effects) ? explode(',', $expected_effects) : [];
+                        ?>
+                        <?php foreach ($effects as $effect): ?>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="special_effects[]" value="<?php echo $effect; ?>" id="effect_<?php echo $effect; ?>" <?php echo in_array($effect, $currentEffects) ? 'checked' : ''; ?>>
+                            <label class="form-check-label font-weight-bold" for="effect_<?php echo $effect; ?>">
+                                <?php echo $effect; ?>
+                            </label>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <small class="text-muted">Cochez les effets spéciaux probables pour cette portée.</small>
             </div>
 
             <div class="mb-3 form-check">

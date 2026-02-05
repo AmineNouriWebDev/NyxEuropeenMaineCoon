@@ -195,25 +195,43 @@ function get_main_image($pdo, $cat_id) {
                             </div>
                             <?php endif; ?>
 
-                            <?php if (!empty($litter['expected_colors'])): ?>
+                            <?php if (!empty($litter['expected_colors']) || !empty($litter['expected_effects'])): ?>
                             <div class="expected-colors-section">
                                 <h5 class="colors-title">
                                     <i class="fas fa-palette"></i> Couleurs Probables
                                 </h5>
-                                <div class="colors-content">
+                                <div class="colors-content" style="display: flex; flex-wrap: wrap; gap: 10px;">
                                     <?php 
-                                    $color_codes = explode(', ', $litter['expected_colors']);
-                                    foreach ($color_codes as $code):
-                                        $code = trim($code);
-                                        if (!empty($code) && isset($colors_map[$code])):
+                                    // Afficher les couleurs
+                                    if (!empty($litter['expected_colors'])):
+                                        $color_codes = explode(', ', $litter['expected_colors']);
+                                        foreach ($color_codes as $code):
+                                            $code = trim($code);
+                                            if (!empty($code) && isset($colors_map[$code])):
                                     ?>
                                         <span class="color-badge">
                                             <span class="color-code"><?php echo htmlspecialchars($code); ?></span>
                                             <span class="color-name"><?php echo htmlspecialchars($colors_map[$code]); ?></span>
                                         </span>
                                     <?php 
-                                        endif;
-                                    endforeach; 
+                                            endif;
+                                        endforeach;
+                                    endif;
+                                    
+                                    // Puis afficher les effets spéciaux en gras
+                                    if (!empty($litter['expected_effects'])):
+                                        $effects_arr = explode(',', $litter['expected_effects']);
+                                        foreach ($effects_arr as $effect):
+                                            $effect = trim($effect);
+                                            if (!empty($effect)):
+                                    ?>
+                                        <span style="font-weight: 700; color: #2d3748; font-size: 1rem;">
+                                            <?php echo htmlspecialchars($effect); ?>(s)
+                                        </span>
+                                    <?php 
+                                            endif;
+                                        endforeach;
+                                    endif;
                                     ?>
                                 </div>
                             </div>
