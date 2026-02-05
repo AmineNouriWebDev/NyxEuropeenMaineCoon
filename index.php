@@ -95,7 +95,7 @@ $cats = get_cats_from_db($pdo, 'available');
     <div class="row" id="kittens-grid">
       <?php if(empty($cats)): ?>
           <div class="col-12 text-center p-5">
-              <h3>Tous nos petits Nyx Coon on trouvé un foyer.</h3>
+              <h3>Tous nos petits Nyx Coon ont trouvé un foyer.</h3>
               <p>Ne perdez pas votre chance et inscrivez-vous sur la liste de priorité 👉 <a href="portees_a_venir.php">portées à venir</a> !</p>
           </div>
       <?php else: ?>
