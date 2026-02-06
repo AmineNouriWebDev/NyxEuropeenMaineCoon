@@ -1040,6 +1040,7 @@ section:not([class*="hero"]):not(.social-links-section) {
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
+
 }
 
 /* Configuration spécifique Footer (Grand Logo) */
@@ -1047,6 +1048,7 @@ section:not([class*="hero"]):not(.social-links-section) {
   width: 200px;
   height: 200px;
   margin-bottom: 10px;
+
 }
 
 .footer-logo .logo-cat img {
@@ -1058,6 +1060,7 @@ section:not([class*="hero"]):not(.social-links-section) {
   top: auto;
   left: auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+
 }
 
 .footer-logo .logo-cat:before {
@@ -2542,4 +2545,11 @@ body.home .mobile-logo {
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
+}
+
+/* Mobile Footer Logo Fix */
+@media (max-width: 768px) {
+  .footer-logo .logo-cat img {
+    margin-top: 20px !important;
+  }
 }
