@@ -103,7 +103,7 @@ if ($selected_id) {
             <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper">
               <div class="kitten-card">
                 <div class="kitten-image-slider">
-                  <div id="carousel-<?php echo $cat_id; ?>" class="carousel slide" data-ride="carousel" data-interval="false">
+                  <div id="carousel-<?php echo $cat_id; ?>" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <ol class="carousel-indicators">
                       <?php foreach ($images as $k => $img): ?>
                         <li data-target="#carousel-<?php echo $cat_id; ?>" data-slide-to="<?php echo $k; ?>" class="<?php echo $k === 0 ? 'active' : ''; ?>"></li>

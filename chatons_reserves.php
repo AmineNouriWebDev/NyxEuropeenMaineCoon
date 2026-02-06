@@ -41,7 +41,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
             <div class="col-lg-4 col-md-6 mb-4 reserved-card-wrapper" style="opacity: 1 !important; visibility: visible !important; display: block !important; transform: none !important; min-height: 100px;">
               <div class="reserved-card" style="opacity: 1 !important; visibility: visible !important; transform: none !important; background: white;">
                 <div class="reserved-card-slider">
-                  <div id="carousel-<?php echo $cat_id; ?>" class="carousel slide" data-ride="carousel" data-interval="false">
+                  <div id="carousel-<?php echo $cat_id; ?>" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <ol class="carousel-indicators">
                       <?php foreach ($images as $k => $img): ?>
                         <li data-target="#carousel-<?php echo $cat_id; ?>" data-slide-to="<?php echo $k; ?>" class="<?php echo $k === 0 ? 'active' : ''; ?>"></li>
