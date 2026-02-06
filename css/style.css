@@ -2601,3 +2601,8 @@ body.home .mobile-logo {
     /* Ajustement padding */
   }
 }
+/* Force Grandstander Font in Footer */
+.footer-logo .logo-text {
+    font-family: 'Grandstander', cursive !important;
+}
+
