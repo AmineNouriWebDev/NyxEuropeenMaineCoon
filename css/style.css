@@ -193,7 +193,7 @@ h6 {
   position: relative;
   width: 135px;
   /* Augmenté de 90px à 135px pour accueillir le logo x1.5 */
-  height: 80px;
+  height: 75px;
   z-index: 2000;
 }
 
@@ -1979,7 +1979,7 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80px;
-  height: 80px;
+  height: 75px;
   background: rgba(102, 16, 242, 0.95);
   border-radius: 50%;
   display: flex;
@@ -2110,7 +2110,7 @@ button:hover {
 
 /* LOGO FOOTER AGRANDI X2 */
 .logo-cat img {
-  height: 80px;
+  height: 75px;
   /* Taille de base */
   width: auto;
   object-fit: contain;
@@ -2573,11 +2573,12 @@ body.home .mobile-logo {
 
 /* Large Screens (Nav Buttons) */
 @media (min-width: 1600px) {
-    .nav-btn {
-        min-width: 155px !important;
-        height: 80px !important;
+    body.home .nav-btn {
+        min-width: 145px !important;
+        height: 75px !important;
         font-size: 14px !important;
         padding: 8px 10px !important; /* Ajustement padding */
     }
 }
+
 
