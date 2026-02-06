@@ -193,7 +193,7 @@ h6 {
   position: relative;
   width: 135px;
   /* Augmenté de 90px à 135px pour accueillir le logo x1.5 */
-  height: 90px;
+  height: 80px;
   z-index: 2000;
 }
 
@@ -2567,6 +2567,17 @@ body.home .mobile-logo {
 @media (min-width: 1600px) {
     #heroLogo {
         max-width: 500px; /* Agrandissement pour les grands �crans */
+    }
+}
+
+
+/* Large Screens (Nav Buttons) */
+@media (min-width: 1600px) {
+    .nav-btn {
+        min-width: 155px !important;
+        height: 80px !important;
+        font-size: 14px !important;
+        padding: 8px 10px !important; /* Ajustement padding */
     }
 }
 
