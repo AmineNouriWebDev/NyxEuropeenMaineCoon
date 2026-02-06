@@ -2553,3 +2553,20 @@ body.home .mobile-logo {
     margin-top: 20px !important;
   }
 }
+/* Hero Logo Styles moved from inline */
+#heroLogo {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Large Screens (Desktop 1920x1080+) */
+@media (min-width: 1600px) {
+    #heroLogo {
+        max-width: 500px; /* Agrandissement pour les grands écrans */
+    }
+}
+
