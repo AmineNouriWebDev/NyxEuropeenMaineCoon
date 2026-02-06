@@ -2606,3 +2606,11 @@ body.home .mobile-logo {
     font-family: 'Grandstander', cursive !important;
 }
 
+
+/* Large Screens Container Adjustment for Bigger Cards */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1550px !important;
+    }
+}
+
