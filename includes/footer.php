@@ -29,7 +29,7 @@
       <div class="logo-cat">
         <img src="img/logo-footer.png" alt="Nyx European Maine Coon Logo" />
       </div>
-      <div class="logo-text" style="font-size: 2.5rem; margin-top: 10px; font-family: 'Fuzzy Bubbles', cursive;">
+      <div class="logo-text" style="font-size: 2.5rem; margin-top: 10px; ">
         Nyx European <span>Maine Coon</span>
       </div>
     </div>

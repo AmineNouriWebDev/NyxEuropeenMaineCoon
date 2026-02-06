@@ -90,15 +90,8 @@ include 'includes/header.php';
 <section class="kitten-section purple-hero-bg" style="padding-top: 20px; min-height: 100vh;">
 
 
-<div class="container my-5">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-transparent p-0 mb-4">
-            <li class="breadcrumb-item"><a href="index.php" class="text-muted">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="index.php#kittens" class="text-muted">Chatons</a></li>
-            <li class="breadcrumb-item active text-primary font-weight-bold" aria-current="page"><?php echo htmlspecialchars($cat['name']); ?></li>
-        </ol>
-    </nav>
+<div class="container" style ="margin-top: 130px;">
+    
 
     <?php if ($msg == 'success'): ?>
         <div class="alert alert-success">Votre demande a été envoyée avec succès !</div>
@@ -274,7 +267,7 @@ include 'includes/header.php';
                         </h6>
                         <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 16px; margin-right: 5px; vertical-align: middle;">
-                            <span class="badge badge-primary mr-3" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
+                            <span class="text-muted font-weight-bold mr-3" style="font-size: 1.25rem;">
                                 <?php echo number_format($cat['stud_price_cad'], 0, ',', ' '); ?> $
                             </span>
                             <?php if (!empty($cat['old_stud_price_cad'])): ?>
@@ -303,7 +296,7 @@ include 'includes/header.php';
                         </h6>
                         <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 16px; margin-right: 5px; vertical-align: middle;">
-                            <span class="badge badge-success mr-3" style="font-size: 1.1rem; padding: 0.5rem 1rem;">
+                            <span class="text-muted font-weight-bold" style="font-size: 1.1rem; ">
                                 <?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $
                             </span>
                             <?php if (!empty($cat['old_retirement_price_cad'])): ?>
