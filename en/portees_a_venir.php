@@ -24,9 +24,9 @@ $litters = $pdo->query($sql)->fetchAll();
 
 // Récupérer toutes les couleurs pour le mapping code -> nom
 $colors_map = [];
-$colors_query = $pdo->query("SELECT code, name_fr FROM colors");
+$colors_query = $pdo->query("SELECT code, name_en FROM colors");
 while ($color = $colors_query->fetch()) {
-    $colors_map[$color['code']] = $color['name_fr'];
+    $colors_map[$color['code']] = $color['name_en'];
 }
 
 // Helper pour image principale
@@ -78,12 +78,16 @@ function get_main_image($pdo, $cat_id) {
                         <div class="season-badge" style="color:white !important;">
                             <i class="fas fa-calendar-star"></i>
                             <?php 
-                            $season_en = str_replace(
-                                ['Printemps', 'Été', 'Automne', 'Hiver'], 
-                                ['Spring', 'Summer', 'Autumn', 'Winter'], 
-                                $litter['season_text']
-                            );
-                            echo htmlspecialchars($season_en); 
+                            if (!empty($litter['season_text_en'])) {
+                                echo htmlspecialchars($litter['season_text_en']);
+                            } else {
+                                $season_en = str_replace(
+                                    ['Printemps', 'Été', 'Automne', 'Hiver'], 
+                                    ['Spring', 'Summer', 'Autumn', 'Winter'], 
+                                    $litter['season_text']
+                                );
+                                echo htmlspecialchars($season_en); 
+                            }
                             ?>
                         </div>
                         <h2 class="litter-title">
@@ -191,13 +195,16 @@ function get_main_image($pdo, $cat_id) {
 
                         <!-- Description & Colors -->
                         <div class="litter-details">
-                            <?php if (!empty($litter['description'])): ?>
+                            <?php 
+                            $desc_en = !empty($litter['description_en']) ? $litter['description_en'] : $litter['description'];
+                            if (!empty($desc_en)): 
+                            ?>
                             <div class="litter-description">
                                 <div class="description-icon">
                                     <i class="fas fa-comment-dots"></i>
                                 </div>
                                 <div class="description-text">
-                                    <?php echo $litter['description']; ?>
+                                    <?php echo $desc_en; ?>
                                 </div>
                             </div>
                             <?php endif; ?>

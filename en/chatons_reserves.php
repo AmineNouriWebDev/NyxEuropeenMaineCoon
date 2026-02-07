@@ -132,7 +132,19 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                     <!-- Qualité -->
                     <div class="info-item">
                       <i class="fas fa-cat text-dark"></i>
-                      <span><?php echo htmlspecialchars($cat['quality']); ?></span>
+                      <span>
+                        <?php 
+                        $quality_map = [
+                            'Animal de compagnie' => 'Pet Only',
+                            'Animal d\'élevage' => 'Breeder',
+                            'Animal de compagnie ou d\'élevage' => 'Pet or Breeder',
+                            'Pet Quality' => 'Pet Quality',
+                            'Breeder Quality' => 'Breeder Quality',
+                            'Show Quality' => 'Show Quality'
+                        ];
+                        echo htmlspecialchars($quality_map[$cat['quality']] ?? $cat['quality']); 
+                        ?>
+                      </span>
                     </div>
 
                     <!-- Type de pattes -->
