@@ -143,8 +143,8 @@
           <!-- Navigation Buttons -->
           <div class="nav-buttons">
             <a href="index.php" class="nav-btn">
-              <span>AVAILABLE KITTENS</span>
-              <span>& CATS</span>
+              <span>AVAILABLE</span>
+              <span>KITTENS & CATS</span>
             </a>
             <a href="kings.php" class="nav-btn">
               <span>KINGS</span>
@@ -153,8 +153,8 @@
               <span>QUEENS</span>
             </a>
             <a href="chatons_reserves.php" class="nav-btn">
-              <span>RESERVED KITTENS</span>
-              <span>& CATS</span>
+              <span>RESERVED</span>
+              <span>KITTENS & CATS</span>
             </a>
             <a href="portees_a_venir.php" class="nav-btn">
               <span>UPCOMING</span>
