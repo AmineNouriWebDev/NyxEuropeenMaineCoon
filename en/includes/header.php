@@ -133,6 +133,17 @@
             <a href="https://tica.org/" target="_blank"><img src="../img/icones/l2.png" alt="TICA" class="assoc-logo"></a>
             <a href="https://www.cca-afc.com/" target="_blank"><img src="../img/icones/l3.png" alt="CCA" class="assoc-logo"></a>
           </div>
+          <!-- Language Switcher Mobile -->
+          <div class="d-flex justify-content-center mb-4">
+             <?php 
+               $current_page = basename($_SERVER['PHP_SELF']);
+               $query_string = $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '';
+             ?>
+             <a href="<?php echo '../' . $current_page . $query_string; ?>" class="lang-toggle-btn" title="Passer en Français">
+                <img src="https://flagcdn.com/24x18/fr.png" alt="FR" class="flag-icon">
+                <span class="lang-text" style="color: #2d3436 !important;">Version Française</span>
+             </a>
+          </div>
         </div>
         
         <!-- Navigation Links -->
