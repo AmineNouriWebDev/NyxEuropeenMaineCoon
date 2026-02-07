@@ -122,7 +122,7 @@
                $query_string = $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '';
              ?>
              <a href="<?php echo '../' . $current_page . $query_string; ?>" class="lang-toggle-btn" title="Passer en Français">
-                <img src="https://flagcdn.com/24x18/fr.png" alt="FR" class="flag-icon">
+                <img src="https://flagcdn.com/24x18/ca.png" alt="CA" class="flag-icon">
                 <span class="lang-text">Version Française</span>
              </a>
         </div>
@@ -208,7 +208,7 @@
                $query_string = $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '';
              ?>
              <a href="<?php echo '../' . $current_page . $query_string; ?>" class="lang-toggle-btn" title="Passer en Français">
-                <img src="https://flagcdn.com/24x18/fr.png" alt="FR" class="flag-icon">
+                <img src="https://flagcdn.com/24x18/ca.png" alt="CA" class="flag-icon">
                 <span class="lang-text" style="color: #2d3436 !important;">Version Française</span>
              </a>
           </div>

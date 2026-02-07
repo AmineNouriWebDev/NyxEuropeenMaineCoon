@@ -30,7 +30,7 @@ $cats = get_cats_from_db($pdo, 'available');
       <div class="row ml-0 mr-0">
         <div class="col-lg-6 col-md-8 text-left pl-0">
           <!-- Logo Principal replace Text -->
-          <img id="heroLogo" src="../img/logo_principal.png" alt="Nyx Maine Coon">
+          <img id="heroLogo" src="../img/logo_principal.png" alt="Nyx Maine Coon" class="d-none d-md-block">
           
           
      
