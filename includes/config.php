@@ -16,7 +16,7 @@ if (IS_LOCAL) {
     // Normalisation Windows (remplacer \ par /)
     $scriptDir = str_replace('\\', '/', $scriptDir);
     // On nettoie pour avoir la racine du projet
-    $scriptDir = str_replace(['/admin', '/includes'], '', $scriptDir);
+    $scriptDir = str_replace(['/admin', '/includes', '/en'], '', $scriptDir);
     // Supprimer le slash final s'il existe (sauf si racine pure)
     $scriptDir = rtrim($scriptDir, '/');
     
