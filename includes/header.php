@@ -37,17 +37,26 @@
   <nav id="main-nav">
     <!-- Section 1 : Réseaux Sociaux + Logos Associations -->
     <div class="top-section">
-      <div class="container-fluid">
-        <div class="d-flex justify-content-around align-items-center">
-          <!-- Réseaux Sociaux - Gauche -->
-          <!-- Social links removed and moved to index.php -->
-
-          <!-- Logos Associations - Droite -->
+      <div class="container-fluid position-relative">
+        <div class="d-flex justify-content-center align-items-center">
+          <!-- Logos Associations - Centrés -->
           <div class="association-logos">
             <a href="https://www.wcf-bestcat.de/" target="_blank"><img src="img/icones/l1.png" alt="Association 1" class="assoc-logo"></a>
             <a href="https://tica.org/" target="_blank"><img src="img/icones/l2.png" alt="Association 2" class="assoc-logo"></a>
             <a href="https://www.cca-afc.com/" target="_blank"><img src="img/icones/l3.png" alt="Association 3" class="assoc-logo"></a>
           </div>
+        </div>
+
+        <!-- Language Switcher - Absolu à Droite -->
+        <div class="language-switcher-wrapper" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%);">
+             <?php 
+               $current_page = basename($_SERVER['PHP_SELF']);
+               $query_string = $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '';
+             ?>
+             <a href="<?php echo 'en/' . $current_page . $query_string; ?>" class="lang-toggle-btn" title="Switch to English">
+                <img src="https://flagcdn.com/24x18/us.png" alt="USA" class="flag-icon">
+                <span class="lang-text">English Version</span>
+             </a>
         </div>
       </div>
     </div>

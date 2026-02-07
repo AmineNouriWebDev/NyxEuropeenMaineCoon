@@ -2601,16 +2601,131 @@ body.home .mobile-logo {
     /* Ajustement padding */
   }
 }
+
 /* Force Grandstander Font in Footer */
 .footer-logo .logo-text {
-    font-family: 'Grandstander', cursive !important;
+  font-family: 'Grandstander', cursive !important;
 }
 
 
 /* Large Screens Container Adjustment for Bigger Cards */
 @media (min-width: 1600px) {
-    .container {
-        max-width: 1550px !important;
-    }
+  .container {
+    max-width: 1550px !important;
+  }
 }
 
+
+/* ========================================
+   LANGUAGE SWITCHER
+   ======================================== */
+.lang-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 2px solid rgba(118, 75, 162, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  color: #2d3436 !important;
+  font-family: 'Grandstander', cursive;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lang-toggle-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(118, 75, 162, 0.25);
+  border-color: var(--primary-color);
+  color: #2d3436 !important;
+}
+
+.lang-toggle-btn .flag-icon {
+  width: 24px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 8px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.language-switcher:hover {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 30px;
+  color: #fff;
+  /* Default text color for transparency */
+  text-decoration: none !important;
+  font-family: 'Grandstander', cursive;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+/* Specific colors for dark background contexts if needed, but here we assume hero */
+.lang-btn .lang-text {
+  color: #2d3436;
+  /* Dark text for visibility on light glossy bg */
+}
+
+.lang-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.lang-btn.active {
+  opacity: 1;
+  background: var(--primary-color);
+  box-shadow: 0 2px 10px rgba(118, 75, 162, 0.3);
+}
+
+.lang-btn.active .lang-text {
+  color: white !important;
+}
+
+.lang-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(45, 52, 54, 0.2);
+  margin: 0 2px;
+}
+
+.flag-icon {
+  width: 20px;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+  /* Since top-section is hidden on mobile, we might need to add it to mobile menu */
+  /* For now, just ensuring it doesn't break anything if top-section was visible */
+}
