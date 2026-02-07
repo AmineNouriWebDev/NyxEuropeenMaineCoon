@@ -110,6 +110,9 @@ if ($selected_id) {
                       <?php foreach ($images as $k => $img): ?>
                         <li data-target="#carousel-<?php echo $cat_id; ?>" data-slide-to="<?php echo $k; ?>" class="<?php echo $k === 0 ? 'active' : ''; ?>"></li>
                       <?php endforeach; ?>
+                      <?php if ($video_url): ?>
+                        <li data-target="#carousel-<?php echo $cat_id; ?>" data-slide-to="<?php echo count($images); ?>"></li>
+                      <?php endif; ?>
                     </ol>
                     <div class="carousel-inner">
                       <?php foreach ($images as $k => $img): ?>
@@ -117,8 +120,17 @@ if ($selected_id) {
                           <img src="<?php echo cat_image_url($img); ?>" class="d-block w-100" alt="<?php echo $cat['name']; ?>" onclick="openImageModal(this.src)">
                         </div>
                       <?php endforeach; ?>
+                      
+                      <?php if ($video_url): ?>
+                        <div class="carousel-item">
+                          <div class="video-thumbnail-container" onclick="openVideoModal('<?php echo $video_url; ?>')">
+                            <img src="<?php echo get_youtube_thumbnail(get_youtube_id($video_url)); ?>" class="d-block w-100" alt="Video">
+                            <div class="play-button"><i class="fas fa-play"></i></div>
+                          </div>
+                        </div>
+                      <?php endif; ?>
                     </div>
-                    <?php if (count($images) > 1): ?>
+                    <?php if (count($images) > 1 || $video_url): ?>
                       <a class="carousel-control-prev" href="#carousel-<?php echo $cat_id; ?>" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
