@@ -29,6 +29,17 @@
   <!-- PWA & Mobile -->
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#667eea">
+
+  <!-- Service Worker PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js')
+          .then(reg => console.log('Service Worker registered !'))
+          .catch(err => console.log('Service Worker error :', err));
+      });
+    }
+  </script>
   
   <!-- Icons & Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
