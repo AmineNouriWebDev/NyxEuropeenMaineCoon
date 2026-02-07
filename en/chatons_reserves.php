@@ -32,7 +32,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
             $cat_id = $cat['id'];
             $images = $cat['images'];
             $video_url = $cat['video_url'] ?? null;
-            $age_display = calculate_age($cat['birth_date'] ?? null);
+            $age_display = calculate_age($cat['birth_date'] ?? null, 'en');
             $is_sold = $cat['status'] === 'sold';
             $status_text = $is_sold ? 'Sold' : 'Reserved';
             $status_color = $is_sold ? '#e74c3c' : '#f39c12';
@@ -81,17 +81,17 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
                   <div class="mb-3" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                       <?php 
                       // Récupérer le nom de la couleur depuis la table colors
-                      $color_name_fr = '';
+                      $color_name_en = '';
                       if (!empty($cat['color_code'])) {
                           $stmt_color = $pdo->prepare("SELECT name_en FROM colors WHERE code = ?");
                           $stmt_color->execute([$cat['color_code']]);
-                          $color_name_fr = $stmt_color->fetchColumn();
+                          $color_name_en = $stmt_color->fetchColumn();
                       }
                       
-                      if (!empty($color_name_fr) || !empty($cat['color_code'])): 
+                      if (!empty($color_name_en) || !empty($cat['color_code'])): 
                       ?>
                           <span style="color: #b3b3b3ff; font-size: 1.1rem; font-weight: 700;">
-                              <?php echo htmlspecialchars($color_name_fr ?? ''); ?>
+                              <?php echo htmlspecialchars($color_name_en ?? ''); ?>
                               <?php if (!empty($cat['color_code'])): ?>
                                   <span style="color: #6c757d;">(<?php echo htmlspecialchars($cat['color_code']); ?>)</span>
                               <?php endif; ?>

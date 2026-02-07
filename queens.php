@@ -97,7 +97,7 @@ if ($selected_id) {
             <?php
             $cat_id = $cat['id'];
             $images = $cat['images'];
-            $age_display = calculate_age($cat['birth_date'] ?? null);
+            $age_display = calculate_age($cat['birth_date'] ?? null, 'en');
             ?>
             
             <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper">

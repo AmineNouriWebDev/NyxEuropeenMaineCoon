@@ -205,13 +205,28 @@ function get_cat_by_id($pdo, $id)
 /**
  * Calculer l'âge à partir de la date de naissance
  */
-function calculate_age($birthDate) {
+function calculate_age($birthDate, $lang = 'fr') {
     if (empty($birthDate)) return 'N/A';
     
     $birth = new DateTime($birthDate);
     $now = new DateTime();
     $interval = $birth->diff($now);
     
+    if ($lang === 'en') {
+        if ($interval->y >= 1) {
+            return $interval->y . ' year' . ($interval->y > 1 ? 's' : '');
+        } elseif ($interval->m >= 1) {
+            $days = $interval->d;
+            $str = $interval->m . ' month' . ($interval->m > 1 ? 's' : '');
+            if ($days > 0) {
+                $str .= ' and ' . $days . ' day' . ($days > 1 ? 's' : '');
+            }
+            return $str;
+        } else {
+            return $interval->d . ' day' . ($interval->d > 1 ? 's' : '');
+        }
+    }
+
     if ($interval->y >= 1) {
         return $interval->y . ' an' . ($interval->y > 1 ? 's' : '');
     } elseif ($interval->m >= 1) {

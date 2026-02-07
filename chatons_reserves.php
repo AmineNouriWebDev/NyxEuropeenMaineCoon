@@ -32,7 +32,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
             $cat_id = $cat['id'];
             $images = $cat['images'];
             $video_url = $cat['video_url'] ?? null;
-            $age_display = calculate_age($cat['birth_date'] ?? null);
+            $age_display = calculate_age($cat['birth_date'] ?? null, 'en');
             $is_sold = $cat['status'] === 'sold';
             $status_text = $is_sold ? 'Vendu' : 'Réservé';
             $status_color = $is_sold ? '#e74c3c' : '#f39c12';

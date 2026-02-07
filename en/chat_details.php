@@ -126,11 +126,11 @@ include 'includes/header.php';
             </div>
 
             <!-- Description Riche -->
-            <?php if (!empty($cat['description'])): ?>
+            <?php if (!empty($cat['description_en'])): ?>
             <div class="card shadow-sm border-0 rounded-lg p-4 mt-4">
                 <h3 class="mb-4 text-primary" style="font-family: 'Vijaya', serif;">About <?php echo htmlspecialchars($cat['name']); ?></h3>
                 <div class="blog-content text-dark" >
-                    <?php echo $cat['description']; ?>
+                    <?php echo $cat['description_en']; ?>
                 </div>
             </div>
             <?php endif; ?>
@@ -199,20 +199,47 @@ include 'includes/header.php';
             <div class="kitten-info-grid mb-4">
                 <div class="info-item text-dark">
                     <i class="fas fa-venus-mars text-dark"></i>
-                    <span class="text-dark"><?php echo $cat['gender'] == 'Male' ? ' Male' : 'Female'; ?></span>
+                    <span class="text-dark">
+                        <?php 
+                        $gender_en = ($cat['gender'] === 'Male') ? 'Male' : 'Female';
+                        echo $gender_en; 
+                        ?>
+                    </span>
                 </div>
                 <div class="info-item text-dark">
                     <i class="fas fa-calendar-alt text-dark"></i>
-                    <span class="text-dark"><?php echo calculate_age($cat['birth_date']); ?></span>
+                    <span class="text-dark"><?php echo calculate_age($cat['birth_date'], 'en'); ?></span>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-cat text-dark"></i>
-                    <span class="text-dark"><?php echo htmlspecialchars($cat['quality']); ?></span>
+                    <span class="text-dark">
+                        <?php 
+                        // Map Quality to English
+                        $quality_map = [
+                            'Animal de compagnie' => 'Pet Only',
+                            'Animal d\'élevage' => 'Breeder',
+                            'Animal de compagnie ou d\'élevage' => 'Pet or Breeder',
+                            'Pet Quality' => 'Pet Quality',
+                            'Breeder Quality' => 'Breeder Quality',
+                            'Show Quality' => 'Show Quality'
+                        ];
+                        echo htmlspecialchars($quality_map[$cat['quality']] ?? $cat['quality']); 
+                        ?>
+                    </span>
                 </div>
                 <?php if (!empty($cat['paw_type'])): ?>
                 <div class="info-item">
                     <i class="fas fa-paw text-dark"></i>
-                    <span class="text-dark"><?php echo htmlspecialchars($cat['paw_type'] === 'Polydactyle' ? 'Polydactyl' : ($cat['paw_type'] === 'Régulières' ? 'Regular' : $cat['paw_type'])); ?></span>
+                    <span class="text-dark">
+                        <?php 
+                        // Map Paw Type to English
+                        $paw_map = [
+                            'Régulières' => 'Regular',
+                            'Polydactiles' => 'Polydactyl'
+                        ];
+                        echo htmlspecialchars($paw_map[$cat['paw_type']] ?? $cat['paw_type']); 
+                        ?>
+                    </span>
                 </div>
                 <?php endif; ?>
 
@@ -283,8 +310,8 @@ include 'includes/header.php';
                                 <span class="old-price ml-2 text-muted"><?php echo number_format($cat['old_stud_price_usd'], 0, ',', ' '); ?> $</span>
                             <?php endif; ?>
                         </div>
-                        <?php if (!empty($cat['sale_description'])): ?>
-                        <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description'])); ?></p>
+                        <?php if (!empty($cat['sale_description_en'])): ?>
+                        <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description_en'])); ?></p>
                         <?php endif; ?>
                     </div>
                     <?php endif; ?>
@@ -312,8 +339,8 @@ include 'includes/header.php';
                                 <span class="old-price ml-2 text-muted"><?php echo number_format($cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
                             <?php endif; ?>
                         </div>
-                        <?php if (!empty($cat['sale_description']) && ($cat['sale_type'] !== 'both')): ?>
-                        <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description'])); ?></p>
+                        <?php if (!empty($cat['sale_description_en']) && ($cat['sale_type'] !== 'both')): ?>
+                        <p class="text-muted mb-0 small"><?php echo nl2br(htmlspecialchars($cat['sale_description_en'])); ?></p>
                         <?php endif; ?>
                     </div>
                     <?php endif; ?>

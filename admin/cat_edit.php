@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $video_url = $_POST['video_url'];
     $description = sanitize_html($_POST['description'] ?? '');
+    $description_en = sanitize_html($_POST['description_en'] ?? '');
     
     // Sale fields (pour Kings et Queens)
     $for_sale = isset($_POST['for_sale']) ? 1 : 0;
@@ -85,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old_retirement_price_cad = !empty($_POST['old_retirement_price_cad']) ? $_POST['old_retirement_price_cad'] : null;
     $old_retirement_price_usd = !empty($_POST['old_retirement_price_usd']) ? $_POST['old_retirement_price_usd'] : null;
     $sale_description = !empty($_POST['sale_description']) ? $_POST['sale_description'] : null;
+    $sale_description_en = !empty($_POST['sale_description_en']) ? $_POST['sale_description_en'] : null;
 
     // Breeding Rights Prices
     $breeding_price_cad = !empty($_POST['breeding_price_cad']) ? $_POST['breeding_price_cad'] : null;
@@ -97,9 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->beginTransaction();
 
         if ($isEditing) {
-            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, old_stud_price_cad=?, old_stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, old_retirement_price_cad=?, old_retirement_price_usd=?, sale_description=?, breeding_price_cad=?, breeding_price_usd=? WHERE id=?";
+            $sql = "UPDATE chats SET name=?, gender=?, birth_date=?, color=?, color_code=?, special_effect=?, quality=?, paw_type=?, price_cad=?, old_price_cad=?, price_usd=?, old_price_usd=?, mother_id=?, father_id=?, video_url=?, status=?, description=?, description_en=?, for_sale=?, sale_type=?, stud_price_cad=?, stud_price_usd=?, old_stud_price_cad=?, old_stud_price_usd=?, retirement_price_cad=?, retirement_price_usd=?, old_retirement_price_cad=?, old_retirement_price_usd=?, sale_description=?, sale_description_en=?, breeding_price_cad=?, breeding_price_usd=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $old_stud_price_cad, $old_stud_price_usd, $retirement_price_cad, $retirement_price_usd, $old_retirement_price_cad, $old_retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd, $id]);
+            $stmt->execute([$name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $description_en, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $old_stud_price_cad, $old_stud_price_usd, $retirement_price_cad, $retirement_price_usd, $old_retirement_price_cad, $old_retirement_price_usd, $sale_description, $sale_description_en, $breeding_price_cad, $breeding_price_usd, $id]);
             $msg = "Chat mis à jour avec succès.";
         } else {
             // Check ID
@@ -107,9 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $check->execute([$slug_id]);
             if ($check->fetchColumn() > 0) $slug_id .= '_' . time();
 
-            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, for_sale, sale_type, stud_price_cad, stud_price_usd, old_stud_price_cad, old_stud_price_usd, retirement_price_cad, retirement_price_usd, old_retirement_price_cad, old_retirement_price_usd, sale_description, breeding_price_cad, breeding_price_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO chats (id, name, gender, birth_date, color, color_code, special_effect, quality, paw_type, price_cad, old_price_cad, price_usd, old_price_usd, mother_id, father_id, video_url, status, description, description_en, for_sale, sale_type, stud_price_cad, stud_price_usd, old_stud_price_cad, old_stud_price_usd, retirement_price_cad, retirement_price_usd, old_retirement_price_cad, old_retirement_price_usd, sale_description, sale_description_en, breeding_price_cad, breeding_price_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $old_stud_price_cad, $old_stud_price_usd, $retirement_price_cad, $retirement_price_usd, $old_retirement_price_cad, $old_retirement_price_usd, $sale_description, $breeding_price_cad, $breeding_price_usd]);
+            $stmt->execute([$slug_id, $name, $gender, $birth_date, $color, $color_code, $special_effect, $quality, $paw_type, $price_cad, $old_price_cad, $price_usd, $old_price_usd, $mother_id, $father_id, $video_url, $status, $description, $description_en, $for_sale, $sale_type, $stud_price_cad, $stud_price_usd, $old_stud_price_cad, $old_stud_price_usd, $retirement_price_cad, $retirement_price_usd, $old_retirement_price_cad, $old_retirement_price_usd, $sale_description, $sale_description_en, $breeding_price_cad, $breeding_price_usd]);
             $id = $slug_id;
             $isEditing = true;
             $msg = "Chat créé avec succès.";
@@ -508,9 +510,15 @@ require_once 'includes/header.php';
                         
                         <!-- Description Vente -->
                         <div class="mb-3">
-                            <label class="form-label">Description pour la vente <small class="text-muted">(Optionnel)</small></label>
-                            <textarea class="form-control" name="sale_description" rows="3" placeholder="Informations supplémentaires sur la vente..."><?php echo $cat['sale_description'] ?? ''; ?></textarea>
-                            <small class="form-text text-muted">Cette description s'affichera sur la page de détails du chat.</small>
+                            <label class="form-label">Description pour la vente <span class="badge bg-secondary">FR</span> <small class="text-muted">(Optionnel)</small></label>
+                            <textarea class="form-control" name="sale_description" rows="3" placeholder="Informations supplémentaires sur la vente en français..."><?php echo $cat['sale_description'] ?? ''; ?></textarea>
+                            <small class="form-text text-muted">Cette description s'affichera sur la page de détails du chat (Version FR).</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Description pour la vente <span class="badge bg-primary">EN</span> <small class="text-muted">(Optionnel)</small></label>
+                            <textarea class="form-control" name="sale_description_en" rows="3" placeholder="Additional sale information in English..."><?php echo $cat['sale_description_en'] ?? ''; ?></textarea>
+                            <small class="form-text text-muted">Cette description s'affichera sur la page de détails du chat (Version EN).</small>
                         </div>
                     </div>
                 </div>
@@ -592,13 +600,23 @@ require_once 'includes/header.php';
         });
         </script>
         
-        <!-- Zone Description -->
+        <!-- Zone Description (FR) -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Description Détaillée (Article)</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Description Détaillée (Article) <span class="badge bg-secondary">FR</span></h6>
             </div>
             <div class="card-body">
                 <textarea id="catDescriptionEditor" name="description"><?php echo $cat['description'] ?? ''; ?></textarea>
+            </div>
+        </div>
+        
+        <!-- Zone Description (EN) -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detailed Description (Article) <span class="badge bg-primary">EN</span></h6>
+            </div>
+            <div class="card-body">
+                <textarea id="catDescriptionEditorEn" name="description_en"><?php echo $cat['description_en'] ?? ''; ?></textarea>
             </div>
         </div>
     </div>
@@ -646,6 +664,14 @@ require_once 'includes/header.php';
     document.addEventListener("DOMContentLoaded", function() {
         tinymce.init({
             selector: '#catDescriptionEditor',
+            height: 400,
+            plugins: 'image link lists table media wordcount code help',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist | link image | removeformat',
+            branding: false
+        });
+        
+        tinymce.init({
+            selector: '#catDescriptionEditorEn',
             height: 400,
             plugins: 'image link lists table media wordcount code help',
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist | link image | removeformat',

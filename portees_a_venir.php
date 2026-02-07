@@ -79,6 +79,12 @@ function get_main_image($pdo, $cat_id) {
                             <i class="fas fa-calendar-star"></i>
                             <?php echo htmlspecialchars($litter['season_text']); ?>
                         </div>
+                        <?php if (!empty($litter['season_text_en'])): ?>
+                        <div class="season-badge mb-3" style="color:white !important; background: rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.5); margin-left:10px;">
+                            <i class="fas fa-globe"></i>
+                            <?php echo htmlspecialchars($litter['season_text_en']); ?>
+                        </div>
+                        <?php endif; ?>
                         <h2 class="litter-title">
                             <span class="cat-name mother-name" style="color:white !important;"><?php echo htmlspecialchars($litter['mother_name']); ?></span>
                             <span class="heart-divider"style="color:white !important;">

@@ -104,7 +104,7 @@ $cats = get_cats_from_db($pdo, 'available');
             $cat_id = $cat['id'];
             $images = $cat['images'];
             $video_url = $cat['video_url'] ?? null;
-            $age_display = calculate_age($cat['birth_date'] ?? null);
+            $age_display = calculate_age($cat['birth_date'] ?? null, 'en');
             ?>
             
             <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper">
@@ -158,17 +158,17 @@ $cats = get_cats_from_db($pdo, 'available');
                   <div class="mb-3" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                       <?php 
                       // Récupérer le nom de la couleur depuis la table colors
-                      $color_name_fr = '';
+                      $color_name_en = '';
                       if (!empty($cat['color_code'])) {
-                          $stmt_color = $pdo->prepare("SELECT name_fr FROM colors WHERE code = ?");
+                          $stmt_color = $pdo->prepare("SELECT name_en FROM colors WHERE code = ?");
                           $stmt_color->execute([$cat['color_code']]);
-                          $color_name_fr = $stmt_color->fetchColumn();
+                          $color_name_en = $stmt_color->fetchColumn();
                       }
                       
-                      if (!empty($color_name_fr) || !empty($cat['color_code'])): 
+                      if (!empty($color_name_en) || !empty($cat['color_code'])): 
                       ?>
                           <span style="color: #b3b3b3ff; font-size: 1.1rem; font-weight: 700;">
-                              <?php echo htmlspecialchars($color_name_fr ?? ''); ?>
+                              <?php echo htmlspecialchars($color_name_en ?? ''); ?>
                               <?php if (!empty($cat['color_code'])): ?>
                                   <span style="color: #6c757d;">(<?php echo htmlspecialchars($cat['color_code']); ?>)</span>
                               <?php endif; ?>
@@ -209,13 +209,27 @@ $cats = get_cats_from_db($pdo, 'available');
                     <!-- Qualité avec icône chat noir -->
                     <div class="info-item">
                       <i class="fas fa-cat text-dark"></i>
-                      <span><?php echo htmlspecialchars($cat['quality']); ?></span>
+                      <span>
+                        <?php 
+                        $quality_map = [
+                            'Animal de compagnie' => 'Pet',
+                            "Animal d'élevage" => 'Breeder',
+                            "Animal de compagnie ou d'élevage" => 'Pet or Breeder'
+                        ];
+                        echo htmlspecialchars($quality_map[$cat['quality']] ?? $cat['quality']); 
+                        ?>
+                      </span>
                     </div>
 
                     <!-- Type de pattes avec icône patte -->
                     <div class="info-item">
                       <i class="fas fa-paw text-dark"></i>
-                      <span><?php echo htmlspecialchars($cat['paw_type'] ?? 'Regular'); ?></span>
+                      <span>
+                        <?php 
+                        $paw_map = ['Régulières' => 'Regular', 'Polydactiles' => 'Polydactyl'];
+                        echo htmlspecialchars($paw_map[$cat['paw_type'] ?? 'Régulières'] ?? ($cat['paw_type'] ?? 'Regular')); 
+                        ?>
+                      </span>
                     </div>
                   </div>
                   
