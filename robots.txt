@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Exclusion des dossiers sensibles
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /config/
+Disallow: /tmp/
+
+# Sitemap
+Sitemap: https://nyxcooncattery.com/sitemap.php

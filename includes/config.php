@@ -3,7 +3,8 @@
 
 // Détection automatique : Si localhost ou IP locale, on est en local
 $whitelist = ['127.0.0.1', '::1', 'localhost'];
-define('IS_LOCAL', in_array($_SERVER['HTTP_HOST'], $whitelist) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false);
+$http_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+define('IS_LOCAL', (php_sapi_name() === 'cli') || in_array($http_host, $whitelist) || strpos($http_host, 'localhost') !== false);
 
 if (IS_LOCAL) {
     // CONFIGURATION LOCALE

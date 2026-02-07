@@ -2,9 +2,36 @@
 <html lang="fr">
 
 <head>
+  <?php include 'includes/seo_config.php'; ?>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nyx European Maine Coon - Adoption & Amour</title>
+  
+  <!-- SEO & Meta Tags Dynamiques -->
+  <title><?php echo $meta_title; ?></title>
+  <meta name="description" content="<?php echo $meta_description; ?>">
+  <meta name="keywords" content="<?php echo $meta_keywords; ?>">
+  <link rel="canonical" href="<?php echo $canonical_url; ?>">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<?php echo $canonical_url; ?>">
+  <meta property="og:title" content="<?php echo $meta_title; ?>">
+  <meta property="og:description" content="<?php echo $meta_description; ?>">
+  <meta property="og:image" content="<?php echo $og_image; ?>">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="<?php echo $canonical_url; ?>">
+  <meta property="twitter:title" content="<?php echo $meta_title; ?>">
+  <meta property="twitter:description" content="<?php echo $meta_description; ?>">
+  <meta property="twitter:image" content="<?php echo $og_image; ?>">
+
+  <!-- PWA & Mobile -->
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#667eea">
+  
+  <!-- Verifications (Placeholders) -->
+  <!-- <meta name="google-site-verification" content="VOTRE_CODE_ICI" /> -->
 
   <!-- Google Fonts - Amatic SC pour titres décoratifs -->
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
@@ -13,6 +40,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Grandstander:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- Preload Critical Resources -->
+  <!-- <link rel="preload" href="img/logo_principal.png" as="image"> -->
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AnimalShelter",
+    "name": "Nyx European Maine Coon",
+    "alternateName": "Chatterie Nyx Coon",
+    "url": "<?php echo SITE_URL; ?>",
+    "logo": "<?php echo asset_url('img/logo_principal.png'); ?>",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61581523927046",
+      "https://www.instagram.com/nyxcoon_cattery_montreal/",
+      "https://www.tiktok.com/@nyx_coon_cattery"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Montréal",
+      "addressRegion": "QC",
+      "addressCountry": "CA"
+    }
+  }
+  </script>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet" />

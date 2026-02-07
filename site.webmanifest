@@ -1,0 +1,22 @@
+{
+    "name": "Nyx European Maine Coon",
+    "short_name": "NyxCoon",
+    "description": "Élevage de Maine Coon Européens à Montréal / European Maine Coon Breeder in Montreal",
+    "start_url": "index.php",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#667eea",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "img/logo_principal.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo_principal.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
