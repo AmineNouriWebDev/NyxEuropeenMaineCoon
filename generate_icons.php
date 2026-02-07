@@ -5,7 +5,7 @@
  * à partir de votre logo principal.
  */
 
-$source_file = 'img/logo_principal.png';
+$source_file = 'img/favicon.png';
 $output_dir = 'img/';
 
 if (!file_exists($source_file)) {
