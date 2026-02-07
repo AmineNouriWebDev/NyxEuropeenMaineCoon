@@ -96,8 +96,16 @@ function openVideoModal(videoUrl) {
   const modal = document.getElementById("videoModal");
   const player = document.getElementById("videoPlayer");
 
-  // Extraire l'ID de la vidéo YouTube
-  const videoId = videoUrl.split("/").pop().split("?")[0];
+  // Extraire l'ID de la vidéo YouTube (Regex robuste)
+  const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = videoUrl.match(regExp);
+  const videoId = (match && match[2].length == 11) ? match[2] : null;
+  
+  if (!videoId) {
+      console.error("Could not extract YouTube ID from:", videoUrl);
+      return;
+  }
+
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 
   player.src = embedUrl;
