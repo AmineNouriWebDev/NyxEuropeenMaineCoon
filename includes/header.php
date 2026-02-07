@@ -33,6 +33,16 @@
   <!-- Verifications (Placeholders) -->
   <!-- <meta name="google-site-verification" content="VOTRE_CODE_ICI" /> -->
   <meta name="google-site-verification" content="DisyY1epBoa1xefepS7DuJS-feY_hTT4aH47w9b7OzM" />
+  <!-- Analitycs -->
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H542MVGWCF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H542MVGWCF');
+</script>
   <!-- Google Fonts - Amatic SC pour titres décoratifs -->
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
   

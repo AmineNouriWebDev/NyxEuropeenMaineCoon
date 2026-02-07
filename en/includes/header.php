@@ -32,6 +32,7 @@
   
   <!-- Verifications (Placeholders) -->
   <!-- <meta name="google-site-verification" content="YOUR_CODE_HERE" /> -->
+  <meta name="google-site-verification" content="DisyY1epBoa1xefepS7DuJS-feY_hTT4aH47w9b7OzM" />
 
   <!-- Google Fonts - Amatic SC for decorative titles -->
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
