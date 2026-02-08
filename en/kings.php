@@ -205,8 +205,8 @@ if ($selected_id) {
                         <?php 
                         $quality_map = [
                             'Animal de compagnie' => 'Pet Only',
-                            'Animal d\'élevage' => 'Breeder',
-                            'Animal de compagnie ou d\'élevage' => 'Pet or Breeder',
+                            'Animal d\'élevage' => 'Breeding quality',
+                            'Animal de compagnie ou d\'élevage' => 'Pet or for breeding',
                             'Pet Quality' => 'Pet Quality',
                             'Breeder Quality' => 'Breeder Quality',
                             'Show Quality' => 'Show Quality'
