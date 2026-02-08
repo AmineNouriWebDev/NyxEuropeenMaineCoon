@@ -82,10 +82,84 @@
   const galleries = {};
 </script>
 <!-- Cookie Consent Banner -->
+<style>
+#cookieConsentContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    z-index: 9999;
+    padding: 15px 20px;
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    border-top: 3px solid #764ba2; /* var(--primary-color) */
+}
+#cookieConsentContainer.show-banner {
+    transform: translateY(0);
+}
+.cookie-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.cookie-text {
+    font-size: 0.95rem;
+    color: #333;
+    flex: 1;
+    min-width: 300px;
+}
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+}
+.btn-cookie-accept {
+    background-color: #764ba2; /* var(--primary-color) */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+.btn-cookie-accept:hover {
+    background-color: #2d3436; /* var(--dark-color) */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(45, 52, 54, 0.3);
+}
+.btn-cookie-decline {
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ccc;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+.btn-cookie-decline:hover {
+    background-color: #f8f9fa;
+    color: #333;
+    border-color: #999;
+}
+@media (max-width: 768px) {
+    .cookie-content { flex-direction: column; text-align: center; }
+    .cookie-text { min-width: 100%; }
+    .cookie-buttons { width: 100%; justify-content: center; }
+}
+</style>
 <div id="cookieConsentContainer">
   <div class="cookie-content">
     <div class="cookie-text">
-      <i class="fas fa-cookie-bite" style="color: var(--primary-color); margin-right: 8px;"></i>
+      <i class="fas fa-cookie-bite" style="color: #667eea; margin-right: 8px;"></i>
       Ce site utilise des cookies pour vous offrir la meilleure expérience. En poursuivant votre navigation, vous acceptez l’utilisation de cookies.
     </div>
     <div class="cookie-buttons">
