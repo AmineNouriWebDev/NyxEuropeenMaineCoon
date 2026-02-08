@@ -81,6 +81,38 @@
 <script>
   const galleries = {};
 </script>
-</body>
+<!-- Cookie Consent Banner -->
+<div id="cookieConsentContainer">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <i class="fas fa-cookie-bite" style="color: var(--primary-color); margin-right: 8px;"></i>
+      This site uses cookies to offer you the best experience. By continuing your navigation, you accept the use of cookies.
+    </div>
+    <div class="cookie-buttons">
+      <button id="btnCookieDecline" class="btn-cookie-decline">Decline</button>
+      <button id="btnCookieAccept" class="btn-cookie-accept">Accept</button>
+    </div>
+  </div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookieConsentContainer').classList.add('show-banner');
+        }
+    }, 2000); // Delay appearance for smoother UX
+
+    document.getElementById('btnCookieAccept').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        document.getElementById('cookieConsentContainer').classList.remove('show-banner');
+    });
+
+    document.getElementById('btnCookieDecline').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'declined');
+        document.getElementById('cookieConsentContainer').classList.remove('show-banner');
+    });
+});
+</script>
+</body>
 </html>
