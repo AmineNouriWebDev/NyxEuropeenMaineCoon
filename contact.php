@@ -327,6 +327,7 @@ include 'includes/header.php';
 
 <style>
 /* Toast Notification Style */
+/* Toast Notification Style */
 .contact-toast {
     position: fixed;
     top: 20px;
@@ -344,11 +345,13 @@ include 'includes/header.php';
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     font-weight: 600;
     opacity: 0;
+    pointer-events: none; /* Prevent blocking clicks when hidden */
 }
 
 .contact-toast.show {
     transform: translateX(-50%) translateY(100px); /* Ajusté pour descendre plus bas que le header */
     opacity: 1;
+    pointer-events: auto; /* Enable clicks when shown */
 }
 
 .contact-toast i {
