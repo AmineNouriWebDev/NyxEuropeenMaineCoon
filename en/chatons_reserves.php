@@ -12,7 +12,7 @@ $cats = get_cats_from_db($pdo, ['reserved', 'sold']);
 
 <!-- Purple Hero Header -->
 <div class="litter-hero text-center py-5">
-    <h1 class="font-weight-bold display-4" style="margin-top: 200px; font-family: 'Amatic SC', cursive;">Reserved Kittens</h1>
+    <h1 class="font-weight-bold display-4" style="margin-top: 200px; font-family: 'Amatic SC', cursive;">Reserved Kittens & Cats</h1>
     <p class="lead" style="color: rgba(255,255,255,0.9);">These kittens have already found their forever family</p>
 </div>
 

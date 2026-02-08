@@ -64,7 +64,7 @@ include 'includes/header.php';
                             'desc' => '<a href="#vipForm" class="btn btn-sm btn-primary mt-2">Access the form below <i class="fas fa-arrow-down"></i></a>'
                         ],
                         4 => [
-                            'title' => "Presentation of available kittens based on your priority order (around 6-8 weeks old)",
+                            'title' => "Presentation of Available Kittens Based on Your Priority Order (Around 6-8 Weeks Old)",
                             'desc' => "When it's your turn to choose, you will be contacted personally. You will have a 24-hour reflection period to make your choice. The next step is signing the sales contract."
                         ],
                         5 => [
@@ -76,8 +76,8 @@ include 'includes/header.php';
                             'desc' => "Get ready to watch your kitten grow with new photos every week until departure! You will see them growing and socializing with others."
                         ],
                         7 => [
-                            'title' => "Pickup around 14 weeks",
-                            'desc' => "At departure, your little Nyx Coon will be ready to discover new horizons. They will be socialized with children, dogs, and cats. Get ready to see all colors..."
+                            'title' => "Pickup Around 14 Weeks",
+                            'desc' => "At departure, your little Nyx Coon will be ready to discover new horizons. They will be socialized with children, dogs, and cats. Get ready for a playful and happy kitten !"
                         ]
                     ];
                     foreach($steps as $num => $step): ?>

@@ -7,7 +7,7 @@ include 'includes/header.php';
 <!-- Hero Section -->
 <section class="litter-hero  text-center "style="padding-top: 200px;">
     <div class="container">
-        <h1 class="display-4 font-weight-bold" style="font-family: 'Vijaya', serif;">Processus d'Adoption</h1>
+        <h1 class="display-4 font-weight-bold" style="font-family: 'Vijaya', serif;">Processus d'adoption</h1>
         <p class="lead" style="color: rgba(255,255,255,0.9);">Rejoignez la famille NYX COON</p>
     </div>
 </section>
@@ -50,12 +50,12 @@ include 'includes/header.php';
                     $steps = [
                         1 => [
                             'title' => "Prendre connaissance des conditions et prix",
-                            'desc' => "Le coût d'un chaton Maine Coon varie en fonction de facteurs tels que le pedigree, la lignée et la réputation de l'éleveur. Des informations supplémentaires peuvent être fournies sur demande. Les prix peuvent variés de 3000$ à 4500$ (taxes incluses). Il y a des frais additionnels pour un chaton polydactile, s'il a les yeux vairons ou bleus ou avec mitaines blanches. Le mieux est de faire la demande directement lors du choix du chaton."
+                            'desc' => "Le coût d'un chaton Maine Coon varie en fonction de facteurs tels que le pedigree, la lignée et la réputation de l'éleveur. Des informations supplémentaires peuvent être fournies sur demande. Les prix peuvent varier de 3000$ à 4500$ (taxes incluses). Il y a des frais additionnels pour un chaton polydactile, s'il a les yeux vairons ou bleus ou avec mitaines blanches. Le mieux est de faire la demande directement lors du choix du chaton."
                         ],
                         2 => [
-                            'title' => "Pourquoi optez pour la liste de priorité",
+                            'title' => "Pourquoi opter pour la liste de priorité",
                             'desc' => "Pourquoi une liste de priorité avec dépôt ?
-- La liste de priorité vous réserves un privilège de sélection sur les prochaines portées à venir
+- La liste de priorité vous réserve un privilège de sélection sur les prochaines portées à venir
 - Pour nous assurer d’avoir une bonne famille pour nos chatons
 - Pour établir un lien avec les familles avant l'adoption"
                         ],
@@ -169,7 +169,7 @@ include 'includes/header.php';
                     </div>
 
                     <div class="form-group mb-4">
-                        <label>Où avez-vous entendu parler des NYX COON ? *</label>
+                        <label>Où avez-vous entendu parler de NYX COON ? *</label>
                         <input type="text" name="hear_about_us" class="form-control" required>
                     </div>
 

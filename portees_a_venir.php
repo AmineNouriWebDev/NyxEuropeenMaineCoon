@@ -44,7 +44,7 @@ function get_main_image($pdo, $cat_id) {
         <div class="hero-content text-center">
             
             <h1 class="hero-title">
-                Portées À Venir
+                Portées à venir
             </h1>
             <p class="hero-subtitle">
                 Découvrez nos futurs mariages d'exception et réservez votre chaton de rêve
@@ -248,7 +248,7 @@ function get_main_image($pdo, $cat_id) {
                         <div class="litter-cta">
                             <a href="adoption.php#formulaire-adoption" class="btn-waiting-list">
                                 <span class="btn-icon text-white"><i class="fas fa-clipboard-list"></i></span>
-                                <span class="btn-text text-white">Rejoindre la Liste d'Attente</span>
+                                <span class="btn-text text-white">Rejoindre la liste de priorité</span>
                                 <span class="btn-arrow text-white"><i class="fas fa-arrow-right"></i></span>
                             </a>
                         </div>

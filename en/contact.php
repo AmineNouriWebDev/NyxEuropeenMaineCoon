@@ -318,7 +318,7 @@ include 'includes/header.php';
 <!-- CTA (From About Page) -->
 <section class="py-5 text-center purple-hero-bg">
     <div class="container">
-        <h2 class="text-dark mb-3">Ready to welcome a giant?</h2>
+        <h2 class="text-dark mb-3">Ready to welcome a gentle giant?</h2>
         <p class="lead mb-4 text-dark">Discover our available kittens or learn more about the adoption process.</p>
         <a href="index.php#kittens" class="btn btn-cat rounded-pill px-4 py-2 font-weight-bold mr-3">View Kittens</a>
         <a href="adoption.php" class="btn btn-cat-secondary rounded-pill px-4 py-2 font-weight-bold text-white">How to Adopt</a>

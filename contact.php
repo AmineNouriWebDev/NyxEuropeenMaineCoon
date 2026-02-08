@@ -47,7 +47,7 @@ include 'includes/header.php';
 <div class="litter-hero">
     <div class="container">
         <div class="hero-content text-center">
-            <h1 class="hero-title" style="font-family: 'Amatic SC', cursive;">Contacts & Infos</h1>
+            <h1 class="hero-title" style="font-family: 'Amatic SC', cursive;">Contacts & infos</h1>
             <p class="hero-subtitle">Nous serions ravis de vous entendre</p>
         </div>
     </div>
@@ -60,7 +60,7 @@ include 'includes/header.php';
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="text-center mb-5">
-                    <h2 class="display-4 font-weight-bold text-primary mb-3" style="font-family: 'Amatic SC', cursive;">Protocoles de Santé Rigoureux</h2>
+                    <h2 class="display-4 font-weight-bold text-primary mb-3" style="font-family: 'Amatic SC', cursive;">Protocoles de santé rigoureux</h2>
                     <div class="separator mx-auto mb-4" style="width: 100px; height: 3px; background: var(--primary-color);"></div>
                 </div>
 
@@ -119,7 +119,7 @@ include 'includes/header.php';
                                     </div>
                                     <div class="media-body">
                                         <h6 class="mt-0 font-weight-bold text-dark">Suivi Préventif</h6>
-                                        <p class="mb-0 text-muted">PCR digestifs et respiratoires faits au besoin, ainsi que tous soins nécessaires au maintien d'une santé optimale.</p>
+                                        <p class="mb-0 text-muted">PCR digestifs et respiratoires faits au besoin, ainsi que tous les soins nécessaires au maintien d'une santé optimale.</p>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@ include 'includes/header.php';
     <div class="row mb-5">
         <div class="col-12">
             <div class="text-center mb-4">
-                <h2 class="section-title-start text-dark" style="font-family: 'Amatic SC', cursive;">Notre Certification</h2>
+                <h2 class="section-title-start text-dark" style="font-family: 'Amatic SC', cursive;">Notre certification</h2>
                 <div class="separator mx-auto mb-4" style="width: 100px; height: 3px; background: var(--primary-color);"></div>
             </div>
             <div class="certificate-container" id="certificateContainer">
@@ -276,9 +276,9 @@ include 'includes/header.php';
                 <img src="./img/about.jpeg" class="img-fluid rounded-lg shadow-lg" alt="Maine Coon Portrait">
             </div>
             <div class="col-md-6">
-                <h2 class="section-title-start text-dark mb-4">Plus Qu'un Simple Élevage</h2>
+                <h2 class="section-title-start text-dark mb-4">Plus qu'un simple élevage</h2>
                 <p class="lead text-dark">Chez Nyx European Maine Coon, nous croyons que chaque chaton mérite d'être élevé comme un membre de la famille dès le premier jour.</p>
-                <p class="text-dark">Situé sur la rive-sud de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité au standard avant tout.</p>
+                <p class="text-dark">Situé sur la rive-sud de Montréal, notre élevage se spécialise dans l'élevage de Maine Coons européens, connus pour leur apparence sauvage, leur taille impressionnante et leur personnalité de gentil géant. Nous priorisons la santé, le tempérament et la conformité aux standards avant tout.</p>
                 
                 <div class="row mt-4">
                     <div class="col-6 mb-3">
@@ -318,7 +318,7 @@ include 'includes/header.php';
 <!-- CTA (From About Page) -->
 <section class="py-5 text-center purple-hero-bg">
     <div class="container">
-        <h2 class="text-dark mb-3">Prêt à accueillir un géant ?</h2>
+        <h2 class="text-dark mb-3">Prêt à accueillir un gentil géant ?</h2>
         <p class="lead mb-4 text-dark">Découvrez nos chatons disponibles ou apprenez-en plus sur le processus d'adoption.</p>
         <a href="index.php#kittens" class="btn btn-cat rounded-pill px-4 py-2 font-weight-bold mr-3">Voir les Chatons</a>
         <a href="adoption.php" class="btn btn-cat-secondary rounded-pill px-4 py-2 font-weight-bold text-white">Comment Adopter</a>

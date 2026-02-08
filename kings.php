@@ -74,7 +74,7 @@ if ($selected_id) {
                     </p>
                     <p class="mb-2">
                         <i class="fas fa-heartbeat text-danger mr-2"></i>
-                        Ils sont aussi testés génétiquement pour la dysplasie des hanches (HD) et un échographie cardiaque (CMH), tous deux certifés par l'Orthopedic Foundation for Animals (OFA)
+                        Ils ont aussi passé un test génétique pour la dysplasie des hanches (HD) et une échographie cardiaque pour la cardiomyopathie hypertrophique féline (CMH), tous deux certifés par l'Orthopedic Foundation for Animals (OFA)
                     </p>
                     <p class="mb-0">
                         <i class="fas fa-dna text-success mr-2"></i>

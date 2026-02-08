@@ -95,7 +95,7 @@ $cats = get_cats_from_db($pdo, 'available');
     <div class="row" id="kittens-grid">
       <?php if(empty($cats)): ?>
           <div class="col-12 text-center p-5">
-              <h3>All our little Nyx Coons have found a home.</h3>
+              <h3>All our little Nyx Coons have found forever home.</h3>
               <p>Don't lose your chance and sign up for the priority list 👉 <a href="portees_a_venir.php">upcoming litters</a> !</p>
           </div>
       <?php else: ?>
@@ -212,9 +212,9 @@ $cats = get_cats_from_db($pdo, 'available');
                       <span>
                         <?php 
                         $quality_map = [
-                            'Animal de compagnie' => 'Pet',
-                            "Animal d'élevage" => 'Breeder',
-                            "Animal de compagnie ou d'élevage" => 'Pet or Breeder'
+                            'Animal de compagnie' => 'Pet only',
+                            "Animal d'élevage" => 'Breeding quality',
+                            "Animal de compagnie ou d'élevage" => 'Pet or for breeding'
                         ];
                         echo htmlspecialchars($quality_map[$cat['quality']] ?? $cat['quality']); 
                         ?>

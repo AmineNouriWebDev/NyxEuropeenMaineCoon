@@ -256,7 +256,7 @@ function get_main_image($pdo, $cat_id) {
                         <div class="litter-cta">
                             <a href="adoption.php#formulaire-adoption" class="btn-waiting-list">
                                 <span class="btn-icon text-white"><i class="fas fa-clipboard-list"></i></span>
-                                <span class="btn-text text-white">Join the Waiting List</span>
+                                <span class="btn-text text-white">Join the priority list</span>
                                 <span class="btn-arrow text-white"><i class="fas fa-arrow-right"></i></span>
                             </a>
                         </div>

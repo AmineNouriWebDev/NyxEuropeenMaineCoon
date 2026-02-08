@@ -41,7 +41,7 @@ if ($selected_id) {
 <!-- Purple Hero Header -->
 <div class="litter-hero text-center py-5">
     <h1 class="font-weight-bold display-4" style="margin-top: 200px; font-family: 'Amatic SC', cursive;">Our Kings</h1>
-    <p class="lead" style="color: rgba(255,255,255,0.9);">Our superb stud males, selected for their size, health, and exceptional temperament</p>
+    <p class="lead" style="color: rgba(255,255,255,0.9);">Our superb breeding males, selected for their size, health, and exceptional temperament</p>
 </div>
 
 <!-- Kings Section -->
@@ -70,16 +70,9 @@ if ($selected_id) {
                 <div class="card-body text-left">
                     <p class="mb-2">
                         <i class="fas fa-notes-medical text-primary mr-2"></i>
-                        All our breeding cats undergo DNA and health testing for FeLV, FIV, SMA, PL, PKdef, and PKD
+                        They are also genetically tested for hip dysplasia (HD) with X-rays and hypertrophic cardiomyopathy (HCM) with heart ultrasounds, both certified by the Orthopedic Foundation for Animals (OFA)
                     </p>
-                    <p class="mb-2">
-                        <i class="fas fa-heartbeat text-danger mr-2"></i>
-                        They are also genetically tested for hip dysplasia (HD) and heart ultrasound (HCM), both certified by the Orthopedic Foundation for Animals (OFA)
-                    </p>
-                    <p class="mb-0">
-                        <i class="fas fa-dna text-success mr-2"></i>
-                        We take care to respect pedigrees to maintain an inbreeding coefficient within standards (Less than 12% indirect and 0% direct, COI%)
-                    </p>
+                   
                 </div>
             </div>
         </div>
