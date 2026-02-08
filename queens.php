@@ -98,7 +98,7 @@ if ($selected_id) {
             $cat_id = $cat['id'];
             $images = $cat['images'];
             $video_url = $cat['video_url'] ?? null;
-            $age_display = calculate_age($cat['birth_date'] ?? null, 'en');
+            $age_display = calculate_age($cat['birth_date'] ?? null, 'fr');
             ?>
             
             <div class="col-lg-4 col-md-6 mb-4 kitten-card-wrapper">

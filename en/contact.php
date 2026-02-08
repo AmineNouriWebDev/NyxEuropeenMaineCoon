@@ -164,7 +164,7 @@ include 'includes/header.php';
                 <div class="separator mx-auto mb-4" style="width: 100px; height: 3px; background: var(--primary-color);"></div>
             </div>
             <div class="certificate-container" id="certificateContainer">
-                <img src="../img/certificat.jpg" alt="Nyx European Maine Coon Breeding Certificate" class="certificate-img img-fluid" id="certificateImg">
+                <img src="../img/certificat.png" alt="Nyx European Maine Coon Breeding Certificate" class="certificate-img img-fluid" id="certificateImg">
                 <div class="mobile-zoom-hint">
                     <i class="fas fa-search-plus"></i>
                     <span>Tap to enlarge</span>
@@ -263,7 +263,7 @@ include 'includes/header.php';
 <!-- Modal Fullscreen pour le Certificat (Mobile uniquement) -->
 <div id="certificateModal" class="certificate-modal">
     <span class="certificate-modal-close">&times;</span>
-    <img class="certificate-modal-content" id="modalCertificateImg" src="./img/certificat.jpg" alt="Nyx European Maine Coon Breeding Certificate">
+    <img class="certificate-modal-content" id="modalCertificateImg" src="../img/certificat.png" alt="Nyx European Maine Coon Breeding Certificate">
     <div class="certificate-modal-caption">Nyx European Maine Coon Breeding Certificate</div>
 </div>
 
