@@ -100,10 +100,10 @@ function openVideoModal(videoUrl) {
   const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   const match = videoUrl.match(regExp);
   const videoId = (match && match[2].length == 11) ? match[2] : null;
-  
+
   if (!videoId) {
-      console.error("Could not extract YouTube ID from:", videoUrl);
-      return;
+    console.error("Could not extract YouTube ID from:", videoUrl);
+    return;
   }
 
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
@@ -238,8 +238,11 @@ document.addEventListener("DOMContentLoaded", function () {
   improveVideoForMobile();
 });
 
-// Animation d'apparition des cartes
+// Animation d'apparition des cartes (only on desktop)
 function animateCards() {
+  // Skip animation on mobile
+  if (window.innerWidth <= 992) return;
+
   const cards = document.querySelectorAll(".kitten-card");
   cards.forEach((card, index) => {
     card.style.opacity = "0";
@@ -329,8 +332,11 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Animate elements on scroll
+// Animate elements on scroll (only on desktop)
 function animateOnScroll() {
+  // Skip animation on mobile to ensure cards are always visible
+  if (window.innerWidth <= 992) return;
+
   const elements = document.querySelectorAll(".kitten-card");
   elements.forEach((element) => {
     const elementPosition = element.getBoundingClientRect().top;
@@ -343,12 +349,20 @@ function animateOnScroll() {
   });
 }
 
-// Set initial state for animation
-document.querySelectorAll(".kitten-card").forEach((card) => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(20px)";
-  card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-});
+// Set initial state for animation (only on desktop to avoid mobile visibility issues)
+if (window.innerWidth > 992) {
+  document.querySelectorAll(".kitten-card").forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+  });
+} else {
+  // On mobile, ensure all cards are immediately visible
+  document.querySelectorAll(".kitten-card").forEach((card) => {
+    card.style.opacity = "1";
+    card.style.transform = "translateY(0)";
+  });
+}
 
 // Run animation on load and scroll
 window.addEventListener("load", animateCards);

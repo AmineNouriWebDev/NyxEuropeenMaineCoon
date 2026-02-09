@@ -2033,35 +2033,38 @@ button:hover {
   }
 }
 
-/* Animation d'entrée progressive pour les cartes */
-.kitten-card-wrapper {
-  /* opacity: 0; REMOVED to fix mobile visibility issues */
-  animation: fadeInUp 0.6s ease forwards;
+/* Animation d'entrée progressive pour les cartes - DESKTOP ONLY */
+@media (min-width: 993px) {
+  .kitten-card-wrapper {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .kitten-card-wrapper:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .kitten-card-wrapper:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .kitten-card-wrapper:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .kitten-card-wrapper:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .kitten-card-wrapper:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  .kitten-card-wrapper:nth-child(6) {
+    animation-delay: 0.6s;
+  }
 }
 
-.kitten-card-wrapper:nth-child(1) {
-  animation-delay: 0.1s;
-}
 
-.kitten-card-wrapper:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.kitten-card-wrapper:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.kitten-card-wrapper:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.kitten-card-wrapper:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-.kitten-card-wrapper:nth-child(6) {
-  animation-delay: 0.6s;
-}
 
 @keyframes fadeInUp {
   from {
@@ -2500,6 +2503,47 @@ body.home .mobile-logo {
     visibility: visible !important;
     animation: none !important;
     transform: none !important;
+  }
+
+  /* Fix pour kitten-card-wrapper (kings.php, queens.php) */
+  .kitten-card-wrapper,
+  .kitten-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    animation-delay: 0s !important;
+    transform: none !important;
+  }
+
+  /* Override each nth-child animation delay explicitly */
+  .kitten-card-wrapper:nth-child(1),
+  .kitten-card-wrapper:nth-child(2),
+  .kitten-card-wrapper:nth-child(3),
+  .kitten-card-wrapper:nth-child(4),
+  .kitten-card-wrapper:nth-child(5),
+  .kitten-card-wrapper:nth-child(6) {
+    animation: none !important;
+    animation-delay: 0s !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    display: block !important;
+  }
+
+  /* FORCE le premier élément à être visible - FIX ULTIME */
+  .row>.kitten-card-wrapper:first-child,
+  .row>.col-lg-4:first-child,
+  .row>.col-md-6:first-child,
+  #cats-grid>.kitten-card-wrapper:first-child,
+  #cats-grid>.col-lg-4:first-child,
+  #cats-grid>.col-md-6:first-child {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    animation: none !important;
+    transform: translateY(0) !important;
+    position: relative !important;
+    z-index: 1 !important;
   }
 }
 
