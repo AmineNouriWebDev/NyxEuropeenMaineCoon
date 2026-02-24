@@ -411,10 +411,35 @@ include 'includes/header.php';
                     </div>
                     <div id="collapsePayment" class="collapse show">
                         <div class="card-body bg-light">
-                            <ul class="list-unstyled mb-0 pl-2">
-                                <li class="mb-1"><i class="fas fa-money-bill-wave text-success mr-2"></i> Cash</li>
-                                <li><i class="fas fa-university text-info mr-2"></i> Bank Transfer</li>
-                            </ul>
+                            <div class="row">
+                                <!-- Left column: payment methods -->
+                                <div class="col-6">
+                                    <ul class="list-unstyled mb-0 pl-2">
+                                        <li class="mb-2"><i class="fas fa-money-bill-wave text-success mr-2"></i> Cash</li>
+                                        <li class="mb-2"><i class="fas fa-university text-info mr-2"></i> Bank Transfer</li>
+                                        <li class="mb-2">
+                                            <i class="fas fa-credit-card text-secondary mr-2"></i> Debit Card
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Right column: credit cards -->
+                                <div class="col-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-2 d-flex align-items-center">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="Mastercard" style="height:24px; width:auto; border-radius:4px; background:#fff; padding:2px 4px; border:1px solid #ddd; margin-right:8px;">
+                                            <span>Master Card Credit</span>
+                                        </li>
+                                        <li class="mb-2 d-flex align-items-center">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Visa_Inc._logo_%281992%E2%80%931999%29.svg/640px-Visa_Inc._logo_%281992%E2%80%931999%29.svg.png" alt="Visa" style="height:24px; width:auto; border-radius:4px; background:#fff; padding:2px 4px; border:1px solid #ddd; margin-right:8px;">
+                                            <span>Visa Credit</span>
+                                        </li>
+                                        <li class="mb-2 d-flex align-items-center">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/American_Express_logo.svg/200px-American_Express_logo.svg.png" alt="American Express" style="height:24px; width:auto; border-radius:4px; background:#fff; padding:2px 4px; border:1px solid #ddd; margin-right:8px;">
+                                            <span>American Express Credit</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
