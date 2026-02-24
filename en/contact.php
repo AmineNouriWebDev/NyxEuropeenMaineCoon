@@ -130,6 +130,14 @@ include 'includes/header.php';
                             <h5 class="font-weight-bold">Pedigree Respect</h5>
                             <p class="mb-0">We rigorously ensure a coefficient of inbreeding respecting standards: <br><strong>less than 12% indirect and 0% direct (COI%).</strong></p>
                         </div>
+
+                        <!-- Veterinary Collaboration -->
+                        <div class="mt-4 text-center">
+                            <p class="text-muted font-italic mb-3">In close collaboration with the Anne-Le Seigneur Veterinary Clinic in Chambly</p>
+                            <a href="https://www.facebook.com/CliniqueveterinaireAnneLeSeigneur" target="_blank" rel="noopener noreferrer" title="Anne-Le Seigneur Veterinary Clinic">
+                                <img src="../img/logo-veterinaire.png" alt="Anne-Le Seigneur Veterinary Clinic in Chambly" class="img-fluid" style="max-height: 80px; width: auto; opacity: 0.85; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

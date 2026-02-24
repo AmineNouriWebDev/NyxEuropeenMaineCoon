@@ -130,6 +130,14 @@ include 'includes/header.php';
                             <h5 class="font-weight-bold">Respect des Pedigrees</h5>
                             <p class="mb-0">Nous veillons rigoureusement à maintenir un coefficient de consanguinité respectant les normes : <br><strong>moins de 12% indirect et 0% direct (COI%).</strong></p>
                         </div>
+
+                        <!-- Collaboration Vétérinaire -->
+                        <div class="mt-4 text-center">
+                            <p class="text-muted font-italic mb-3">En étroite collaboration avec la Clinique Vétérinaire Anne-Le Seigneur de Chambly</p>
+                            <a href="https://www.facebook.com/CliniqueveterinaireAnneLeSeigneur" target="_blank" rel="noopener noreferrer" title="Clinique Vétérinaire Anne-Le Seigneur">
+                                <img src="./img/logo-veterinaire.png" alt="Clinique Vétérinaire Anne-Le Seigneur de Chambly" class="img-fluid" style="max-height: 80px; width: auto; opacity: 0.85; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
