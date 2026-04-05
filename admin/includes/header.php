@@ -139,11 +139,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'requests.php' ? 'active' : ''; ?>" href="requests.php">
-                <i class="fas fa-envelope-open-text"></i> Demandes
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'cats') !== false ? 'active' : ''; ?>" href="cats.php">
                 <i class="fas fa-cat"></i> Mes Chats
             </a>
@@ -151,6 +146,11 @@
         <li class="nav-item">
             <a class="nav-link <?php echo strpos(basename($_SERVER['PHP_SELF']), 'litters') !== false ? 'active' : ''; ?>" href="litters.php">
                 <i class="fas fa-baby-carriage"></i> Portées
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'requests.php' ? 'active' : ''; ?>" href="requests.php">
+                <i class="fas fa-envelope-open-text"></i> Demandes
             </a>
         </li>
         <li class="nav-item">
