@@ -23,7 +23,15 @@ foreach ($fields as $field) {
 
 // Validation basique
 if (empty($data['email']) || empty($data['first_name']) || empty($data['last_name'])) {
-    echo json_encode(['success' => false, 'message' => 'Please fill in the required fields.']);
+    echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
+    exit;
+}
+
+// Turnstile verification
+require_once '../includes/functions.php';
+$turnstile_response = $_POST['cf-turnstile-response'] ?? '';
+if (!verify_turnstile($turnstile_response)) {
+    echo json_encode(['success' => false, 'message' => 'Security validation failed (Captcha).']);
     exit;
 }
 

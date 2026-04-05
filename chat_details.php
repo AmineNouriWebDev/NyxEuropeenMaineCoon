@@ -58,12 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $message = trim($_POST['message']);
     
     if (!empty($visitor_name) && !empty($visitor_email)) {
-        try {
+        // Vérification Turnstile
+        $turnstile_response = $_POST['cf-turnstile-response'] ?? '';
+        if (!verify_turnstile($turnstile_response)) {
+            $msg = "captcha_error";
+        } else {
+            try {
             $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$cat['id'], $cat['name'], $visitor_name, $visitor_email, $visitor_phone, $message, date('Y-m-d H:i:s')]);
             $msg = "success";
-        } catch (Exception $e) {
-            $msg = "error";
+            } catch (Exception $e) {
+                $msg = "error";
+            }
         }
     }
 }
@@ -95,6 +101,8 @@ include 'includes/header.php';
 
     <?php if ($msg == 'success'): ?>
         <div class="alert alert-success">Votre demande a été envoyée avec succès !</div>
+    <?php elseif ($msg == 'captcha_error'): ?>
+        <div class="alert alert-danger">Échec de la validation de sécurité (Captcha). Veuillez réessayer.</div>
     <?php endif; ?>
 
     <div class="row">
@@ -520,6 +528,10 @@ include 'includes/header.php';
                         <div class="mb-3">
                             <label class="form-label">Message</label>
                             <textarea name="message" class="form-control" rows="4" required>Bonjour, je suis intéressé(e) par <?php echo htmlspecialchars($cat['name']); ?>...</textarea>
+                        </div>
+                        <!-- Cloudflare Turnstile -->
+                        <div class="mb-3">
+                            <div class="cf-turnstile" data-sitekey="<?php echo TURNSTILE_SITE_KEY; ?>"></div>
                         </div>
                         <button type="submit" class="btn btn-cat w-100 btn-lg">Envoyer ma demande</button>
                     </form>

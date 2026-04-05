@@ -27,6 +27,14 @@ if (empty($data['email']) || empty($data['first_name']) || empty($data['last_nam
     exit;
 }
 
+// Vérification Turnstile
+require_once 'includes/functions.php'; // S'assurer que les fonctions sont chargées
+$turnstile_response = $_POST['cf-turnstile-response'] ?? '';
+if (!verify_turnstile($turnstile_response)) {
+    echo json_encode(['success' => false, 'message' => 'Échec de la validation de sécurité (Captcha).']);
+    exit;
+}
+
 try {
     $sql = "INSERT INTO vip_requests (
         first_name, last_name, phone, email, 

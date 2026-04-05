@@ -222,6 +222,11 @@ include 'includes/header.php';
                         </div>
                     </div>
 
+                    <!-- Cloudflare Turnstile -->
+                    <div class="form-group mb-4 text-center">
+                        <div class="cf-turnstile d-inline-block" data-sitekey="<?php echo TURNSTILE_SITE_KEY; ?>"></div>
+                    </div>
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-cat btn-lg py-3 px-5 shadow-lg">
                             <i class="fas fa-paper-plane mr-2"></i> Submit Application

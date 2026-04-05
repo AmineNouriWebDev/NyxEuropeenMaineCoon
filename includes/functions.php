@@ -308,3 +308,39 @@ function ensure_cat_has_color_code(&$cat, $pdo) {
         $cat['color_code'] = $best_code;
     }
 }
+
+/**
+ * Vérifier le jeton Cloudflare Turnstile
+ */
+function verify_turnstile($response) {
+    if (empty($response)) {
+        return false;
+    }
+
+    $secret = TURNSTILE_SECRET_KEY;
+    $url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+    $data = [
+        'secret' => $secret,
+        'response' => $response,
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+    ];
+
+    $options = [
+        'http' => [
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+
+    $context  = stream_context_create($options);
+    $result = @file_get_contents($url, false, $context);
+    
+    if ($result === FALSE) {
+        return false;
+    }
+
+    $responseKeys = json_decode($result, true);
+    return $responseKeys["success"] ?? false;
+}

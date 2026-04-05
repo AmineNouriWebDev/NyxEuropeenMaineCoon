@@ -11,7 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($password)) {
         $error = "Veuillez remplir tous les champs.";
     } else {
-        try {
+        // Vérification Turnstile
+        require_once '../includes/functions.php';
+        $turnstile_response = $_POST['cf-turnstile-response'] ?? '';
+        if (!verify_turnstile($turnstile_response)) {
+            $error = "Échec de la validation de sécurité (Captcha).";
+        } else {
+            try {
             $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
             $stmt->execute([$username]);
             $user = $stmt->fetch();
@@ -25,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $error = "Nom d'utilisateur ou mot de passe incorrect.";
             }
-        } catch (PDOException $e) {
-            $error = "Erreur système : " . $e->getMessage();
+            } catch (PDOException $e) {
+                $error = "Erreur système : " . $e->getMessage();
+            }
         }
     }
 }
@@ -39,6 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Connexion Admin - Nyx European Maine Coon</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -95,6 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="password" class="form-label">Mot de passe</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
+            
+            <!-- Cloudflare Turnstile -->
+            <div class="mb-3">
+                <div class="cf-turnstile" data-sitekey="<?php echo TURNSTILE_SITE_KEY; ?>"></div>
+            </div>
+
             <button type="submit" class="btn btn-primary w-100 py-2">Se connecter</button>
         </form>
         <div class="text-center mt-3">

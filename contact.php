@@ -22,6 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
         echo json_encode(['success' => false, 'message' => 'Format d\'email invalide.']);
         exit;
     }
+
+    // Vérification Turnstile
+    $turnstile_response = $_POST['cf-turnstile-response'] ?? '';
+    if (!verify_turnstile($turnstile_response)) {
+        echo json_encode(['success' => false, 'message' => 'Échec de la validation de sécurité (Captcha).']);
+        exit;
+    }
     
     try {
         // Insertion en base de données
@@ -256,6 +263,11 @@ include 'includes/header.php';
                 <div class="form-group mb-4">
                     <label class="small font-weight-bold text-muted">MESSAGE <span class="text-danger">*</span></label>
                     <textarea name="message" class="form-control bg-light border-0 p-3" rows="5" placeholder="Parlez-nous de vous et de ce que vous recherchez..." required></textarea>
+                </div>
+
+                <!-- Cloudflare Turnstile -->
+                <div class="form-group mb-4">
+                    <div class="cf-turnstile" data-sitekey="<?php echo TURNSTILE_SITE_KEY; ?>"></div>
                 </div>
 
                 <button type="submit" class="btn btn-cat py-3 px-5 shadow-sm" id="submitBtn">

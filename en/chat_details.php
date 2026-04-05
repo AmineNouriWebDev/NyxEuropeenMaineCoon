@@ -58,12 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $message = trim($_POST['message']);
     
     if (!empty($visitor_name) && !empty($visitor_email)) {
-        try {
+        // Turnstile Verification
+        $turnstile_response = $_POST['cf-turnstile-response'] ?? '';
+        if (!verify_turnstile($turnstile_response)) {
+            $msg = "captcha_error";
+        } else {
+            try {
             $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$cat['id'], $cat['name'], $visitor_name, $visitor_email, $visitor_phone, $message, date('Y-m-d H:i:s')]);
             $msg = "success";
-        } catch (Exception $e) {
-            $msg = "error";
+            } catch (Exception $e) {
+                $msg = "error";
+            }
         }
     }
 }
@@ -94,7 +100,9 @@ include 'includes/header.php';
     
 
     <?php if ($msg == 'success'): ?>
-        <div class="alert alert-success">Your request has been sent successfully!</div>
+        <div class="alert alert-success">Your inquiry has been sent successfully!</div>
+    <?php elseif ($msg == 'captcha_error'): ?>
+        <div class="alert alert-danger">Security validation failed (Captcha). Please try again.</div>
     <?php endif; ?>
 
     <div class="row">
@@ -548,7 +556,11 @@ include 'includes/header.php';
                             <label class="form-label">Message</label>
                             <textarea name="message" class="form-control" rows="4" required>Hello, I am interested in <?php echo htmlspecialchars($cat['name']); ?>...</textarea>
                         </div>
-                        <button type="submit" class="btn btn-cat w-100 btn-lg">Send my request</button>
+                        <!-- Cloudflare Turnstile -->
+                        <div class="mb-3">
+                            <div class="cf-turnstile" data-sitekey="<?php echo TURNSTILE_SITE_KEY; ?>"></div>
+                        </div>
+                        <button type="submit" class="btn btn-cat w-100 btn-lg">Send Application</button>
                     </form>
                 </div>
 </section>

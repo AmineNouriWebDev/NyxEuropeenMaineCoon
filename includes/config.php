@@ -6,6 +6,17 @@ $whitelist = ['127.0.0.1', '::1', 'localhost'];
 $http_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 define('IS_LOCAL', (php_sapi_name() === 'cli') || in_array($http_host, $whitelist) || strpos($http_host, 'localhost') !== false);
 
+// Cloudflare Turnstile Keys (Local Testing vs Production)
+if (IS_LOCAL) {
+    // Clés de test Cloudflare (toujours valides pour le développement local)
+    define('TURNSTILE_SITE_KEY', '1x00000000000000000000AA');
+    define('TURNSTILE_SECRET_KEY', '1x0000000000000000000000000000000AA');
+} else {
+    // Vos clés réelles pour la production (nyxcooncattery.com)
+    define('TURNSTILE_SITE_KEY', '0x4AAAAAAC03RNl2Mza8QVL6');
+    define('TURNSTILE_SECRET_KEY', '0x4AAAAAAC03RALWMeAoeyOjHxFH28bwsy8');
+}
+
 if (IS_LOCAL) {
     // CONFIGURATION LOCALE
     define('DB_HOST', 'localhost');
