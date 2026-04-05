@@ -36,6 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
         $result = $stmt->execute([$name, $email, $subject, $message, date('Y-m-d H:i:s')]);
         
         if ($result) {
+            // n8n Notification
+            send_n8n_notification([
+                'type' => 'Contact Form (EN)',
+                'name' => $name,
+                'email' => $email,
+                'subject' => $subject,
+                'message' => $message
+            ]);
+
             echo json_encode(['success' => true]);
         } else {
             throw new Exception("Error during insertion");

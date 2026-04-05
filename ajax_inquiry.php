@@ -39,6 +39,16 @@ try {
     $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$cat_id, $cat_name, $visitor_name, $visitor_email, $visitor_phone, $message, date('Y-m-d H:i:s')]);
 
+    // Notification n8n
+    send_n8n_notification([
+        'type' => 'Demande de renseignement (Chaton)',
+        'name' => $visitor_name,
+        'email' => $visitor_email,
+        'phone' => $visitor_phone,
+        'subject' => "Intérêt pour : " . $cat_name,
+        'message' => "Chaton : " . $cat_name . "\n\n Message : " . $message
+    ]);
+
     echo json_encode(['success' => true, 'message' => 'Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.']);
 } catch (PDOException $e) {
     error_log("Erreur demande adoption : " . $e->getMessage());

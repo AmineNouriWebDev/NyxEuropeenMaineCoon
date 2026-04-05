@@ -67,6 +67,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$cat['id'], $cat['name'], $visitor_name, $visitor_email, $visitor_phone, $message, date('Y-m-d H:i:s')]);
             $msg = "success";
+
+            // Notification n8n
+            send_n8n_notification([
+                'type' => 'Demande de renseignement (Chaton)',
+                'name' => $visitor_name,
+                'email' => $visitor_email,
+                'phone' => $visitor_phone,
+                'subject' => "Intérêt pour : " . $cat['name'],
+                'message' => "Chaton : " . $cat['name'] . "\n\n Message : " . $message
+            ]);
             } catch (Exception $e) {
                 $msg = "error";
             }

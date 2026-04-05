@@ -344,3 +344,38 @@ function verify_turnstile($response) {
     $responseKeys = json_decode($result, true);
     return $responseKeys["success"] ?? false;
 }
+
+/**
+ * Envoyer une notification vers le Webhook n8n
+ */
+function send_n8n_notification($data) {
+    // URL du Webhook n8n (Production URL corrigée)
+    $webhook_url = "https://n8n.deposark.com/webhook/762fdc77-6b10-40ce-8bd2-f0402c9ee107";
+
+    $ch = curl_init($webhook_url);
+    $payload = json_encode($data);
+    
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2); 
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    
+    // Désactiver la vérification SSL pour le local (XAMPP)
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    
+    $result = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+    curl_close($ch);
+    
+    if ($error) {
+        error_log("n8n Webhook Error: " . $error);
+    }
+    
+    // Log optionnel pour vérifier si l'appel a été tenté
+    // error_log("n8n Webhook Attempted: " . $webhook_url . " | Code: " . $httpCode);
+    
+    return $result;
+}

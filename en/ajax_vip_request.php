@@ -62,6 +62,19 @@ try {
     $msg = "New VIP adoption request received. Please check the administration.";
     // mail($to, $subject, $msg); 
 
+    // n8n Notification
+    send_n8n_notification([
+        'type' => 'VIP List (Priority) - EN',
+        'name' => $data['first_name'] . ' ' . $data['last_name'],
+        'email' => $data['email'],
+        'phone' => $data['phone'],
+        'message' => "Current pets: " . $data['existing_pets'] . "\n" .
+                     "Environment: " . $data['environment_type'] . "\n" .
+                     "Preferences: " . $data['color_preferences'] . " (" . $data['gender_preference'] . ")\n" .
+                     "Desired date: " . $data['date_day'] . "/" . $data['date_month'] . "/" . $data['date_year'] . "\n" .
+                     "Questions: " . $data['questions']
+    ]);
+
     echo json_encode(['success' => true]);
 
 } catch (PDOException $e) {
