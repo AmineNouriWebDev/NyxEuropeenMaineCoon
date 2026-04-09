@@ -122,6 +122,19 @@
             .main-content {
                 margin-left: 0;
             }
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+                display: none;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -176,22 +189,30 @@
     </ul>
 </nav>
 
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <!-- Main Content Wrapper -->
-<div class="main-content">
+<div class="main-content" id="mainContent">
     <!-- Top Bar -->
     <div class="top-bar">
-        <h4 class="mb-0">
-            <?php 
-            $pageName = basename($_SERVER['PHP_SELF'], '.php');
-            if($pageName == 'dashboard') echo 'Tableau de bord';
-            elseif($pageName == 'cats') echo 'Gestion des Chats';
-            elseif($pageName == 'users') echo 'Gestion des Admins';
-            else echo ucfirst($pageName);
-            ?>
-        </h4>
         <div class="d-flex align-items-center">
-            <span class="me-3">Bonjour, <?php echo htmlspecialchars($_SESSION['admin_username'] ?? 'Admin'); ?></span>
-            <a href="../" target="_blank" class="btn btn-outline-primary btn-sm"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+            <button class="btn btn-primary d-md-none me-3" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h4 class="mb-0 fs-5 fs-md-4">
+                <?php 
+                $pageName = basename($_SERVER['PHP_SELF'], '.php');
+                if($pageName == 'dashboard') echo 'Tableau de bord';
+                elseif($pageName == 'cats') echo 'Gestion des Chats';
+                elseif($pageName == 'users') echo 'Gestion des Admins';
+                else echo ucfirst($pageName);
+                ?>
+            </h4>
+        </div>
+        <div class="d-flex align-items-center">
+            <span class="me-3 d-none d-md-inline">Bonjour, <?php echo htmlspecialchars($_SESSION['admin_username'] ?? 'Admin'); ?></span>
+            <a href="../" target="_blank" class="btn btn-outline-primary btn-sm"><i class="fas fa-external-link-alt"></i> <span class="d-none d-sm-inline">Voir le site</span></a>
         </div>
     </div>
 

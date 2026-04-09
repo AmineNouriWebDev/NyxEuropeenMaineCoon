@@ -8,8 +8,29 @@
 
 <!-- Scripts d'Admin -->
 <script>
-    // Toggle Sidebar Mobile
-    // Ajoutez ici des scripts JS pour l'admin si nécessaire
+    document.addEventListener("DOMContentLoaded", function() {
+        // Toggle Sidebar Mobile
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                sidebar.classList.toggle('active');
+                if (sidebarOverlay) {
+                    sidebarOverlay.classList.toggle('active');
+                }
+            });
+        }
+
+        if (sidebarOverlay && sidebar) {
+            sidebarOverlay.addEventListener('click', function(e) {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+    });
 </script>
 
 </body>
