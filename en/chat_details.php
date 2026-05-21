@@ -444,15 +444,15 @@ include 'includes/header.php';
                                 <div class="col-6">
                                     <ul class="list-unstyled mb-0">
                                         <li class="mb-2 d-flex align-items-center">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="Mastercard" style="height:24px; width:auto; border-radius:4px; background:#fff; padding:2px 4px; border:1px solid #ddd; margin-right:8px;">
+                                            <i class="fab fa-cc-mastercard text-dark" style="font-size: 24px; margin-right: 8px;"></i>
                                             <span>Master Card Credit</span>
                                         </li>
                                         <li class="mb-2 d-flex align-items-center">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Visa_Inc._logo_%281992%E2%80%931999%29.svg/640px-Visa_Inc._logo_%281992%E2%80%931999%29.svg.png" alt="Visa" style="height:24px; width:auto; border-radius:4px; background:#fff; padding:2px 4px; border:1px solid #ddd; margin-right:8px;">
+                                            <i class="fab fa-cc-visa text-dark" style="font-size: 24px; margin-right: 8px;"></i>
                                             <span>Visa Credit</span>
                                         </li>
                                         <li class="mb-2 d-flex align-items-center">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/American_Express_logo.svg/200px-American_Express_logo.svg.png" alt="American Express" style="height:24px; width:auto; border-radius:4px; background:#fff; padding:2px 4px; border:1px solid #ddd; margin-right:8px;">
+                                            <i class="fab fa-cc-amex text-dark" style="font-size: 24px; margin-right: 8px;"></i>
                                             <span>American Express Credit</span>
                                         </li>
                                     </ul>
