@@ -14,7 +14,7 @@ function esc($string)
  */
 function format_price($price)
 {
-    return number_format($price, 0, ',', ' ') . ' €';
+    return number_format((float)$price, 0, ',', ' ') . ' €';
 }
 
 /**

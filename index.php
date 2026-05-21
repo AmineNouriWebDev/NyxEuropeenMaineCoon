@@ -230,9 +230,9 @@ $cats = get_cats_from_db($pdo, 'available');
                             </div>
                             <div class="text-right">
                                 <?php if (!empty($cat['old_price_cad'])): ?>
-                                    <small class="text-muted mr-1" style="text-decoration: line-through;"><?php echo number_format($cat['old_price_cad'], 0, ',', ' '); ?> $</small>
+                                    <small class="text-muted mr-1" style="text-decoration: line-through;"><?php echo number_format((float)$cat['old_price_cad'], 0, ',', ' '); ?> $</small>
                                 <?php endif; ?>
-                                <span class="font-weight-bold ml-1" style="color: #2c3e50; font-size: 1.1em;"><?php echo number_format($cat['price_cad'], 0, ',', ' '); ?> $</span>
+                                <span class="font-weight-bold ml-1" style="color: #2c3e50; font-size: 1.1em;"><?php echo number_format((float)$cat['price_cad'], 0, ',', ' '); ?> $</span>
                             </div>
                         </div>
                       <?php endif; ?>
@@ -245,9 +245,9 @@ $cats = get_cats_from_db($pdo, 'available');
                             </div>
                             <div class="text-right">
                                 <?php if (!empty($cat['old_price_usd'])): ?>
-                                    <small class="text-muted mr-1" style="text-decoration: line-through;"><?php echo number_format($cat['old_price_usd'], 0, ',', ' '); ?> $</small>
+                                    <small class="text-muted mr-1" style="text-decoration: line-through;"><?php echo number_format((float)$cat['old_price_usd'], 0, ',', ' '); ?> $</small>
                                 <?php endif; ?>
-                                <span class="font-weight-bold ml-1 text-muted" style="font-size: 1em;"><?php echo number_format($cat['price_usd'], 0, ',', ' '); ?> $</span>
+                                <span class="font-weight-bold ml-1 text-muted" style="font-size: 1em;"><?php echo number_format((float)$cat['price_usd'], 0, ',', ' '); ?> $</span>
                             </div>
                         </div>
                       <?php endif; ?>

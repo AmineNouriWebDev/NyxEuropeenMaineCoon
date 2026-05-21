@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8082:80"
+    environment:
+      - DB_HOST=base_de_donnees
+      - DB_NAME=nyxcooncattery_db
+      - DB_USER=root
+      - DB_PASS=root
+    volumes:
+      - .:/var/www/html
+    networks:
+      - shop_default
+
+networks:
+  shop_default:
+    external: true

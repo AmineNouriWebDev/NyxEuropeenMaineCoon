@@ -194,9 +194,9 @@ include 'includes/header.php';
                 <?php if (!empty($cat['price_cad'])): ?>
                 <div class="d-flex align-items-center mb-2">
                     <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 8px; vertical-align: middle;">
-                    <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format($cat['price_cad'], 0, ',', ' '); ?> $</span>
+                    <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format((float)$cat['price_cad'], 0, ',', ' '); ?> $</span>
                     <?php if (!empty($cat['old_price_cad'])): ?>
-                        <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_price_cad'], 0, ',', ' '); ?> $</span>
+                        <span class="old-price ml-3 text-muted"><?php echo number_format((float)$cat['old_price_cad'], 0, ',', ' '); ?> $</span>
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
@@ -204,9 +204,9 @@ include 'includes/header.php';
                 <?php if (!empty($cat['price_usd'])): ?>
                 <div class="d-flex align-items-center">
                     <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 8px; vertical-align: middle;">
-                    <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format($cat['price_usd'], 0, ',', ' '); ?> $</span>
+                    <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format((float)$cat['price_usd'], 0, ',', ' '); ?> $</span>
                     <?php if (!empty($cat['old_price_usd'])): ?>
-                        <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_price_usd'], 0, ',', ' '); ?> $</span>
+                        <span class="old-price ml-3 text-muted"><?php echo number_format((float)$cat['old_price_usd'], 0, ',', ' '); ?> $</span>
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
@@ -286,19 +286,19 @@ include 'includes/header.php';
                         <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 16px; margin-right: 5px; vertical-align: middle;">
                             <span class="text-muted font-weight-bold mr-3" style="font-size: 1.25rem;">
-                                <?php echo number_format($cat['stud_price_cad'], 0, ',', ' '); ?> $
+                                <?php echo number_format((float)$cat['stud_price_cad'], 0, ',', ' '); ?> $
                             </span>
                             <?php if (!empty($cat['old_stud_price_cad'])): ?>
-                                <span class="old-price mr-3 text-muted"><?php echo number_format($cat['old_stud_price_cad'], 0, ',', ' '); ?> $</span>
+                                <span class="old-price mr-3 text-muted"><?php echo number_format((float)$cat['old_stud_price_cad'], 0, ',', ' '); ?> $</span>
                             <?php endif; ?>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 16px; margin-right: 5px; vertical-align: middle;">
                             <span class="text-muted font-weight-bold">
-                                <?php echo number_format($cat['stud_price_usd'], 0, ',', ' '); ?> $
+                                <?php echo number_format((float)$cat['stud_price_usd'], 0, ',', ' '); ?> $
                             </span>
                             <?php if (!empty($cat['old_stud_price_usd'])): ?>
-                                <span class="old-price ml-2 text-muted"><?php echo number_format($cat['old_stud_price_usd'], 0, ',', ' '); ?> $</span>
+                                <span class="old-price ml-2 text-muted"><?php echo number_format((float)$cat['old_stud_price_usd'], 0, ',', ' '); ?> $</span>
                             <?php endif; ?>
                         </div>
                         <?php if (!empty($cat['sale_description'])): ?>
@@ -315,19 +315,19 @@ include 'includes/header.php';
                         <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 16px; margin-right: 5px; vertical-align: middle;">
                             <span class="text-muted font-weight-bold" style="font-size: 1.1rem; ">
-                                <?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $
+                                <?php echo number_format((float)$cat['retirement_price_cad'], 0, ',', ' '); ?> $
                             </span>
                             <?php if (!empty($cat['old_retirement_price_cad'])): ?>
-                                <span class="old-price mr-3 text-muted"><?php echo number_format($cat['old_retirement_price_cad'], 0, ',', ' '); ?> $</span>
+                                <span class="old-price mr-3 text-muted"><?php echo number_format((float)$cat['old_retirement_price_cad'], 0, ',', ' '); ?> $</span>
                             <?php endif; ?>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 16px; margin-right: 5px; vertical-align: middle;">
                             <span class="text-muted font-weight-bold">
-                                <?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $
+                                <?php echo number_format((float)$cat['retirement_price_usd'], 0, ',', ' '); ?> $
                             </span>
                             <?php if (!empty($cat['old_retirement_price_usd'])): ?>
-                                <span class="old-price ml-2 text-muted"><?php echo number_format($cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                                <span class="old-price ml-2 text-muted"><?php echo number_format((float)$cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
                             <?php endif; ?>
                         </div>
                         <?php if (!empty($cat['sale_description']) && ($cat['sale_type'] !== 'both')): ?>
@@ -475,14 +475,14 @@ include 'includes/header.php';
                                         <li class="mb-2 d-flex align-items-center">
                                              
                                             <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 10px;">
-                                            <span class="font-weight-bold" style="font-size: 1.1em;"><?php echo number_format($cat['breeding_price_cad'], 0, ',', ' '); ?> $ CAD</span>
+                                            <span class="font-weight-bold" style="font-size: 1.1em;"><?php echo number_format((float)$cat['breeding_price_cad'], 0, ',', ' '); ?> $ CAD</span>
                                         </li>
                                     <?php endif; ?>
                                     <?php if (!empty($cat['breeding_price_usd'])): ?>
                                         <li class="d-flex align-items-center">
                                            
                                             <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 10px;">
-                                            <span class="text-muted font-weight-bold"><?php echo number_format($cat['breeding_price_usd'], 0, ',', ' '); ?> $ USD</span>
+                                            <span class="text-muted font-weight-bold"><?php echo number_format((float)$cat['breeding_price_usd'], 0, ',', ' '); ?> $ USD</span>
                                         </li>
                                     <?php endif; ?>
                                 </ul>

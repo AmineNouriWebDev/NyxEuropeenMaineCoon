@@ -106,7 +106,7 @@ if (isset($_GET['msg'])) {
                                 <td>
                                     <?php 
                                     if (!empty($cat['price_cad'])) {
-                                        echo number_format($cat['price_cad'], 0, ',', ' ') . ' $CAD';
+                                        echo number_format((float)$cat['price_cad'], 0, ',', ' ') . ' $CAD';
                                     } else {
                                         echo '-';
                                     }

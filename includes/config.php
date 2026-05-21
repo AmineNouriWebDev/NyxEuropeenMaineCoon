@@ -19,10 +19,10 @@ if (IS_LOCAL) {
 
 if (IS_LOCAL) {
     // CONFIGURATION LOCALE
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'nyxcooncattery_db');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
+    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+    define('DB_NAME', getenv('DB_NAME') ?: 'nyxcooncattery_db');
+    define('DB_USER', getenv('DB_USER') ?: 'root');
+    define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
     // DÉTECTION AUTOMATIQUE DU CHEMIN (Pour supporter localhost/cat/)
     $scriptDir = dirname($_SERVER['SCRIPT_NAME']);
     // Normalisation Windows (remplacer \ par /)

@@ -230,16 +230,16 @@ if ($selected_id) {
                       <small class="text-muted d-block mb-1"><i class="fas fa-paw text-info"></i> Stud Service</small>
                       <div class="d-flex align-items-center mb-2">
                         <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 8px; vertical-align: middle;">
-                        <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format($cat['stud_price_cad'], 0, ',', ' '); ?> $</span>
+                        <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format((float)$cat['stud_price_cad'], 0, ',', ' '); ?> $</span>
                         <?php if (!empty($cat['old_stud_price_cad'])): ?>
-                            <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_stud_price_cad'], 0, ',', ' '); ?> $</span>
+                            <span class="old-price ml-3 text-muted"><?php echo number_format((float)$cat['old_stud_price_cad'], 0, ',', ' '); ?> $</span>
                         <?php endif; ?>
                       </div>
                       <div class="d-flex align-items-center">
                         <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 8px; vertical-align: middle;">
-                        <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format($cat['stud_price_usd'], 0, ',', ' '); ?> $</span>
+                        <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format((float)$cat['stud_price_usd'], 0, ',', ' '); ?> $</span>
                         <?php if (!empty($cat['old_stud_price_usd'])): ?>
-                            <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_stud_price_usd'], 0, ',', ' '); ?> $</span>
+                            <span class="old-price ml-3 text-muted"><?php echo number_format((float)$cat['old_stud_price_usd'], 0, ',', ' '); ?> $</span>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -250,16 +250,16 @@ if ($selected_id) {
                       <small class="text-muted d-block mb-1"><i class="fas fa-home text-success"></i> Retirement</small>
                       <div class="d-flex align-items-center mb-2">
                         <img src="https://flagcdn.com/32x24/ca.png" alt="Canada" style="height: 20px; margin-right: 8px; vertical-align: middle;">
-                        <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format($cat['retirement_price_cad'], 0, ',', ' '); ?> $</span>
+                        <span class="h3 text-primary font-weight-bold mb-0"><?php echo number_format((float)$cat['retirement_price_cad'], 0, ',', ' '); ?> $</span>
                         <?php if (!empty($cat['old_retirement_price_cad'])): ?>
-                            <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_retirement_price_cad'], 0, ',', ' '); ?> $</span>
+                            <span class="old-price ml-3 text-muted"><?php echo number_format((float)$cat['old_retirement_price_cad'], 0, ',', ' '); ?> $</span>
                         <?php endif; ?>
                       </div>
                       <div class="d-flex align-items-center">
                         <img src="https://flagcdn.com/32x24/us.png" alt="USA" style="height: 20px; margin-right: 8px; vertical-align: middle;">
-                        <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format($cat['retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                        <span class="h4 text-secondary font-weight-bold mb-0"><?php echo number_format((float)$cat['retirement_price_usd'], 0, ',', ' '); ?> $</span>
                         <?php if (!empty($cat['old_retirement_price_usd'])): ?>
-                            <span class="old-price ml-3 text-muted"><?php echo number_format($cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
+                            <span class="old-price ml-3 text-muted"><?php echo number_format((float)$cat['old_retirement_price_usd'], 0, ',', ' '); ?> $</span>
                         <?php endif; ?>
                       </div>
                     </div>

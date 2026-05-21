@@ -1,0 +1,25 @@
+# Fichiers d'environnement
+.env
+.env.*
+!.env.example
+
+# IDE et Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dépendances
+vendor/
+node_modules/
+
+# Fichiers de log
+*.log
+error_log
+
+# Fichiers OS
+.DS_Store
+Thumbs.db
+
+# Fichiers uploadés par les utilisateurs (si applicable)
+# /img/uploads/ 
