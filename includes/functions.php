@@ -326,18 +326,21 @@ function verify_turnstile($response) {
         'remoteip' => $_SERVER['REMOTE_ADDR']
     ];
 
-    $options = [
-        'http' => [
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
-            'content' => http_build_query($data)
-        ]
-    ];
-
-    $context  = stream_context_create($options);
-    $result = @file_get_contents($url, false, $context);
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
     
+    // Désactiver la vérification SSL pour éviter les problèmes en local/production
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $result = curl_exec($ch);
+    $error = curl_error($ch);
+    curl_close($ch);
+
     if ($result === FALSE) {
+        error_log("Turnstile Error: " . $error);
         return false;
     }
 
