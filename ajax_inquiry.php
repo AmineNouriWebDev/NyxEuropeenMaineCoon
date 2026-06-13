@@ -28,12 +28,14 @@ if (!filter_var($visitor_email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Vérification Turnstile
+// Vérification Turnstile désactivée pour ce formulaire
+/*
 $turnstile_response = $_POST['cf-turnstile-response'] ?? '';
 if (!verify_turnstile($turnstile_response)) {
     echo json_encode(['success' => false, 'message' => 'Échec de la validation de sécurité (Captcha).']);
     exit;
 }
+*/
 
 try {
     $stmt = $pdo->prepare("INSERT INTO adoption_requests (cat_id, cat_name, visitor_name, visitor_email, visitor_phone, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
