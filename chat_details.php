@@ -217,7 +217,7 @@ include 'includes/header.php';
             <div class="kitten-info-grid mb-4">
                 <div class="info-item text-dark">
                     <i class="fas fa-venus-mars text-dark"></i>
-                    <span class="text-dark"><?php echo $cat['gender'] == 'Male' ? ' Mâle' : 'Femelle'; ?></span>
+                    <span class="text-dark"><?php echo $cat['gender'] == 'Male' ? ' Mâle' : ($cat['gender'] == 'Female' ? 'Femelle' : ' À déterminer'); ?></span>
                 </div>
                 <div class="info-item text-dark">
                     <i class="fas fa-calendar-alt text-dark"></i>

@@ -238,6 +238,7 @@ require_once 'includes/header.php';
                         <select class="form-select" name="gender">
                             <option value="Male" <?php echo ($cat['gender'] ?? '') == 'Male' ? 'selected' : ''; ?>>Mâle</option>
                             <option value="Female" <?php echo ($cat['gender'] ?? '') == 'Female' ? 'selected' : ''; ?>>Femelle</option>
+                            <option value="To determine" <?php echo ($cat['gender'] ?? '') == 'To determine' ? 'selected' : ''; ?>>À déterminer</option>
                         </select>
                     </div>
                     

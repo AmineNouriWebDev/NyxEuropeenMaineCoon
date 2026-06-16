@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `chats`;
 CREATE TABLE `chats` (
   `id` varchar(50) NOT NULL, -- Identifiant textuel unique (ex: 'luna', 'thor') pour les URLs
   `name` varchar(100) NOT NULL,
-  `gender` enum('Male','Female') NOT NULL,
+  `gender` enum('Male','Female','To determine') NOT NULL,
   `birth_date` date DEFAULT NULL,
   `age_text` varchar(50) DEFAULT NULL, -- Pour "4 months" si on ne veut pas calculer
   `color` varchar(100) NOT NULL,

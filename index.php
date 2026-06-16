@@ -197,7 +197,7 @@ $cats = get_cats_from_db($pdo, 'available');
                     <!-- Sexe : Icone Mixte + Texte -->
                     <div class="info-item">
                       <i class="fas fa-venus-mars text-dark"></i>
-                      <span><?php echo strtolower($cat['gender']) == 'male' ? 'Mâle' : 'Femelle'; ?></span>
+                      <span><?php echo strtolower($cat['gender']) == 'male' ? 'Mâle' : (strtolower($cat['gender']) == 'female' ? 'Femelle' : 'À déterminer'); ?></span>
                     </div>
 
                     <!-- Âge avec icône calendrier noir -->

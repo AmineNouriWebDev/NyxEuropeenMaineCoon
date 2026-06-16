@@ -219,7 +219,7 @@ include 'includes/header.php';
                     <i class="fas fa-venus-mars text-dark"></i>
                     <span class="text-dark">
                         <?php 
-                        $gender_en = ($cat['gender'] === 'Male') ? 'Male' : 'Female';
+                        $gender_en = ($cat['gender'] === 'Male') ? 'Male' : (($cat['gender'] === 'Female') ? 'Female' : 'To determine');
                         echo $gender_en; 
                         ?>
                     </span>
