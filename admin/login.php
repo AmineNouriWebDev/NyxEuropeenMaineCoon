@@ -2,6 +2,9 @@
 require_once '../includes/config.php';
 session_start();
 
+// URL du webhook n8n pour le 2FA
+define('N8N_2FA_WEBHOOK', 'https://n8n.deposark.com/webhook/admin-2fa-code');
+
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,19 +21,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Échec de la validation de sécurité (Captcha).";
         } else {
             try {
-            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-            $stmt->execute([$username]);
-            $user = $stmt->fetch();
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+                $stmt->execute([$username]);
+                $user = $stmt->fetch();
 
-            if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['admin_logged_in'] = true;
-                $_SESSION['admin_id'] = $user['id'];
-                $_SESSION['admin_username'] = $user['username'];
-                header('Location: dashboard.php');
-                exit;
-            } else {
-                $error = "Nom d'utilisateur ou mot de passe incorrect.";
-            }
+                if ($user && password_verify($password, $user['password'])) {
+                    // ✅ Identifiants corrects → Générer le code 2FA
+                    $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+                    $expiry = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+
+                    // Stocker le code en session (temporaire)
+                    $_SESSION['2fa_code']     = $code;
+                    $_SESSION['2fa_expiry']   = $expiry;
+                    $_SESSION['2fa_user_id']  = $user['id'];
+                    $_SESSION['2fa_username'] = $user['username'];
+                    $_SESSION['2fa_pending']  = true;
+
+                    // Envoyer le code via n8n (Telegram + Email)
+                    $payload = json_encode([
+                        'username' => $user['username'],
+                        'email'    => $user['email'],
+                        'code'     => $code,
+                        'expiry'   => '5 minutes',
+                        'ip'       => $_SERVER['REMOTE_ADDR'] ?? 'inconnue',
+                    ]);
+
+                    $ch = curl_init(N8N_2FA_WEBHOOK);
+                    curl_setopt_array($ch, [
+                        CURLOPT_POST           => true,
+                        CURLOPT_POSTFIELDS     => $payload,
+                        CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_TIMEOUT        => 5,
+                    ]);
+                    curl_exec($ch);
+                    curl_close($ch);
+
+                    // Rediriger vers la page de vérification 2FA
+                    header('Location: verify_2fa.php');
+                    exit;
+                } else {
+                    $error = "Nom d'utilisateur ou mot de passe incorrect.";
+                }
             } catch (PDOException $e) {
                 $error = "Erreur système : " . $e->getMessage();
             }
