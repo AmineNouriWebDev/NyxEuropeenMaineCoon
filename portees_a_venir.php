@@ -12,12 +12,12 @@ $sql = "SELECT l.*,
         m_father.id as mother_father_id, m_father.name as mother_father_name,
         m_mother.id as mother_mother_id, m_mother.name as mother_mother_name
         FROM upcoming_litters l
-        LEFT JOIN chats f ON l.father_id = f.id
-        LEFT JOIN chats m ON l.mother_id = m.id
-        LEFT JOIN chats f_father ON f.father_id = f_father.id
-        LEFT JOIN chats f_mother ON f.mother_id = f_mother.id
-        LEFT JOIN chats m_father ON m.father_id = m_father.id
-        LEFT JOIN chats m_mother ON m.mother_id = m_mother.id
+        LEFT JOIN chats f ON l.father_id COLLATE utf8mb4_general_ci = f.id COLLATE utf8mb4_general_ci
+        LEFT JOIN chats m ON l.mother_id COLLATE utf8mb4_general_ci = m.id COLLATE utf8mb4_general_ci
+        LEFT JOIN chats f_father ON f.father_id COLLATE utf8mb4_general_ci = f_father.id COLLATE utf8mb4_general_ci
+        LEFT JOIN chats f_mother ON f.mother_id COLLATE utf8mb4_general_ci = f_mother.id COLLATE utf8mb4_general_ci
+        LEFT JOIN chats m_father ON m.father_id COLLATE utf8mb4_general_ci = m_father.id COLLATE utf8mb4_general_ci
+        LEFT JOIN chats m_mother ON m.mother_id COLLATE utf8mb4_general_ci = m_mother.id COLLATE utf8mb4_general_ci
         WHERE l.is_active = 1
         ORDER BY l.created_at ";
 $litters = $pdo->query($sql)->fetchAll();
@@ -86,11 +86,11 @@ function get_main_image($pdo, $cat_id) {
                         </div>
                         <?php endif; ?>
                         <h2 class="litter-title">
-                            <span class="cat-name mother-name" style="color:white !important;"><?php echo htmlspecialchars($litter['mother_name']); ?></span>
+                            <span class="cat-name mother-name" style="color:white !important;"><?php echo htmlspecialchars($litter['mother_name'] ?? 'Queen'); ?></span>
                             <span class="heart-divider"style="color:white !important;">
                                 <i class="fas fa-heart"></i>
                             </span>
-                            <span class="cat-name father-name"style="color:white !important;"><?php echo htmlspecialchars($litter['father_name']); ?></span>
+                            <span class="cat-name father-name"style="color:white !important;"><?php echo htmlspecialchars($litter['father_name'] ?? 'King'); ?></span>
                         </h2>
                     </div>
 
@@ -113,7 +113,7 @@ function get_main_image($pdo, $cat_id) {
                                         <div class="cat-badge queen-badge">
                                             <i class="fas fa-heart"></i> Queen
                                         </div>
-                                        <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['mother_name']); ?></h4>
+                                        <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['mother_name'] ?? 'Queen'); ?></h4>
                                         <div class="cat-actions">
                                             <a href="chat_details.php?id=<?php echo $litter['mother_id']; ?>" class="btn-profile">
                                                 <i class="fas fa-info-circle"></i> Voir le profil
@@ -163,7 +163,7 @@ function get_main_image($pdo, $cat_id) {
                                         <div class="cat-badge king-badge" style="color:white !important;">
                                             <i class="fas fa-crown"></i> King
                                         </div>
-                                        <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['father_name']); ?></h4>
+                                        <h4 class="cat-profile-name"><?php echo htmlspecialchars($litter['father_name'] ?? 'King'); ?></h4>
                                         <div class="cat-actions">
                                             <a href="chat_details.php?id=<?php echo $litter['father_id']; ?>" class="btn-profile">
                                                 <i class="fas fa-info-circle"></i> Voir le profil
