@@ -22,4 +22,38 @@ error_log
 Thumbs.db
 
 # Fichiers uploadés par les utilisateurs (si applicable)
-# /img/uploads/ 
+# /img/uploads/
+
+# ============================================================
+# 🔒 FICHIERS DE MAINTENANCE - NE JAMAIS DÉPLOYER EN PROD
+# Ces fichiers sont utiles en local/dev mais DANGEREUX en ligne
+# ============================================================
+
+# Pages de debug et configuration BDD (accès sans auth)
+admin/debug_db.php
+admin/fix_database.php
+admin/migrate_db.php
+admin/setup_colors_db.php
+admin/setup_litters_db.php
+admin/setup_requests_table.php
+admin/setup_vip_db.php
+admin/check_parents.php
+
+# Scripts SSH temporaires (utilisés en développement uniquement)
+ssh_*.py
+generate_migration.py
+scp_download_images.py
+
+# Fichiers d'export/import BDD temporaires
+export_*.sql
+migration_*.sql
+restauration_*.sql
+*_backup*.sql
+
+# Archives d'images
+img_backup_vps/
+img_backup_vps.zip
+
+# Fichiers de configuration sensibles (ne jamais commiter)
+configurationVPS*.txt
+n8n_2fa_workflow.json
