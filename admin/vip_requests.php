@@ -84,7 +84,7 @@ require_once 'includes/header.php';
                                     <strong>Couleurs:</strong> <?php echo htmlspecialchars(substr($r['color_preferences'], 0, 20)) . '...'; ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary mb-1" onclick='openDetails(<?php echo json_encode($r); ?>)'>
+                                    <button class="btn btn-sm btn-primary mb-1" onclick="openDetails(<?php echo htmlspecialchars(json_encode($r), ENT_QUOTES, 'UTF-8'); ?>)">
                                         <i class="fas fa-eye"></i> Détails
                                     </button>
                                     <a href="?toggle=1&id=<?php echo $r['id']; ?>" class="btn btn-sm <?php echo $r['status'] == 'new' ? 'btn-success' : 'btn-outline-secondary'; ?>">
